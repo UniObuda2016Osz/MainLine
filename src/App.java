@@ -13,7 +13,7 @@ public class App extends JFrame {
     private App() {
         setTitle("Smart Auto Simulation App");
         // A méret a térkép tényleges mérete lesz majd
-        setSize(1024,768);
+        setSize(5000, 5000);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
