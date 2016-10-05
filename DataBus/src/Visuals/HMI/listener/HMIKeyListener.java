@@ -1,5 +1,6 @@
 package Visuals.HMI.listener;
 
+import Bus.Bus;
 import Visuals.HMI.component.HMIPanel;
 
 import java.awt.event.KeyEvent;
@@ -28,14 +29,24 @@ public class HMIKeyListener implements KeyListener {
         int keyCode=e.getKeyCode();
 
         System.out.println(String.format("key pressed by keyCode %s", keyCode));
+
         if((keyCode==KeyEvent.VK_UP))
         {
-            hmiPanel.getTestLabel().setText("press key DOWN to change me ! :)");
+            hmiPanel.getTestLabel().setText("press key DOWN to change me ! :)"); //FIXME remove later
+
+            //TODO implement this event correctly
+            Bus.getInstance().setGasPedal( 100 );
         }
         else if((keyCode==KeyEvent.VK_DOWN))
         {
-            hmiPanel.getTestLabel().setText("press key UP to change me ! :)");
+            hmiPanel.getTestLabel().setText("press key UP to change me ! :)"); //FIXME remove later
+
+            //TODO implement this event correctly
+            Bus.getInstance().setGasPedal( 0 );
         }
+
+
+        hmiPanel.getlSpeed().setText( ""+ Bus.getInstance().getGasPedal() ); //FIXME remove later
     }
 
     @Override
