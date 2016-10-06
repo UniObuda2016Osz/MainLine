@@ -1,6 +1,7 @@
 package Visuals.HMI.component;
 
 import Visuals.HMI.listener.HMIKeyListener;
+import Visuals.HMI.util.HMILabel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,13 +15,6 @@ public class HMIPanel extends JPanel {
 
     public static int PANEL_WIDTH_PX = 1000;
     public static int PANEL_HEIGHT_PX = 250;
-
-    public static String LABEL_SPEED = "speed: ";
-    public static String LABEL_STEERING_WHEEL_ANGLE = "steering wheel angle: ";
-    public static String LABEL_ACCELERATOR_DEGREE = "accelerator degree: ";
-    public static String LABEL_BREAK_DEGREE = "break degree: ";
-    public static String LABEL_INDICATOR_FEEDBACK = "indicator feedback: ";
-    public static String LABEL_CURRENT_GEAR = "current gear: ";
 
     private JLabel testLabel = new JLabel("press key UP to change me ! :)"); //FIXME remove later
     private JLabel lSpeed = new JLabel();
@@ -45,22 +39,22 @@ public class HMIPanel extends JPanel {
 
         add(testLabel); //FIXME remove later
 
-        add(new JLabel(LABEL_SPEED));
+        add(new JLabel(HMILabel.SPEED));
         add(getlSpeed());
 
-        add(new JLabel(LABEL_STEERING_WHEEL_ANGLE));
+        add(new JLabel(HMILabel.STEERING_WHEEL_ANGLE));
         add(getlSteeringWheelAngle());
 
-        add(new JLabel(LABEL_ACCELERATOR_DEGREE));
+        add(new JLabel(HMILabel.ACCELERATOR_DEGREE));
         add(getlAcceleratorDegree());
 
-        add(new JLabel(LABEL_BREAK_DEGREE));
+        add(new JLabel(HMILabel.BREAK_DEGREE));
         add(getlBreakDegree());
 
-        add(new JLabel(LABEL_INDICATOR_FEEDBACK));
+        add(new JLabel(HMILabel.INDICATOR_FEEDBACK));
         add(getlIndicatorFeedback());
 
-        add(new JLabel(LABEL_CURRENT_GEAR));
+        add(new JLabel(HMILabel.CURRENT_GEAR));
         add(getlCurrentGear());
 
         System.out.println("HMI panel initialized");
