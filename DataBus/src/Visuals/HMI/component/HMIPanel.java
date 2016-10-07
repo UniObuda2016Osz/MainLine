@@ -39,7 +39,7 @@ public class HMIPanel extends JPanel {
 
         add(testLabel); //FIXME remove later
 
-        add(new JLabel(HMILabel.SPEED));
+        add(new JLabel(HMILabel.GAS_PEDAL_PRESSURE));
         add(getlSpeed());
 
         add(new JLabel(HMILabel.STEERING_WHEEL_ANGLE));

@@ -1,6 +1,7 @@
 package Visuals.HMI.listener;
 
 import Bus.Bus;
+import Visuals.HMI.component.CarInstrumentContainer;
 import Visuals.HMI.component.HMIPanel;
 
 import java.awt.event.KeyEvent;
@@ -32,21 +33,17 @@ public class HMIKeyListener implements KeyListener {
 
         if((keyCode==KeyEvent.VK_UP))
         {
-            hmiPanel.getTestLabel().setText("press key DOWN to change me ! :)"); //FIXME remove later
-
-            //TODO implement this event correctly
-            Bus.getInstance().setGasPedal( 100 );
+            //FIXME levair - only propagate this info, if the value actually changed?
+            Bus.getInstance().setGasPedal( CarInstrumentContainer.singleton().getGasPedal().increasePressure() );
         }
         else if((keyCode==KeyEvent.VK_DOWN))
         {
-            hmiPanel.getTestLabel().setText("press key UP to change me ! :)"); //FIXME remove later
-
-            //TODO implement this event correctly
-            Bus.getInstance().setGasPedal( 0 );
+            //FIXME levair - only propagate this info, if the value actually changed?
+            Bus.getInstance().setGasPedal( CarInstrumentContainer.singleton().getGasPedal().decreasePressure() );
         }
 
 
-        hmiPanel.getlSpeed().setText( ""+ Bus.getInstance().getGasPedal() ); //FIXME remove later
+        hmiPanel.getlSpeed().setText( ""+ Bus.getInstance().getGasPedal() ); //FIXME levair - this is not the speed, but the pedal pressure
     }
 
     @Override
