@@ -1,19 +1,31 @@
 package Visuals;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 // ...
 
 public class App extends JFrame {
 
-    private App() {
+    Image img = ImageIO.read(new File("C:\\Users\\Rákóczi Botond\\AutoSimulator\\DataBus\\src\\road_2.png"));
+
+
+
+
+
+
+
+    private App() throws IOException {
         setTitle("Smart Auto Simulation App");
         // A méret a térkép tényleges mérete lesz majd
-        setSize(600, 400);
+        setSize(1024, 819);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +70,15 @@ public class App extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public void paint(Graphics g)
+    {
+        // Draw the previously loaded image to Component.
+        g.drawImage(img, 0, 0, null);
+
+        // Draw sprites, and other things.
+        // ....
+    }
+    public static void main(String[] args) throws IOException {
         new App();
     }
 }
