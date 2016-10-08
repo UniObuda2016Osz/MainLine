@@ -11,7 +11,7 @@ import javax.swing.*;
  */
 public class AutoTest {
 
-    Car auto = new Car();
+    //Car auto = new Car();
 /**  Tamás Ez itt hibára fut mint állat azért kommenteltem ki légyszíves nézz rá és amíg valami nem fordul le ne hagyd így itt.
 
 /*    @Test

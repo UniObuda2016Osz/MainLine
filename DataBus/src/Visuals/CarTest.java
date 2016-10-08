@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class CarTest {
 
-    Car auto = new Car();
+    Car auto = new Car(0,0);
 
     @Test
     public void isInstanceOfAutoNotNull(){

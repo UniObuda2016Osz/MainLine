@@ -15,6 +15,11 @@ public class App extends JFrame {
 
     private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
     ImageObserver levelobs;
+    Car car = new Car(130,400);
+
+
+    private Image carimage = new ImageIcon(car.getImagePath()).getImage();
+
     private App() throws IOException {
         setTitle("Smart Auto Simulation App");
         setSize(backgroundImage.getWidth( levelobs), backgroundImage.getHeight(levelobs));
@@ -72,6 +77,7 @@ public class App extends JFrame {
     {
         // Draw the previously loaded image to Component.
         g.drawImage(backgroundImage, 0, 0, null);
+        g.drawImage(carimage,car.getXCoord(),car.getYCoord(),null);
 
         // Draw sprites, and other things.
         // ....

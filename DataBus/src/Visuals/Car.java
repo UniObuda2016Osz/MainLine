@@ -71,12 +71,12 @@ public class Car {
         this.speed = speed;
     }
 
-    public Car() {
-        length = 240;
-        width = 100;
-        imagePath = "car.png";
-        xCoord = 0;
-        yCoord = 0;
+    public Car(int xCord, int yCord) {
+        length = 50;
+        width = 50;
+        imagePath = "./ref/car.png";
+        xCoord = xCord;
+        yCoord = yCord;
         this.speed = 0;
         this.isMove = false;
         this.isCrashed = false;
