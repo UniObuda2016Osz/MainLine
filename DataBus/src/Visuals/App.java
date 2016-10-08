@@ -5,18 +5,19 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 // ...
 
-public class App extends JFrame {
+public class App extends JFrame implements KeyListener{
 
 
     private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
     ImageObserver levelobs;
     Car car = new Car(130,400);
-
 
     private Image carimage = new ImageIcon(car.getImagePath()).getImage();
 
@@ -78,11 +79,54 @@ public class App extends JFrame {
         // Draw the previously loaded image to Component.
         g.drawImage(backgroundImage, 0, 0, null);
         g.drawImage(carimage,car.getXCoord(),car.getYCoord(),null);
-
         // Draw sprites, and other things.
         // ....
     }
+
     public static void main(String[] args) throws IOException {
         new App();
     }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    if (e.getKeyCode() == KeyEvent.VK_LEFT)
+        {
+            car.setxCoord(-1);
+            repaint();
+        }
+    else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+    {
+        car.setxCoord(1);
+        repaint();
+    }
+    else if (e.getKeyCode() == KeyEvent.VK_UP)
+    {
+        car.setyCoord(1);
+        car.accelerateAuto(1);
+        car.setMove(true);
+        repaint();
+    }
+    else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+        {
+            car.setyCoord(-1);
+            car.accelerateAuto(-1);
+            car.setMove(true);
+            repaint();
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //car.setMove(false);
+        System.out.println("testmegye");
+        repaint();
+
+    }
 }
+
+
