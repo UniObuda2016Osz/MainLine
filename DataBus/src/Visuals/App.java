@@ -5,21 +5,23 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 // ...
 
 public class App extends JFrame {
 
-    private Image backgroundImage = new ImageIcon("road_2.png").getImage();
 
+    private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
+    ImageObserver levelobs;
     private App() throws IOException {
         setTitle("Smart Auto Simulation App");
-        // A méret a térkép tényleges mérete lesz majd
-        setSize(1440, 900);
+        setSize(backgroundImage.getWidth( levelobs), backgroundImage.getHeight(levelobs));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));

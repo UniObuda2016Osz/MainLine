@@ -18,6 +18,7 @@ public class Car {
         return imagePath;
     }
 
+
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
@@ -95,6 +96,10 @@ public class Car {
 
     public void setCrashed(boolean crashed) {
         isCrashed = crashed;
+    }
+
+    public void accelerateAuto(int howmuch){
+        speed+=howmuch;
     }
 
     public void Move(int verticalMovement, int horizontalMovement) {
