@@ -3,25 +3,22 @@ package Visuals;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 
 // ...
 
-public class App extends JFrame implements KeyListener{
-
+public class App extends JFrame {
 
     private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
     ImageObserver levelobs;
     Car car = new Car(130,400);
-
     private Image carimage = new ImageIcon(car.getImagePath()).getImage();
+    JFrame mainframe;
 
     private App() throws IOException {
+        mainframe = new JFrame();
         setTitle("Smart Auto Simulation App");
         setSize(backgroundImage.getWidth( levelobs), backgroundImage.getHeight(levelobs));
         setResizable(false);
@@ -81,52 +78,43 @@ public class App extends JFrame implements KeyListener{
         g.drawImage(carimage,car.getXCoord(),car.getYCoord(),null);
         // Draw sprites, and other things.
         // ....
+        mainframe.setVisible(true);
+        mainframe.paint(g);
+        mainframe.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == KeyEvent.VK_LEFT)
+                {
+                    car.setxCoord(car.getXCoord()-1);
+                 }
+                else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+                {
+                    car.setxCoord(car.getXCoord()+1);
+                 }
+                else if (e.getKeyCode() == KeyEvent.VK_UP)
+                {
+                    car.setyCoord(car.getYCoord()-1);
+                    //car.accelerateAuto(1); furán viselkedik
+                    car.setMove(true);
+                 }
+                else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+                {
+                    car.setyCoord(car.getYCoord()+1);
+                    //car.accelerateAuto(-1); furán viselkedik
+                    car.setMove(true);
+                 }
+
+                repaint();
+            }
+        });
     }
 
     public static void main(String[] args) throws IOException {
         new App();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
 
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_LEFT)
-        {
-            car.setxCoord(-1);
-            repaint();
-        }
-    else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-    {
-        car.setxCoord(1);
-        repaint();
-    }
-    else if (e.getKeyCode() == KeyEvent.VK_UP)
-    {
-        car.setyCoord(1);
-        car.accelerateAuto(1);
-        car.setMove(true);
-        repaint();
-    }
-    else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-        {
-            car.setyCoord(-1);
-            car.accelerateAuto(-1);
-            car.setMove(true);
-            repaint();
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        //car.setMove(false);
-        System.out.println("testmegye");
-        repaint();
-
-    }
 }
 
 
