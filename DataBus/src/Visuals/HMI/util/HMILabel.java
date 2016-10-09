@@ -8,8 +8,8 @@ package Visuals.HMI.util;
 public class HMILabel {
 
     //physical data
-    public static final String GAS_PEDAL_PRESSURE = "gas pedal pressure: ";
-    public static final String BRAKE_PEDAL_PRESSURE = "brake pedal pressure: ";
+    public static final String GAS_PEDAL_PRESSURE = "gas pedal pressure: (key UP and DOWN)";
+    public static final String BRAKE_PEDAL_PRESSURE = "brake pedal pressure: (SPACE)";
 
     //feedback data
     public static final String SPEED = "speed: ";

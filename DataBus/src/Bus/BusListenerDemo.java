@@ -37,8 +37,6 @@ public class BusListenerDemo {
         System.out.println("Subscribe for events");
         Bus.getInstance().subscribe(listener);
 
-        System.out.println("Pressing gas pedal");
-
         for (int i = 0; i < 150; i++) {
 
             System.out.println("Pressing gas pedal");

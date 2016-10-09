@@ -33,17 +33,44 @@ public class HMIKeyListener implements KeyListener {
 
         if((keyCode==KeyEvent.VK_UP))
         {
+            int brakePressure = CarInstrumentContainer.singleton().getBrakePedal().stopPressing();
+            Bus.getInstance().setBrakePedal(brakePressure);
+            hmiPanel.getBrakePedalPressureBar().setValue(brakePressure);
+
             //FIXME levair - only propagate this info, if the value actually changed?
-            Bus.getInstance().setGasPedal( CarInstrumentContainer.singleton().getGasPedal().increasePressure() );
+            int gasPressure = CarInstrumentContainer.singleton().getGasPedal().increasePressure();
+            Bus.getInstance().setGasPedal( gasPressure );
+            hmiPanel.getGasPedalPressureBar().setValue( gasPressure );
         }
         else if((keyCode==KeyEvent.VK_DOWN))
         {
             //FIXME levair - only propagate this info, if the value actually changed?
-            Bus.getInstance().setGasPedal( CarInstrumentContainer.singleton().getGasPedal().decreasePressure() );
+            int gasPressure = CarInstrumentContainer.singleton().getGasPedal().decreasePressure();
+            Bus.getInstance().setGasPedal( gasPressure );
+            hmiPanel.getGasPedalPressureBar().setValue( gasPressure );
         }
+        else if ((keyCode==KeyEvent.VK_SPACE))
+        {
+            //FIXME levair - only propagate this info, if the value actually changed?
+            int noGasPedal = CarInstrumentContainer.singleton().getGasPedal().stopPressing();
+            Bus.getInstance().setGasPedal(noGasPedal);
+            hmiPanel.getGasPedalPressureBar().setValue( noGasPedal );
 
+            int brakePressure = CarInstrumentContainer.singleton().getBrakePedal().increasePressure();
+            Bus.getInstance().setBrakePedal(brakePressure);
+            hmiPanel.getBrakePedalPressureBar().setValue(brakePressure);
 
-        hmiPanel.getlSpeed().setText( ""+ Bus.getInstance().getGasPedal() ); //FIXME levair - this is not the speed, but the pedal pressure
+        }
+        else if ((keyCode==KeyEvent.VK_LEFT))
+        {
+            int angle = CarInstrumentContainer.singleton().getSteeringWheel().turnLeft();
+            hmiPanel.rotateSteeringWheel(angle);
+        }
+        else if ((keyCode==KeyEvent.VK_RIGHT))
+        {
+            int angle = CarInstrumentContainer.singleton().getSteeringWheel().turnRight();
+            hmiPanel.rotateSteeringWheel(angle);
+        }
     }
 
     @Override
