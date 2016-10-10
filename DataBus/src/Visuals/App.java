@@ -20,7 +20,7 @@ public class App extends JFrame {
     private App() throws IOException {
         mainframe = new JFrame();
         setTitle("Smart Auto Simulation App");
-        setSize(backgroundImage.getWidth( levelobs), backgroundImage.getHeight(levelobs));
+        setSize(backgroundImage.getWidth(levelobs), backgroundImage.getHeight(levelobs));
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -62,11 +62,6 @@ public class App extends JFrame {
         center.setBorder(new EmptyBorder(new Insets(10,10,10,10)));
         center.setBackground(Color.white);
         add(center, BorderLayout.CENTER);
-
-        /*JPanel backgroundPanel = new JPanel();
-        backgroundPanel.setSize(1024, 819);
-        backgroundPanel.setBackground(Color.GREEN);
-        add(backgroundPanel, BorderLayout.CENTER);*/
 
         setVisible(true);
     }

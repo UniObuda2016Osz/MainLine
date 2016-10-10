@@ -100,6 +100,7 @@ public class Car {
 
     public void accelerateAuto(int howmuch){
         speed+=howmuch;
+        this.isMove = true;
     }
 
     public void Move(int verticalMovement, int horizontalMovement) {
