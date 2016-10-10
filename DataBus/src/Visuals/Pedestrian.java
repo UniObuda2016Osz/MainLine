@@ -36,7 +36,7 @@ public class Pedestrian {
     }
 
     public void Move() {
-        double speed = 10;
+        double speed = 1;
         xPos = getXPos() + directionX * speed;
         yPos = getYPos() + directionY * speed;
         if((Math.sqrt(Math.pow(getXPos() -startXPos,2)+Math.pow(getYPos() -startYPos,2)) >= distance) ||

@@ -6,11 +6,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
+import java.util.TimerTask;
 
 // ...
 
 public class App extends JFrame {
-
+    private static Timer time;
     private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
     ImageObserver levelobs;
     Car car = new Car(130,400);
@@ -24,6 +25,32 @@ public class App extends JFrame {
 
     private App() throws IOException {
         mainframe = new JFrame();
+        mainframe.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if (e.getKeyCode() == KeyEvent.VK_LEFT)
+                {
+                    car.setxCoord(car.getXCoord()-5);
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+                {
+                    car.setxCoord(car.getXCoord()+5);
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_UP)
+                {
+                    car.setyCoord(car.getYCoord()-5);
+                    //car.accelerateAuto(1); furán viselkedik
+                    car.setMove(true);
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_DOWN)
+                {
+                    car.setyCoord(car.getYCoord()+5);
+                    //car.accelerateAuto(-1); furán viselkedik
+                    car.setMove(true);
+                }
+            }
+        });
         setTitle("Smart Auto Simulation App");
         setSize(backgroundImage.getWidth(levelobs), backgroundImage.getHeight(levelobs));
         setResizable(false);
@@ -39,6 +66,7 @@ public class App extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // A gombnyomás elindítja a szimulációt
+                time.start();
             }
         });
 
@@ -47,6 +75,7 @@ public class App extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // A gombnyomás megállítja a szimulációt
+                time.stop();
             }
         });
 
@@ -69,16 +98,18 @@ public class App extends JFrame {
         add(center, BorderLayout.CENTER);
 
         setVisible(true);
+        //Timer
+        time = new Timer(40, e -> {
+            repaint();
+        });
     }
 
+    @Override
     public void paint(Graphics g)
     {
         // Draw the previously loaded image to Component.
         g.drawImage(backgroundImage, 0, 0, null);
         g.drawImage(carimage,car.getXCoord(),car.getYCoord(),null);
-
-        // Draw sprites, and other things.
-        // ....
 
         //Draw the pedestrian
         g.drawImage(pedestrianImage, (int)pedestrian_1.getXPos(), (int)pedestrian_1.getYPos(), 30, 45, null);
@@ -86,41 +117,12 @@ public class App extends JFrame {
 
         mainframe.setVisible(true);
         mainframe.paint(g);
-        mainframe.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if (e.getKeyCode() == KeyEvent.VK_LEFT)
-                {
-                    car.setxCoord(car.getXCoord()-1);
-                 }
-                else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-                {
-                    car.setxCoord(car.getXCoord()+1);
-                 }
-                else if (e.getKeyCode() == KeyEvent.VK_UP)
-                {
-                    car.setyCoord(car.getYCoord()-1);
-                    //car.accelerateAuto(1); furán viselkedik
-                    car.setMove(true);
-                 }
-                else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-                {
-                    car.setyCoord(car.getYCoord()+1);
-                    //car.accelerateAuto(-1); furán viselkedik
-                    car.setMove(true);
-                 }
 
-                repaint();
-            }
-        });
     }
 
     public static void main(String[] args) throws IOException {
         new App();
     }
-
-
 }
 
 
