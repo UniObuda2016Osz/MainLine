@@ -15,6 +15,11 @@ public class App extends JFrame {
     ImageObserver levelobs;
     Car car = new Car(130,400);
     private Image carimage = new ImageIcon(car.getImagePath()).getImage();
+
+    //Creating the pedestrian
+    Pedestrian pedestrian_1 = new Pedestrian(150, 200, 255, 200);
+    private Image pedestrianImage = new ImageIcon(pedestrian_1.getImagePath()).getImage();
+
     JFrame mainframe;
 
     private App() throws IOException {
@@ -71,8 +76,14 @@ public class App extends JFrame {
         // Draw the previously loaded image to Component.
         g.drawImage(backgroundImage, 0, 0, null);
         g.drawImage(carimage,car.getXCoord(),car.getYCoord(),null);
+
         // Draw sprites, and other things.
         // ....
+
+        //Draw the pedestrian
+        g.drawImage(pedestrianImage, (int)pedestrian_1.getXPos(), (int)pedestrian_1.getYPos(), 30, 45, null);
+        pedestrian_1.Move();
+
         mainframe.setVisible(true);
         mainframe.paint(g);
         mainframe.addKeyListener(new KeyAdapter() {
