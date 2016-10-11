@@ -10,24 +10,86 @@ public class Car {
     private int width;
     private int length;
     private int direction;
-    private int speed;
+    private double speed;
     private boolean isMove;
     private boolean isCrashed;
-
+    private double steering = 0;
+    private double velocityX = 0;
+    private double velocityY = 0;
+    private double rotation=0;
     public String getImagePath() {
         return imagePath;
     }
-
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
 
+
+    public Car(int xCord, int yCord) {
+        setLength(50);
+        setWidth(50);
+        setImagePath("./ref/car.png");
+        setXCoord(xCord);
+        setYCoord(yCord);
+        this.setSpeed(0);
+        this.setMove(false);
+        this.setCrashed(false);
+        this.setDirection(45);
+    }
+
+    public boolean isMove() {
+        return isMove;
+    }
+
+    public void setMove(boolean move) {
+        isMove = move;
+    }
+
+    public boolean isCrashed() {
+        return isCrashed;
+    }
+
+    public void setCrashed(boolean crashed) {
+        isCrashed = crashed;
+    }
+
+    public void accelerateAuto(int howmuch){
+        setSpeed(getSpeed() + howmuch);
+        this.setMove(true);
+    }
+
+    public void Move(int verticalMovement, int horizontalMovement) {
+        setXCoord(getXCoord() + horizontalMovement);
+        setYCoord(getYCoord() + verticalMovement);
+    }
+    public void CalcNextPosition(int elore,int hatra, int balra, int jobbra){
+
+    }
+    public void RotateCar(int rotationDegree) {
+        setDirection(getDirection() + rotationDegree);
+    }
+
+    public void startAuto(int initialSpeed){
+        this.setSpeed(initialSpeed);
+        this.setMove(true);
+    }
+
+    public void stopAuto(){
+        this.setSpeed(0);
+        this.setMove(false);
+    }
+
+    public void crash(){
+        this.setCrashed(true);
+    }
+
+
     public int getXCoord() {
         return xCoord;
     }
 
-    public void setxCoord(int xCoord) {
+    public void setXCoord(int xCoord) {
         this.xCoord = xCoord;
     }
 
@@ -35,7 +97,7 @@ public class Car {
         return yCoord;
     }
 
-    public void setyCoord(int yCoord) {
+    public void setYCoord(int yCoord) {
         this.yCoord = yCoord;
     }
 
@@ -63,247 +125,47 @@ public class Car {
         this.direction = direction;
     }
 
-    public void turnRight()
-    {
-        if (direction >= 15){
-            direction = 0;
-        }
-        else {
-            direction += 1;
-        }
-    }
-
-    public void turnLeft()
-    {
-        if (direction <= 0){
-            direction = 16;
-        }
-        else {
-            direction -= 1;
-        }
-    }
-
-    public int getSpeed() {
+    public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(int speed) {
+    public void setSpeed(double speed) {
         this.speed = speed;
     }
 
-    public Car(int xCord, int yCord) {
-        length = 50;
-        width = 50;
-        imagePath = "./ref/car.png";
-        xCoord = xCord;
-        yCoord = yCord;
-        this.speed = 0;
-        this.isMove = false;
-        this.isCrashed = false;
-        direction = 0;
+
+
+    public double getSteering() {
+        return steering;
     }
 
-    public boolean isMove() {
-        return isMove;
+    public void setSteering(double steering) {
+        this.steering = steering;
     }
 
-    public void setMove(boolean move) {
-        isMove = move;
+
+
+    public double getVelocityX() {
+        return velocityX;
     }
 
-    public boolean isCrashed() {
-        return isCrashed;
+    public void setVelocityX(double velocityX) {
+        this.velocityX = velocityX;
     }
 
-    public void setCrashed(boolean crashed) {
-        isCrashed = crashed;
+    public double getVelocityY() {
+        return velocityY;
     }
 
-    public void accelerateAuto(int howmuch){
-        speed+=howmuch;
-        this.isMove = true;
+    public void setVelocityY(double velocityY) {
+        this.velocityY = velocityY;
     }
 
-    public void MoveForward() {
-        switch (direction){
-            case 0:{
-                yCoord-=4;
-                break;
-            }
-            case 1:{
-                xCoord+=1;
-                yCoord-=3;
-                break;
-            }
-            case 2:{
-                xCoord+=2;
-                yCoord-=2;
-                break;
-            }
-            case 3:{
-                xCoord+=3;
-                yCoord-=1;
-                break;
-            }
-            case 4:{
-                xCoord+=4;
-                yCoord-=0;
-                break;
-            }
-            case 5:{
-                xCoord+=3;
-                yCoord+=1;
-                break;
-            }
-            case 6:{
-                xCoord+=2;
-                yCoord+=2;
-                break;
-            }
-            case 7:{
-                xCoord+=1;
-                yCoord+=3;
-                break;
-            }
-            case 8:{
-                yCoord+=4;
-                break;
-            }
-            case 9:{
-                xCoord-=1;
-                yCoord+=3;
-                break;
-            }
-            case 10:{
-                xCoord-=2;
-                yCoord+=2;
-                break;
-            }
-            case 11:{
-                xCoord-=3;
-                yCoord+=1;
-                break;
-            }
-            case 12:{
-                xCoord-=4;
-                break;
-            }
-            case 13:{
-                xCoord-=3;
-                yCoord-=1;
-                break;
-            }
-            case 14:{
-                xCoord-=2;
-                yCoord-=2;
-                break;
-            }
-            case 15:{
-                xCoord-=1;
-                yCoord-=3;
-                break;
-            }
-        }
+    public double getRotation() {
+        return rotation;
     }
 
-    public void MoveBack() {
-        switch (direction){
-            case 0:{
-                yCoord+=4;
-                break;
-            }
-            case 1:{
-                xCoord-=1;
-                yCoord+=3;
-                break;
-            }
-            case 2:{
-                xCoord-=2;
-                yCoord+=2;
-                break;
-            }
-            case 3:{
-                xCoord-=3;
-                yCoord+=1;
-                break;
-            }
-            case 4:{
-                xCoord-=4;
-                yCoord+=0;
-                break;
-            }
-            case 5:{
-                xCoord-=3;
-                yCoord-=1;
-                break;
-            }
-            case 6:{
-                xCoord-=2;
-                yCoord-=2;
-                break;
-            }
-            case 7:{
-                xCoord-=1;
-                yCoord-=3;
-                break;
-            }
-            case 8:{
-                yCoord-=4;
-                break;
-            }
-            case 9:{
-                xCoord+=1;
-                yCoord-=3;
-                break;
-            }
-            case 10:{
-                xCoord+=2;
-                yCoord-=2;
-                break;
-            }
-            case 11:{
-                xCoord+=3;
-                yCoord-=1;
-                break;
-            }
-            case 12:{
-                xCoord+=4;
-                break;
-            }
-            case 13:{
-                xCoord+=3;
-                yCoord+=1;
-                break;
-            }
-            case 14:{
-                xCoord+=2;
-                yCoord+=2;
-                break;
-            }
-            case 15:{
-                xCoord+=1;
-                yCoord+=3;
-                break;
-            }
-        }
+    public void setRotation(double rotation) {
+        this.rotation = rotation;
     }
-
-    public void RotateCar(int rotationDegree) {
-        direction += rotationDegree;
-    }
-
-    public void startAuto(int initialSpeed){
-        this.speed = initialSpeed;
-        this.isMove = true;
-    }
-
-    public void stopAuto(){
-        this.speed = 0;
-        this.isMove = false;
-    }
-
-    public void crash(){
-        this.isCrashed = true;
-    }
-
 }

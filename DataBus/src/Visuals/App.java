@@ -4,17 +4,20 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
 import java.util.TimerTask;
 
 // ...
 
-public class App extends JFrame {
+public class App extends JFrame implements KeyListener {
     private static Timer time;
     private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
     ImageObserver levelobs;
-    Car car = new Car(130,400);
+    boolean jobb, bal, lent, fent;
+    Car car = new Car(130, 400);
     private Image carimage = new ImageIcon(car.getImagePath()).getImage();
 
     //Creating the pedestrian
@@ -25,32 +28,7 @@ public class App extends JFrame {
 
     private App() throws IOException {
         mainframe = new JFrame();
-        mainframe.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                super.keyPressed(e);
-                if (e.getKeyCode() == KeyEvent.VK_LEFT)
-                {
-                    car.turnLeft();
-                }
-                else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
-                {
-                    car.turnRight();
-                }
-                else if (e.getKeyCode() == KeyEvent.VK_UP)
-                {
-                    car.MoveForward();
-                    //car.accelerateAuto(1); furán viselkedik
-                    car.setMove(true);
-                }
-                else if (e.getKeyCode() == KeyEvent.VK_DOWN)
-                {
-                    car.MoveBack();
-                    //car.accelerateAuto(-1); furán viselkedik
-                    car.setMove(true);
-                }
-            }
-        });
+        mainframe.addKeyListener(this);
         setTitle("Smart Auto Simulation App");
         setSize(backgroundImage.getWidth(levelobs), backgroundImage.getHeight(levelobs));
         setResizable(false);
@@ -93,11 +71,9 @@ public class App extends JFrame {
         add(buttonPanel, BorderLayout.NORTH);
 
         JTextArea center = new JTextArea("Itt lesz majd a térkép ...");
-        center.setBorder(new EmptyBorder(new Insets(10,10,10,10)));
+        center.setBorder(new EmptyBorder(new Insets(10, 10, 10, 10)));
         center.setBackground(Color.white);
         add(center, BorderLayout.CENTER);
-
-
 
         setVisible(true);
         //Timer
@@ -107,19 +83,73 @@ public class App extends JFrame {
     }
 
     @Override
-    public void paint(Graphics g)
-    {
-        // Draw the previously loaded image to Component.
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    //gomb egyszeri lenyomását nem lehet vizsgálni, így flag-ekkel van megoldva
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_UP) {
+            fent = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            lent = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            bal = true;
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+            jobb = true;
+        if(!fent && !lent) {
+            car.setSpeed(0);
+        }else {
+            if (fent) {
+                car.setSpeed(5);
+                if (jobb)
+                    car.setRotation(car.getRotation() + 2);
+                else if (bal)
+                    car.setRotation(car.getRotation() - 2);
+            }
+            if (lent) {
+                car.setSpeed(-5);
+                if (jobb)
+                    car.setRotation(car.getRotation() + 2);
+                else if (bal)
+                    car.setRotation(car.getRotation() - 2);
+            }
+
+            car.setVelocityX(Math.sin(car.getRotation() * Math.PI / 180) * car.getSpeed());
+            car.setVelocityY(Math.cos(car.getRotation() * Math.PI / 180) * -car.getSpeed());
+
+            car.setXCoord(car.getXCoord() + (int) car.getVelocityX());
+            car.setYCoord(car.getYCoord() + (int) car.getVelocityY());
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            bal = false;
+        }  if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            jobb = false;
+        }  if (e.getKeyCode() == KeyEvent.VK_UP) {
+            fent = false;
+        }  if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            lent = false;
+        }
+    }
+
+    @Override
+    public void paint(Graphics g) {
         g.drawImage(backgroundImage, 0, 0, null);
-        g.drawImage(carimage,car.getXCoord(),car.getYCoord(),null);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        AffineTransform old = g2d.getTransform();
+        g2d.rotate(car.getRotation()*Math.PI / 180,car.getXCoord(), car.getYCoord());
+        g2d.drawImage(carimage, car.getXCoord(), car.getYCoord(), null);
+        g2d.setTransform(old);
 
-        //Draw the pedestrian
-        g.drawImage(pedestrianImage, (int)pedestrian_1.getXPos(), (int)pedestrian_1.getYPos(), 30, 45, null);
+        g.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
         pedestrian_1.Move();
-
-        g.setColor(Color.BLACK);
-        g.setFont(new Font("Arial Black", Font.BOLD, 15));
-        g.drawString("X: "+car.getXCoord() +" Y: "+ car.getYCoord()+ " Direction: "+car.getDirection(), 750,80);
 
         mainframe.setVisible(true);
         mainframe.paint(g);
