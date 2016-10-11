@@ -30,10 +30,10 @@ public class Bus {
 
     public int getBrakePedal(){ return brakePedal;}
 
-    public void setBrakePedal(int gasPedal){
-        if(gasPedal< 100 && gasPedal > 0)
-            this.brakePedal = gasPedal;
-        else if(gasPedal > 0)
+    public void setBrakePedal(int brakePedal){
+        if(brakePedal< 100 && brakePedal > 0)
+            this.brakePedal = brakePedal;
+        else if(brakePedal > 0)
             this.brakePedal = 100;
         else
             this.brakePedal = 0;
