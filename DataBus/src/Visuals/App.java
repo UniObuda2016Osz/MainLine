@@ -31,21 +31,21 @@ public class App extends JFrame {
                 super.keyPressed(e);
                 if (e.getKeyCode() == KeyEvent.VK_LEFT)
                 {
-                    car.setxCoord(car.getXCoord()-5);
+                    car.turnLeft();
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
                 {
-                    car.setxCoord(car.getXCoord()+5);
+                    car.turnRight();
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_UP)
                 {
-                    car.setyCoord(car.getYCoord()-5);
+                    car.MoveForward();
                     //car.accelerateAuto(1); furán viselkedik
                     car.setMove(true);
                 }
                 else if (e.getKeyCode() == KeyEvent.VK_DOWN)
                 {
-                    car.setyCoord(car.getYCoord()+5);
+                    car.MoveBack();
                     //car.accelerateAuto(-1); furán viselkedik
                     car.setMove(true);
                 }
@@ -97,6 +97,8 @@ public class App extends JFrame {
         center.setBackground(Color.white);
         add(center, BorderLayout.CENTER);
 
+
+
         setVisible(true);
         //Timer
         time = new Timer(40, e -> {
@@ -114,6 +116,10 @@ public class App extends JFrame {
         //Draw the pedestrian
         g.drawImage(pedestrianImage, (int)pedestrian_1.getXPos(), (int)pedestrian_1.getYPos(), 30, 45, null);
         pedestrian_1.Move();
+
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Arial Black", Font.BOLD, 15));
+        g.drawString("X: "+car.getXCoord() +" Y: "+ car.getYCoord()+ " Direction: "+car.getDirection(), 750,80);
 
         mainframe.setVisible(true);
         mainframe.paint(g);
