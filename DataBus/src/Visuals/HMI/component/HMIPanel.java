@@ -106,7 +106,7 @@ public class HMIPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        //TODO levair - move steering wheel to a separate panel, so only it can repainted separately
+        //TODO levair - move steering wheel to a separate panel, so only it can be repainted separately
         if (steeringWheelImage == null)
         {
             try {
