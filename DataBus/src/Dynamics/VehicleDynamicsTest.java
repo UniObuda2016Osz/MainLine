@@ -1,4 +1,5 @@
 package Dynamics;
+import Bus.Bus;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
@@ -21,6 +22,7 @@ public class VehicleDynamicsTest {
 
         assertEquals(first == second, true);
     }
+
 
 
 
