@@ -65,28 +65,29 @@ public class HMIPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        //TODO levair - move steering wheel to a separate panel, so only it can repainted separately
         if (steeringWheelImage == null)
         {
             try {
-                steeringWheelImage = ImageIO.read(getClass().getResourceAsStream("../resources/steeringwheel.png"));
-                g.drawImage(steeringWheelImage, PANEL_WIDTH_PX / 2 - steeringWheelImage.getWidth() / 2, PANEL_HEIGHT_PX / 2 - steeringWheelImage.getHeight() / 2,null);
+                steeringWheelImage = ImageIO.read(getClass().getResourceAsStream("../resources/steeringwheel-transparent-small.png"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
+
+        int x = (getWidth() - steeringWheelImage.getWidth()) / 2;
+        int y = (getHeight() - steeringWheelImage.getHeight()) / 2;
+        AffineTransform at = new AffineTransform();
+        double angleRadians = Math.toRadians( CarInstrumentContainer.singleton().getSteeringWheel().getCurrentAngle() );
+        at.setToRotation(angleRadians, x + (steeringWheelImage.getWidth() / 2), y + (steeringWheelImage.getHeight() / 2));
+        at.translate(x, y);
+
+        Graphics2D g2d = (Graphics2D) g.create();
+        g2d.setTransform(at);
+        g2d.drawImage(steeringWheelImage, 0, 0, this);
+        g2d.dispose();
     }
 
-    public void rotateSteeringWheel(int angle) {
-        double rotationRequired = Math.toRadians (angle);
-        double locationX = steeringWheelImage.getWidth() / 2;
-        double locationY = steeringWheelImage.getHeight() / 2;
-        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
-
-        //FIXME repaint steering wheel
-
-        getGraphics().drawImage(op.filter(steeringWheelImage, null),PANEL_WIDTH_PX / 2 - steeringWheelImage.getWidth() / 2, PANEL_HEIGHT_PX / 2 - steeringWheelImage.getHeight() / 2, null);
-    }
 
     public JLabel getlSpeed() {
         return lSpeed;

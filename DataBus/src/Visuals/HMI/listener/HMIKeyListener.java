@@ -64,12 +64,12 @@ public class HMIKeyListener implements KeyListener {
         else if ((keyCode==KeyEvent.VK_LEFT))
         {
             int angle = CarInstrumentContainer.singleton().getSteeringWheel().turnLeft();
-            hmiPanel.rotateSteeringWheel(angle);
+            hmiPanel.repaint();
         }
         else if ((keyCode==KeyEvent.VK_RIGHT))
         {
             int angle = CarInstrumentContainer.singleton().getSteeringWheel().turnRight();
-            hmiPanel.rotateSteeringWheel(angle);
+            hmiPanel.repaint();
         }
     }
 
