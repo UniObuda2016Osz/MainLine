@@ -7,15 +7,17 @@ package Visuals.HMI.util;
  */
 public class HMILabel {
 
-    //physical data
+
     public static final String GAS_PEDAL_PRESSURE = "gas (UP / DOWN)";
     public static final String BRAKE_PEDAL_PRESSURE = "brake (SPACE)";
 
-    //feedback data
-    public static final String SPEED = "speed: ";
-    public static final String STEERING_WHEEL_ANGLE = "steering wheel angle: ";
-    public static final String ACCELERATOR_DEGREE = "accelerator degree: ";
-    public static final String BREAK_DEGREE = "break degree: ";
-    public static final String INDICATOR_FEEDBACK = "indicator feedback: ";
-    public static final String CURRENT_GEAR = "current gear: ";
+    public static final String SPEED = "km/h: ";
+
+    public static final String GEARBOX_PARK = "Park (1)";
+    public static final String GEARBOX_REVERSE = "Reverse (2)";
+    public static final String GEARBOX_NEUTRAL = "Neutral (3)";
+    public static final String GEARBOX_DRIVE = "Drive (4)";
+
+    public static final String INDICATOR_LEFT = "left";
+    public static final String INDICATOR_RIGHT = "right";
 }

@@ -1,6 +1,7 @@
 package Visuals;
 
 import Visuals.HMI.component.HMIPanel;
+import Visuals.HMI.mock.EngineMock;
 
 import javax.swing.*;
 
@@ -19,8 +20,12 @@ public class HMIMain extends JFrame {
         HMIPanel hmiPanel = new HMIPanel();
         frame.getContentPane().add(hmiPanel);
 
+        frame.setTitle("HMI panel demo (FJKKL csapat)");
         frame.pack();
         frame.setVisible(true);
+
+        //FIXME levair - mocking engine behaviour on the Bus, so we can demo this thing
+        EngineMock.mock();
     }
 
 }

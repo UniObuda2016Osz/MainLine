@@ -28,16 +28,15 @@ public class HMIPanel extends JPanel {
     private JProgressBar brakePedalPressureBar;
     private JProgressBar speedBar;
 
+    private JLabel labelGearboxPark;
+    private JLabel labelGearboxReverse;
+    private JLabel labelGearboxNeutral;
+    private JLabel labelGearboxDrive;
+
     private DirectionIndicatingLight leftDirectionIndicatingLight;
 
     private BufferedImage steeringWheelImage;
 
-    private final JLabel lSpeed = new JLabel();
-    private final JLabel lSteeringWheelAngle = new JLabel();
-    private final JLabel lAcceleratorDegree = new JLabel();
-    private final JLabel lBreakDegree = new JLabel();
-    private final JLabel lIndicatorFeedback = new JLabel();
-    private final JLabel lCurrentGear = new JLabel();
 
     public HMIPanel() {
         init();
@@ -49,7 +48,6 @@ public class HMIPanel extends JPanel {
         //general panel settings
         setPreferredSize(new Dimension(PANEL_WIDTH_PX,PANEL_HEIGHT_PX));
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-        //setLayout(new GridLayout(20,20));
         setFocusable(true); //key listeners only work on panels, if they're on focus!
 
         //key listeners
@@ -67,15 +65,25 @@ public class HMIPanel extends JPanel {
         add(new JLabel(HMILabel.BRAKE_PEDAL_PRESSURE));
         add(brakePedalPressureBar);
 
+        add(new JLabel(HMILabel.SPEED));
         speedBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, MAX_SPEED_KMH);
-        add(speedBar);
+        speedBar.setMaximumSize(new Dimension(400,10));
+        speedBar.setStringPainted(true);
+        add(speedBar, BorderLayout.CENTER);
 
+        add(labelGearboxPark = new JLabel(HMILabel.GEARBOX_PARK));
+        add(labelGearboxReverse = new JLabel(HMILabel.GEARBOX_REVERSE));
+        add(labelGearboxNeutral = new JLabel(HMILabel.GEARBOX_NEUTRAL));
+        add(labelGearboxDrive = new JLabel(HMILabel.GEARBOX_DRIVE));
+        labelGearboxDrive.setOpaque(true);
+        labelGearboxNeutral.setOpaque(true);
+        labelGearboxPark.setOpaque(true);
+        labelGearboxReverse.setOpaque(true);
+
+        //FIXME levair - fix the component below...
         //leftDirectionIndicatingLight = new DirectionIndicatingLight();
         //add(leftDirectionIndicatingLight);
         //leftDirectionIndicatingLight.on();
-
-
-
 
 
         System.out.println("HMI panel initialized");
@@ -108,31 +116,6 @@ public class HMIPanel extends JPanel {
         g2d.dispose();
     }
 
-
-    public JLabel getlSpeed() {
-        return lSpeed;
-    }
-
-    public JLabel getlSteeringWheelAngle() {
-        return lSteeringWheelAngle;
-    }
-
-    public JLabel getlAcceleratorDegree() {
-        return lAcceleratorDegree;
-    }
-
-    public JLabel getlBreakDegree() {
-        return lBreakDegree;
-    }
-
-    public JLabel getlIndicatorFeedback() {
-        return lIndicatorFeedback;
-    }
-
-    public JLabel getlCurrentGear() {
-        return lCurrentGear;
-    }
-
     public JProgressBar getGasPedalPressureBar() {
         return gasPedalPressureBar;
     }
@@ -144,4 +127,22 @@ public class HMIPanel extends JPanel {
     public JProgressBar getSpeedBar() {
         return speedBar;
     }
+
+
+    public JLabel getLabelGearboxPark() {
+        return labelGearboxPark;
+    }
+
+    public JLabel getLabelGearboxReverse() {
+        return labelGearboxReverse;
+    }
+
+    public JLabel getLabelGearboxNeutral() {
+        return labelGearboxNeutral;
+    }
+
+    public JLabel getLabelGearboxDrive() {
+        return labelGearboxDrive;
+    }
+
 }
