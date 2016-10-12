@@ -1,7 +1,7 @@
 package Visuals.HMI.listener;
 
 import Bus.Bus;
-import Visuals.HMI.component.CarInstrumentContainer;
+import Visuals.HMI.instrument.CarInstrumentContainer;
 import Visuals.HMI.component.HMIPanel;
 
 import java.awt.event.KeyEvent;
@@ -41,6 +41,13 @@ public class HMIKeyListener implements KeyListener {
             int gasPressure = CarInstrumentContainer.singleton().getGasPedal().increasePressure();
             Bus.getInstance().setGasPedal( gasPressure );
             hmiPanel.getGasPedalPressureBar().setValue( gasPressure );
+
+            //FIXME levair - mocking speed increase
+            if (Bus.getInstance().getCurrentSISpeed() == 0) {
+                Bus.getInstance().setCurrentSISpeed(5);
+            } else {
+                Bus.getInstance().setCurrentSISpeed( Bus.getInstance().getCurrentSISpeed() * 2  );
+            }
         }
         else if((keyCode==KeyEvent.VK_DOWN))
         {

@@ -1,5 +1,8 @@
 package Visuals.HMI.component;
 
+import Visuals.HMI.instrument.CarInstrumentContainer;
+import Visuals.HMI.instrument.DirectionIndicatingLight;
+import Visuals.HMI.instrument.Pedal;
 import Visuals.HMI.listener.HMIKeyListener;
 import Visuals.HMI.util.HMILabel;
 
@@ -7,9 +10,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -21,9 +22,13 @@ public class HMIPanel extends JPanel {
 
     public static final int PANEL_WIDTH_PX = 1000;
     public static final int PANEL_HEIGHT_PX = 250;
+    public static final int MAX_SPEED_KMH = 300;
 
-    private final JProgressBar gasPedalPressureBar = new JProgressBar(Pedal.MIN_PRESSURE, Pedal.MAX_PRESSURE);
-    private final JProgressBar brakePedalPressureBar = new JProgressBar(Pedal.MIN_PRESSURE, Pedal.MAX_PRESSURE);
+    private JProgressBar gasPedalPressureBar;
+    private JProgressBar brakePedalPressureBar;
+    private JProgressBar speedBar;
+
+    private DirectionIndicatingLight leftDirectionIndicatingLight;
 
     private BufferedImage steeringWheelImage;
 
@@ -43,22 +48,37 @@ public class HMIPanel extends JPanel {
 
         //general panel settings
         setPreferredSize(new Dimension(PANEL_WIDTH_PX,PANEL_HEIGHT_PX));
-        setLayout(new BoxLayout(this,BoxLayout.PAGE_AXIS));
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        //setLayout(new GridLayout(20,20));
         setFocusable(true); //key listeners only work on panels, if they're on focus!
 
         //key listeners
         addKeyListener(new HMIKeyListener(this));
 
-        //panel components
-        add(new JLabel(HMILabel.GAS_PEDAL_PRESSURE), BorderLayout.WEST);
-        add(getGasPedalPressureBar(), BorderLayout.EAST);
+        //panel updater
+        HMIPanelUpdater.keepUpdating(this);
 
-        add(new JLabel(HMILabel.BRAKE_PEDAL_PRESSURE), BorderLayout.WEST);
-        add(getBrakePedalPressureBar(), BorderLayout.EAST);
+        //panel components
+        gasPedalPressureBar = new JProgressBar(JProgressBar.VERTICAL, Pedal.MIN_PRESSURE, Pedal.MAX_PRESSURE);
+        add(new JLabel(HMILabel.GAS_PEDAL_PRESSURE));
+        add(gasPedalPressureBar);
+
+        brakePedalPressureBar = new JProgressBar(JProgressBar.VERTICAL, Pedal.MIN_PRESSURE, Pedal.MAX_PRESSURE);
+        add(new JLabel(HMILabel.BRAKE_PEDAL_PRESSURE));
+        add(brakePedalPressureBar);
+
+        speedBar = new JProgressBar(JProgressBar.HORIZONTAL, 0, MAX_SPEED_KMH);
+        add(speedBar);
+
+        //leftDirectionIndicatingLight = new DirectionIndicatingLight();
+        //add(leftDirectionIndicatingLight);
+        //leftDirectionIndicatingLight.on();
+
+
+
+
 
         System.out.println("HMI panel initialized");
-
-
     }
 
     @Override
@@ -119,5 +139,9 @@ public class HMIPanel extends JPanel {
 
     public JProgressBar getBrakePedalPressureBar() {
         return brakePedalPressureBar;
+    }
+
+    public JProgressBar getSpeedBar() {
+        return speedBar;
     }
 }

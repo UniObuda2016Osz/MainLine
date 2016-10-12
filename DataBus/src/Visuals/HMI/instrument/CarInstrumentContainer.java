@@ -1,4 +1,4 @@
-package Visuals.HMI.component;
+package Visuals.HMI.instrument;
 
 /**
  * Created by levair on 2016.10.07..
