@@ -87,6 +87,13 @@ public class VehicleDynamicsTest {
         assertEquals(VD.bus.getAcceleration()==110,true);
     }
 
+    @org.junit.Test public void testSetSpeed() {
+        bus.setCurrentSISpeed(20);
+        engine.setAcceleration(10);
+        double newSISpeed = bus.getCurrentSISpeed() + engine.getAcceleration();
+        assertEqueals(newSISpeed, VD.SetSpeed());
+    }
+
     @org.junit.After
     public void tearDown() throws Exception {
         /*GCC will remove bus*/
