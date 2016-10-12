@@ -81,4 +81,10 @@ public class VehicleDynamics {
         bus.setAcceleration(accelerationdecreasedbybraking);
     }
 
+    public void Update() {
+        Setspeed();
+        AccelerationDecrese();
+        AccelerationIncrease();
+        declerationByBrakePedal();
+    }
 }

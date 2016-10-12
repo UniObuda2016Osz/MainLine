@@ -2,6 +2,8 @@ package Dynamics;
 import Bus.Bus;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -53,6 +55,12 @@ public class VehicleDynamicsTest {
         assertEquals(enginebrake, VD.NEUTRAL_ENGINE_BREAK_DECLERATION);
     }
 
+    @org.junit.Test public void testSetSpeed() {
+        bus.setCurrentSISpeed(20);
+        engine.setAcceleration(10);
+        double newSISpeed = bus.getCurrentSISpeed() + engine.getAcceleration();
+        assertEqueals(newSISpeed, VD.SetSpeed());
+    }
 
     @org.junit.After
     public void tearDown() throws Exception {
