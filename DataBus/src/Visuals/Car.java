@@ -17,6 +17,7 @@ public class Car {
     private double velocityX = 0;
     private double velocityY = 0;
     private double rotation=0;
+
     public String getImagePath() {
         return imagePath;
     }
@@ -53,37 +54,6 @@ public class Car {
     public void setCrashed(boolean crashed) {
         isCrashed = crashed;
     }
-
-    public void accelerateAuto(int howmuch){
-        setSpeed(getSpeed() + howmuch);
-        this.setMove(true);
-    }
-
-    public void Move(int verticalMovement, int horizontalMovement) {
-        setXCoord(getXCoord() + horizontalMovement);
-        setYCoord(getYCoord() + verticalMovement);
-    }
-    public void CalcNextPosition(int elore,int hatra, int balra, int jobbra){
-
-    }
-    public void RotateCar(int rotationDegree) {
-        setDirection(getDirection() + rotationDegree);
-    }
-
-    public void startAuto(int initialSpeed){
-        this.setSpeed(initialSpeed);
-        this.setMove(true);
-    }
-
-    public void stopAuto(){
-        this.setSpeed(0);
-        this.setMove(false);
-    }
-
-    public void crash(){
-        this.setCrashed(true);
-    }
-
 
     public int getXCoord() {
         return xCoord;
@@ -133,8 +103,6 @@ public class Car {
         this.speed = speed;
     }
 
-
-
     public double getSteering() {
         return steering;
     }
@@ -142,8 +110,6 @@ public class Car {
     public void setSteering(double steering) {
         this.steering = steering;
     }
-
-
 
     public double getVelocityX() {
         return velocityX;
@@ -168,4 +134,36 @@ public class Car {
     public void setRotation(double rotation) {
         this.rotation = rotation;
     }
+
+    public void accelerateAuto(int howmuch){
+        setSpeed(getSpeed() + howmuch);
+        this.setMove(true);
+    }
+
+    public void Move(int verticalMovement, int horizontalMovement) {
+        setXCoord(getXCoord() + horizontalMovement);
+        setYCoord(getYCoord() + verticalMovement);
+        this.setMove(true);
+    }
+    public void CalcNextPosition(int elore, int hatra, int balra, int jobbra){
+        // Ez még nincs kidolgozva.
+    }
+    public void RotateCar(int rotationDegree) {
+        setDirection(getDirection() + rotationDegree);
+    }
+
+    public void startAuto(int initialSpeed){
+        this.setSpeed(initialSpeed);
+        this.setMove(true);
+    }
+
+    public void stopAuto(){
+        this.setSpeed(0);
+        this.setMove(false);
+    }
+
+    public void crash(){
+        this.setCrashed(true);
+    }
+
 }
