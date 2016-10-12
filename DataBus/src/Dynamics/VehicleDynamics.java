@@ -1,6 +1,7 @@
 package Dynamics;
 import Bus.Bus;
 
+
 import Dynamics.EnergyLoss;
 
 
@@ -44,7 +45,31 @@ public class VehicleDynamics {
     }
 
 
+    public final double DRIVE_ENGINE_BREAK_DECLERATION = 2d;
+    public final double PARK_ENGINE_BREAK_DECLERATION = 0.2d;
+    public final double REVERSE_ENGINE_BREAK_DECLERATION = 0.7d;
+    public final double NEUTRAL_ENGINE_BREAK_DECLERATION = 0d;
+    public double getEngineBrakeDecleration() {
+        Bus.GearPosition gear = bus.getGearPosition();
 
+        if (gear == Bus.GearPosition.DRIVE) {
+            return DRIVE_ENGINE_BREAK_DECLERATION;
+        }
+
+        if (gear == Bus.GearPosition.PARK) {
+            return PARK_ENGINE_BREAK_DECLERATION;
+        }
+
+        if (gear == Bus.GearPosition.REVERSE) {
+            return REVERSE_ENGINE_BREAK_DECLERATION;
+        }
+
+        if (gear == Bus.GearPosition.NEUTRAL) {
+            return NEUTRAL_ENGINE_BREAK_DECLERATION;
+        }
+
+        return 0;
+    }
 
 
 
