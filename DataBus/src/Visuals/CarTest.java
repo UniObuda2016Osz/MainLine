@@ -30,13 +30,13 @@ public class CarTest {
     public void isAutoStarted(){
         auto.startAuto(10);
         Assert.assertEquals(true, auto.isMove());
-        Assert.assertEquals(10, auto.getSpeed());
+        Assert.assertEquals(10, auto.getSpeed(), 10);
     }
 
     @Test
     public void isAccelerationTen(){
         auto.accelerateAuto(10);
-        Assert.assertEquals(10, auto.getSpeed());
+        Assert.assertEquals(10, auto.getSpeed(), 10);
     }
 
     @Test
@@ -49,6 +49,6 @@ public class CarTest {
     public void isAutoStopped(){
         auto.stopAuto();
         Assert.assertEquals(false, auto.isMove());
-        Assert.assertEquals(0, auto.getSpeed());
+        Assert.assertEquals(0, auto.getSpeed(), 0);
     }
 }
