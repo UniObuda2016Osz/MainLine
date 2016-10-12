@@ -25,21 +25,18 @@ public class VehicleDynamics {
 
     }
 
-    // erre nincs még TDD teszt
-    private void Setspeed()
+    public void SetSpeed()
     {
         float NewSpeed =  bus.getCurrentSISpeed() + engine.getAcceleration() ;
         bus.setCurrentSISpeed(NewSpeed);
     }
 
-    // erre nincs még TDD teszt
-    private void AccelerationDecrese() {
+    public void AccelerationDecrese() {
         int NewAcceleration = engine.getAcceleration() - energyLoss.LossFromGround() - energyLoss.LossFromWeight() - energyLoss.LossFromWind() - energyLoss.LossFromCollision();
         bus.setAcceleration( NewAcceleration );
     }
 
-    // erre nincs még TDD teszt
-    private void AccelerationIncrease() {
+    public void AccelerationIncrease() {
         int NewAcceleration = engine.getAcceleration() + bus.getGasPedal()/100 * engine.getHorsePower();
         bus.setAcceleration( NewAcceleration );
     }

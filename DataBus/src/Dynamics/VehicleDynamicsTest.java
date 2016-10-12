@@ -12,6 +12,9 @@ public class VehicleDynamicsTest {
 
     @org.junit.Before
     public void setUp() throws Exception {
+        VD.bus = Bus.getInstance();
+        VD.engine = Engine.GetInstance();
+        VD.energyLoss = EnergyLoss.GetInstance();
     }
 
     @org.junit.Test
@@ -53,6 +56,36 @@ public class VehicleDynamicsTest {
         assertEquals(enginebrake, VD.NEUTRAL_ENGINE_BREAK_DECLERATION);
     }
 
+    @org.junit.Test
+    public void isSpeedChanged()
+    {
+        VD.bus.setCurrentSISpeed(10);
+        VD.engine.setAcceleration(1);
+        VD.SetSpeed();
+        assertEquals(VD.bus.getCurrentSISpeed()==11,true);
+    }
+
+    @org.junit.Test
+    public void isAccelerationDecrese()
+    {
+        VD.engine.setAcceleration(100);
+        VD.energyLoss.setGroundType(EnergyLoss.GroundType.Soft);
+        VD.energyLoss.setWeight(80);
+        VD.energyLoss.setWindEnergy(10);
+        VD.energyLoss.setCollision(false);
+        VD.AccelerationDecrese();
+        assertEquals(VD.bus.getAcceleration()==9,true);
+    }
+    
+    @org.junit.Test
+    public void isAccelerationIncrease()
+    {
+        VD.engine.setAcceleration(100);
+        VD.engine.setHorsePower(10);
+        VD.bus.setGasPedal(100);
+        VD.AccelerationIncrease();
+        assertEquals(VD.bus.getAcceleration()==110,true);
+    }
 
     @org.junit.After
     public void tearDown() throws Exception {
