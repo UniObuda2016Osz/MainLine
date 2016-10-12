@@ -45,11 +45,11 @@ public class VehicleDynamics {
     }
 
 
-    public final double DRIVE_ENGINE_BREAK_DECLERATION = 2d;
-    public final double PARK_ENGINE_BREAK_DECLERATION = 0.2d;
-    public final double REVERSE_ENGINE_BREAK_DECLERATION = 0.7d;
-    public final double NEUTRAL_ENGINE_BREAK_DECLERATION = 0d;
-    public double getEngineBrakeDecleration() {
+    public final int DRIVE_ENGINE_BREAK_DECLERATION = 2;
+    public final int PARK_ENGINE_BREAK_DECLERATION = 1;
+    public final int REVERSE_ENGINE_BREAK_DECLERATION = 1;
+    public final int NEUTRAL_ENGINE_BREAK_DECLERATION = 0;
+    public int getEngineBrakeDecleration() {
         Bus.GearPosition gear = bus.getGearPosition();
 
         if (gear == Bus.GearPosition.DRIVE) {
@@ -71,7 +71,14 @@ public class VehicleDynamics {
         return 0;
     }
 
+    private final int BRAKE_PEDAL_MAXIMUM_DECLERATION = 15;
+    private void declerationByBrakePedal() {
+        int pedal = bus.getBrakePedal();
+        int brakingdecleration = BRAKE_PEDAL_MAXIMUM_DECLERATION * pedal / 100;
 
-
+        int currentacceleration = bus.getAcceleration();
+        int accelerationdecreasedbybraking = currentacceleration - brakingdecleration;
+        bus.setAcceleration(accelerationdecreasedbybraking);
+    }
 
 }
