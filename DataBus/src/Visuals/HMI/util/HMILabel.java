@@ -18,6 +18,6 @@ public class HMILabel {
     public static final String GEARBOX_NEUTRAL = "Neutral (3)";
     public static final String GEARBOX_DRIVE = "Drive (4)";
 
-    public static final String INDICATOR_LEFT = "left";
-    public static final String INDICATOR_RIGHT = "right";
+    public static final String INDICATOR_LEFT = "left (C)";
+    public static final String INDICATOR_RIGHT = "right (V)";
 }

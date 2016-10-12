@@ -8,6 +8,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
+ * Mock some GAS - SPEED relation on the bus for testing purposes.
+ *
  * Created by Rav on 2016.10.12..
  */
 public class EngineMock {
@@ -45,7 +47,7 @@ public class EngineMock {
             }
             else
             {
-                Bus.getInstance().setCurrentSISpeed( Bus.getInstance().getCurrentSISpeed() + 10 );
+                Bus.getInstance().setCurrentSISpeed( Bus.getInstance().getCurrentSISpeed() + 12 );
             }
 
         }

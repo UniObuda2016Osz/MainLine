@@ -4,6 +4,7 @@ import Bus.Bus;
 import Visuals.HMI.instrument.CarInstrumentContainer;
 import Visuals.HMI.component.HMIPanel;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -95,6 +96,46 @@ public class HMIKeyListener implements KeyListener {
         {
             System.out.println(String.format("set gearbox to DRIVE by keyCode %s", keyCode));
             Bus.getInstance().setGearPosition(Bus.GearPosition.DRIVE);
+        }
+        else if (keyCode == KeyEvent.VK_C)
+        {
+            System.out.println(String.format("switch leftindicator by keyCode %s", keyCode));
+
+            if (Bus.getInstance().isDirectionIndicatorRightActive())
+            {
+                return;
+            }
+
+            if (Bus.getInstance().isDirectionIndicatorLeftActive())
+            {
+                Bus.getInstance().setDirectionIndicatorLeftActive(false);
+                hmiPanel.getBtnLeftIndicator().setBackground(null);
+            }
+            else
+            {
+                Bus.getInstance().setDirectionIndicatorLeftActive(true);
+                hmiPanel.getBtnLeftIndicator().setBackground(Color.yellow);
+            }
+        }
+        else if (keyCode == KeyEvent.VK_V)
+        {
+            System.out.println(String.format("switch rightindicator by keyCode %s", keyCode));
+
+            if (Bus.getInstance().isDirectionIndicatorLeftActive())
+            {
+                return;
+            }
+
+            if (Bus.getInstance().isDirectionIndicatorRightActive())
+            {
+                Bus.getInstance().setDirectionIndicatorRightActive(false);
+                hmiPanel.getBtnRightIndicator().setBackground(null);
+            }
+            else
+            {
+                Bus.getInstance().setDirectionIndicatorRightActive(true);
+                hmiPanel.getBtnRightIndicator().setBackground(Color.yellow);
+            }
         }
     }
 

@@ -28,6 +28,9 @@ public class HMIPanel extends JPanel {
     private JProgressBar brakePedalPressureBar;
     private JProgressBar speedBar;
 
+    private JButton btnLeftIndicator;
+    private JButton btnRightIndicator;
+
     private JLabel labelGearboxPark;
     private JLabel labelGearboxReverse;
     private JLabel labelGearboxNeutral;
@@ -84,6 +87,16 @@ public class HMIPanel extends JPanel {
         //leftDirectionIndicatingLight = new DirectionIndicatingLight();
         //add(leftDirectionIndicatingLight);
         //leftDirectionIndicatingLight.on();
+
+        //FIXME levair - makes no sense that these are buttons, should be replaced later with IndicatingLight
+        btnLeftIndicator = new JButton();
+        getBtnLeftIndicator().setText(HMILabel.INDICATOR_LEFT);
+        add(btnLeftIndicator);
+
+        //FIXME levair - makes no sense that these are buttons, should be replaced later with IndicatingLight
+        btnRightIndicator = new JButton();
+        getBtnRightIndicator().setText(HMILabel.INDICATOR_RIGHT);
+        add(btnRightIndicator);
 
 
         System.out.println("HMI panel initialized");
@@ -145,4 +158,12 @@ public class HMIPanel extends JPanel {
         return labelGearboxDrive;
     }
 
+
+    public JButton getBtnLeftIndicator() {
+        return btnLeftIndicator;
+    }
+
+    public JButton getBtnRightIndicator() {
+        return btnRightIndicator;
+    }
 }
