@@ -79,7 +79,7 @@ public class VehicleDynamics {
     }
 
     public void Update() {
-        Setspeed();
+        SetSpeed();
         AccelerationDecrese();
         AccelerationIncrease();
         declerationByBrakePedal();
