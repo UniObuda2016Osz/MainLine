@@ -139,20 +139,30 @@ public class App extends JFrame implements KeyListener {
 
     @Override
     public void paint(Graphics g) {
-        g.drawImage(backgroundImage, 0, 0, null);
-        Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
-        AffineTransform old = g2d.getTransform();
-        g2d.rotate(car.getRotation()*Math.PI / 180,car.getXCoord(), car.getYCoord());
-        g2d.drawImage(carimage, car.getXCoord(), car.getYCoord(), null);
-        g2d.setTransform(old);
+            Image buffer;
+            Graphics2D g2d;
 
-        g.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
-        pedestrian_1.Move();
+            buffer = createImage(backgroundImage.getWidth(levelobs),backgroundImage.getHeight(levelobs));
+            g2d = (Graphics2D)buffer.getGraphics();
 
-        mainframe.setVisible(true);
-        mainframe.paint(g);
+            g2d.drawImage(backgroundImage, 0, 0, null);
+            //Graphics2D g2d = (Graphics2D) g;
+
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                    RenderingHints.VALUE_ANTIALIAS_ON);
+            AffineTransform old = g2d.getTransform();
+            g2d.scale(0.75,0.75);
+            g2d.rotate(car.getRotation()*Math.PI / 180,car.getXCoord(), car.getYCoord());
+            g2d.drawImage(carimage, car.getXCoord(), car.getYCoord(), null);
+            g2d.setTransform(old);
+
+            g2d.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
+            pedestrian_1.Move();
+
+            g.drawImage(buffer, 0, 0, null);
+
+            mainframe.setVisible(true);
+            mainframe.paint(g);
 
     }
 
