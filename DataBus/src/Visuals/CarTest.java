@@ -8,7 +8,7 @@ import org.junit.Test;
  */
 public class CarTest {
 
-    Car auto = new Car(0,0);
+    Car auto = new Car(150, 100);
 
     @Test
     public void isInstanceOfAutoNotNull(){
@@ -16,9 +16,20 @@ public class CarTest {
     }
 
     @Test
-    public void areXAndYCoordinateZero(){
-        Assert.assertEquals(0, auto.getXCoord());
-        Assert.assertEquals(0, auto.getYCoord());
+    public void areXAndYCoordinateNotZero(){
+        Assert.assertEquals(150, auto.getXCoord());
+        Assert.assertEquals(100, auto.getYCoord());
+    }
+
+    @Test
+    public void isDirectionFourtyFive(){
+        Assert.assertEquals(45, auto.getDirection());
+    }
+
+    @Test
+    public void isDirectionNinety(){
+        auto.setDirection(90);
+        Assert.assertEquals(90, auto.getDirection());
     }
 
     @Test
