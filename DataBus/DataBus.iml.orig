@@ -17,6 +17,9 @@
         <SOURCES />
       </library>
     </orderEntry>
+<<<<<<< HEAD
     <orderEntry type="module" module-name="AutoSimulator" />
+=======
+>>>>>>> 2a7adc979371494ae2ca297c3f1ba214568f1214
   </component>
 </module>

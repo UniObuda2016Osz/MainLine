@@ -2,6 +2,7 @@ package Bus;
 
 public class Bus {
     /*data members, getters, setters*/
+
     private boolean ACCMainSwitchState;
 
     public boolean getACCMainSwitchState() {
@@ -43,7 +44,6 @@ public class Bus {
             this.gasPedal = 100;
         else
             this.gasPedal = 0;
-
     }
 
     private int brakePedal;

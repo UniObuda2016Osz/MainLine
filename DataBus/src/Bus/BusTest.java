@@ -1,7 +1,7 @@
 package Bus;
 
-import org.junit.Test;
 
+import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -32,7 +32,7 @@ public class BusTest {
         assert(bus.getClass() != null);
     }
 
-    @org.junit.Test
+    @Test
     public void ACCMainSwitchGetterReturnsSetterGivenValue(){
         bus.setACCMainSwitchState(false);
         assertEquals(bus.getACCMainSwitchState(), false);
