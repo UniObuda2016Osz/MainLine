@@ -12,6 +12,26 @@ public class Bus {
         this.ACCMainSwitchState = ACCMainSwitchState;
     }
 
+    private int Velocity;
+
+    public int getVelocity() {
+        return Velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        Velocity = velocity;
+    }
+
+    private int Acceleration;
+    
+    public int getAcceleration() {
+        return Acceleration;
+    }
+
+    public void setAcceleration(int acceleration) {
+        Acceleration = acceleration;
+    }
+
     private int gasPedal;
 
     public int getGasPedal(){ return gasPedal;}

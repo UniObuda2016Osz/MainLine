@@ -41,6 +41,18 @@ public class BusTest {
     }
 
     @Test
+     public void velocityGetterReturnsSetterGivenValue(){
+        bus.setVelocity(20);
+        assertEquals(bus.getVelocity(), 20);
+    }
+
+    @Test
+    public void accelerationGetterReturnsSetterGivenValue(){
+        bus.setAcceleration(20);
+        assertEquals(bus.getAcceleration(), 20);
+    }
+
+    @Test
     public void gasPedalGetterReturnsSetterGivenValue(){
         bus.setGasPedal(65);
         assertEquals(bus.getGasPedal(), 65);
