@@ -17,7 +17,7 @@ public class VehicleDynamicsDemoTimerListener implements TimerListener {
 
     @Override
     public void OnTimerTick() {
-        vehicledynamics.Update();
+        vehicledynamics.update();
         System.out.print("Gas: " + bus.getGasPedal());
         System.out.print("Brake: " + bus.getBrakePedal());
         System.out.print("Gear: " + bus.getGearPosition());
