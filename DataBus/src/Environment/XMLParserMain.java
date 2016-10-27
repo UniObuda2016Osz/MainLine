@@ -13,11 +13,13 @@ import java.util.List;
 /**
  * Created by ral2bp on 2016.09.29..
  */
-public class XMLParserMain implements IRadar, ICamera {
+public class XMLParserMain implements ISensor {
 
     private XMLInputFactory factory;
 
-    public XMLInputFactory getXMLInputFactory(){return factory;}
+    public XMLInputFactory getXMLInputFactory() {
+        return factory;
+    }
 
     private XMLStreamReader streamReader;
     private int sceneHeihgt;
@@ -49,8 +51,8 @@ public class XMLParserMain implements IRadar, ICamera {
     /*public JFileChooser setjFileChooser(JFileChooser jFileChooser) {
         this.jFileChooser = jFileChooser; }
 */
-    public static XMLParserMain getInstance(){
-        if (instance == null){
+    public static XMLParserMain getInstance() {
+        if (instance == null) {
             instance = new XMLParserMain();
         }
         return instance;
@@ -84,8 +86,8 @@ public class XMLParserMain implements IRadar, ICamera {
         }
     }
 
-    final protected boolean XmlFileOpener()
-    {
+    final protected boolean XmlFileOpener() {
+
         JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir") + "/DataBus/src/Environment"));
         int returnValue = fileChooser.showOpenDialog(fileChooser.getParent());
         if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -116,6 +118,7 @@ public class XMLParserMain implements IRadar, ICamera {
             sceneColor = streamReader.getAttributeValue("", "color");
         }
     }
+
     //for test cases
     final protected void objectCase() {
         if ("Object".equals(streamReader.getLocalName())) {
@@ -233,7 +236,6 @@ public class XMLParserMain implements IRadar, ICamera {
     }
 
 
-
     private void CreateClassElementByName(String collection, String collectionType, String elementType) {
         switch (collectionType) {
             //misc mappában lévők
@@ -309,28 +311,28 @@ public class XMLParserMain implements IRadar, ICamera {
 
     private void createSpeedTable(String elementType) {
         switch (elementType) {
-        case "274_51_.svg": //10
-        DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ten));
-        break;
-        case "274_52_.svg": //20
-        DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Twenty));
-        break;
-        case "274_54_.svg": //400
-        DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Forty));
-        break;
-        case "274_55_.svg": //50
-        DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Fifty));
-        break;
-        case "274_57_.svg": //70
-        DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Seventy));
-        break;
-        case "274_59_.svg": //90
-        DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ninety));
-        break;
-        case "274_60_.svg": //100
-        DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Hundred));
-        break;
-    }
+            case "274_51_.svg": //10
+                DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ten));
+                break;
+            case "274_52_.svg": //20
+                DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Twenty));
+                break;
+            case "274_54_.svg": //400
+                DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Forty));
+                break;
+            case "274_55_.svg": //50
+                DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Fifty));
+                break;
+            case "274_57_.svg": //70
+                DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Seventy));
+                break;
+            case "274_59_.svg": //90
+                DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Ninety));
+                break;
+            case "274_60_.svg": //100
+                DynamicObjects.add(new Speed(tmpId, tmpPos, tmpTransform, tmpZlevel, tmpOpacity, Speed.SpeedType.Hundred));
+                break;
+        }
     }
 
     private void create2LaneAdvanced(String elementType) {
@@ -418,48 +420,59 @@ public class XMLParserMain implements IRadar, ICamera {
         }
     }
 
-    public List<WorldObject> getWorld()
-    {
+    public List<WorldObject> getWorld() {
         return DynamicObjects;
     }
 
-    public List<WorldObject> getObjectsSeenForSensors()
-    {
+    public List<WorldObject> getObjectsSeenForSensors() {
         //itt le kell majd szűrni a szenzor által látott területen alapján
         return DynamicObjects;
     }
 
-    public void writeOutTheObjects()
-    {
-        for (WorldObject object : DynamicObjects)
-        {
+    public void writeOutTheObjects() {
+        for (WorldObject object : DynamicObjects) {
             System.out.println("Objektum: " + object.toString());
         }
     }
 
-    public Scene getScene()
-    {
+    public Scene getScene() {
         return this.scene;
     }
 
     @Override
-    public List<WorldObject> getSeenObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
+    public List<WorldObject> getDetectedObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
 
         //left - távolabbi bal pont
         //right - távolabbi jobb pont
         //center - az autón lévő pont
 
-        List<WorldObject> SeenObjects = new ArrayList<>();
-        for (WorldObject object : DynamicObjects)
-        {
-            int[] position = object.getPosition();
+        int[] leftPoint = {leftX, leftY};
+        int[] rightPoint = {rightX, rightY};
+        int[] centerPoint = {centerX, centerY};
+
+        List<WorldObject> DetectedObjects = new ArrayList<>();
+        for (WorldObject object : DynamicObjects) {
+           /* int[] position = object.getPosition();
             int width = object.getWidth();
             int height = object.getHeight();
-            int objectCenterX = position[0] + width/2;
-            int objectCenterY = position[1] + height/2;
+            int objectCenter[] = {position[0] + width / 2, position[1] + height / 2};
 
-            //if(isObjectCenterInTheTriangle())
-                //SeenObjects.add(object);
+            int[] vectorCenterToLeft = new int[2];
+            vectorCenterToLeft[0] = leftX - centerX;
+            vectorCenterToLeft[1] = leftY - centerY;
+
+            int[] vectorCenterToRight = new int[2];
+            vectorCenterToRight[0] = rightX - centerX;
+            vectorCenterToRight[1] = rightY - centerY;
+
+            int[] vectorLeftToRight = new int[2];
+            vectorLeftToRight[0] = rightX - leftX;
+            vectorLeftToRight[1] = rightY - leftX;
+
+            if(pointBetweenLines(vectorCenterToLeft, objectCenter, leftPoint, rightPoint)) //jobb pont    //paraméterek: vector, alapegyenesen lévő pont, párhuzamos egyenesen lévő pont
+                if(pointBetweenLines(vectorCenterToRight, objectCenter, rightPoint, leftPoint)) //balpont
+                    if(pointBetweenLines(vectorLeftToRight, objectCenter, leftPoint centerPoint)) //centerpont
+                        DetectedObjects.add(object);*/
 
             System.out.println("Objektum: " + object.toString());
         }
@@ -467,8 +480,16 @@ public class XMLParserMain implements IRadar, ICamera {
         return null;
     }
 
-    @Override
-    public List<WorldObject> getObjectsRecognisedByRadar(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
-        return null;
+    public boolean pointBetweenLines(int[] basicVector, int[] objectCenter, int[] basicPoint, int[] paralelPoint) {
+        int basicLineValue = valueOfLineEquation(basicVector, basicPoint);
+        int paralelLineValue = valueOfLineEquation(basicVector, paralelPoint);
+        int centerPointLineValue = valueOfLineEquation(basicVector, objectCenter);
+
+        return (((centerPointLineValue-basicLineValue>=0)&& (centerPointLineValue-paralelLineValue<=0))||((centerPointLineValue-basicLineValue<=0 && centerPointLineValue-paralelLineValue>=0)));
+    }
+
+    private int valueOfLineEquation(int[] vector, int[] pointOnLine)
+    {
+        return vector[0]*pointOnLine[0]+vector[1]*pointOnLine[1];
     }
 }
