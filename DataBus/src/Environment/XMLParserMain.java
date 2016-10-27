@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by ral2bp on 2016.09.29..
  */
-public class XMLParserMain {
+public class XMLParserMain implements IRadar, ICamera {
 
     private XMLInputFactory factory;
 
@@ -440,5 +440,35 @@ public class XMLParserMain {
     public Scene getScene()
     {
         return this.scene;
+    }
+
+    @Override
+    public List<WorldObject> getSeenObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
+
+        //left - távolabbi bal pont
+        //right - távolabbi jobb pont
+        //center - az autón lévő pont
+
+        List<WorldObject> SeenObjects = new ArrayList<>();
+        for (WorldObject object : DynamicObjects)
+        {
+            int[] position = object.getPosition();
+            int width = object.getWidth();
+            int height = object.getHeight();
+            int objectCenterX = position[0] + width/2;
+            int objectCenterY = position[1] + height/2;
+
+            //if(isObjectCenterInTheTriangle())
+                //SeenObjects.add(object);
+
+            System.out.println("Objektum: " + object.toString());
+        }
+
+        return null;
+    }
+
+    @Override
+    public List<WorldObject> getObjectsRecognisedByRadar(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
+        return null;
     }
 }
