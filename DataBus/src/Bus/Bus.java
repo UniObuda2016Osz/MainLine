@@ -2,7 +2,6 @@ package Bus;
 
 public class Bus {
     /*data members, getters, setters*/
-
     private boolean ACCMainSwitchState;
 
     public boolean getACCMainSwitchState() {
@@ -11,6 +10,26 @@ public class Bus {
 
     public void setACCMainSwitchState(boolean ACCMainSwitchState) {
         this.ACCMainSwitchState = ACCMainSwitchState;
+    }
+
+    private int Velocity;
+
+    public int getVelocity() {
+        return Velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        Velocity = velocity;
+    }
+
+    private int Acceleration;
+    
+    public int getAcceleration() {
+        return Acceleration;
+    }
+
+    public void setAcceleration(int acceleration) {
+        Acceleration = acceleration;
     }
 
     private int gasPedal;

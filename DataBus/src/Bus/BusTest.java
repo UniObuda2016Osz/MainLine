@@ -1,6 +1,5 @@
 package Bus;
 
-
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -38,6 +37,18 @@ public class BusTest {
         assertEquals(bus.getACCMainSwitchState(), false);
         bus.setACCMainSwitchState(true);
         assertEquals(bus.getACCMainSwitchState(), true);
+    }
+
+    @Test
+     public void velocityGetterReturnsSetterGivenValue(){
+        bus.setVelocity(20);
+        assertEquals(bus.getVelocity(), 20);
+    }
+
+    @Test
+    public void accelerationGetterReturnsSetterGivenValue(){
+        bus.setAcceleration(20);
+        assertEquals(bus.getAcceleration(), 20);
     }
 
     @Test
