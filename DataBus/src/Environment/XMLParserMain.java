@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by ral2bp on 2016.09.29..
  */
-public class XMLParserMain implements IRadar, ICamera {
+public class XMLParserMain implements ISensor {
 
     private XMLInputFactory factory;
 
@@ -443,7 +443,7 @@ public class XMLParserMain implements IRadar, ICamera {
     }
 
     @Override
-    public List<WorldObject> getSeenObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
+    public List<WorldObject> getDetectedObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
 
         //left - távolabbi bal pont
         //right - távolabbi jobb pont
@@ -464,11 +464,6 @@ public class XMLParserMain implements IRadar, ICamera {
             System.out.println("Objektum: " + object.toString());
         }
 
-        return null;
-    }
-
-    @Override
-    public List<WorldObject> getObjectsRecognisedByRadar(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
         return null;
     }
 }
