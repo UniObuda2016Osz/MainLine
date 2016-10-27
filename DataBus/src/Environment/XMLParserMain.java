@@ -446,9 +446,13 @@ public class XMLParserMain implements ISensor {
         //right - távolabbi jobb pont
         //center - az autón lévő pont
 
+        int[] leftPoint = {leftX, leftY};
+        int[] rightPoint = {rightX, rightY};
+        int[] centerPoint = {centerX, centerY};
+
         List<WorldObject> DetectedObjects = new ArrayList<>();
         for (WorldObject object : DynamicObjects) {
-            int[] position = object.getPosition();
+           /* int[] position = object.getPosition();
             int width = object.getWidth();
             int height = object.getHeight();
             int objectCenter[] = {position[0] + width / 2, position[1] + height / 2};
@@ -465,7 +469,10 @@ public class XMLParserMain implements ISensor {
             vectorLeftToRight[0] = rightX - leftX;
             vectorLeftToRight[1] = rightY - leftX;
 
-            //if(pointBetweenLines(vectorCenterToLeft, objectCenter, ))    //paraméterek: vector, alapegyenesen lévő pont, párhuzamos egyenesen lévő pont
+            if(pointBetweenLines(vectorCenterToLeft, objectCenter, leftPoint, rightPoint)) //jobb pont    //paraméterek: vector, alapegyenesen lévő pont, párhuzamos egyenesen lévő pont
+                if(pointBetweenLines(vectorCenterToRight, objectCenter, rightPoint, leftPoint)) //balpont
+                    if(pointBetweenLines(vectorLeftToRight, objectCenter, leftPoint centerPoint)) //centerpont
+                        DetectedObjects.add(object);*/
 
             System.out.println("Objektum: " + object.toString());
         }
