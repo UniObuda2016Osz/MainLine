@@ -81,19 +81,19 @@ import java.util.ResourceBundle;
     }
 
     public int[] getCenterPoint() {
-        int x = position[0];
-        int y = position[1];
-
+     
+        int[] position = this.getPosition();
         int[] centerPoint = new int[2];
+        double[] transformation = this.getTransform();
 
-        int felSzelesseg = width / 2;
-        int felMagassag = height / 2;
+        int felSzelesseg = this.getWidth() / 2;
+        int felMagassag = this.getHeight() / 2;
 
-        centerPoint[0] = (int) (felSzelesseg * transform[0] + felMagassag * transform[1]);
-        centerPoint[1] = (int) (felSzelesseg * transform[2] + felMagassag * transform[3]);
+        centerPoint[0] = (int) (felSzelesseg * transformation[0] + felMagassag * transformation[1]);
+        centerPoint[1] = (int) (felSzelesseg * transformation[2] + felMagassag * transformation[3]);
 
-        centerPoint[0]+=x;
-        centerPoint[1]+=y;
+        centerPoint[0]+=position[0];
+        centerPoint[1]+=position[1];
         return centerPoint;
     }
 }
