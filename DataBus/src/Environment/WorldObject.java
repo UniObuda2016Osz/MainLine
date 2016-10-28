@@ -81,14 +81,19 @@ import java.util.ResourceBundle;
     }
 
     public int[] getCenterPoint() {
-        //     cos   sin
-        //ujx=x*m11+m12*y
         int x = position[0];
         int y = position[1];
-        double ujx = x * transform[0] + transform[1] * y;
-        //     (-sin)      cos
-        //ujy=(x*m21)*(-1)+m22*y
-        double ujy = (x * transform[2]) * (-1) + transform[3] * y;
-        return new int[]{(int) ujx, (int) ujy};
+
+        int[] centerPoint = new int[2];
+
+        int felSzelesseg = width / 2;
+        int felMagassag = height / 2;
+
+        centerPoint[0] = (int) (felSzelesseg * transform[0] + felMagassag * transform[1]);
+        centerPoint[1] = (int) (felSzelesseg * transform[2] + felMagassag * transform[3]);
+
+        centerPoint[0]+=x;
+        centerPoint[1]+=y;
+        return centerPoint;
     }
 }
