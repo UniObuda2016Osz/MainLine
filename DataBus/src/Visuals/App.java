@@ -15,17 +15,17 @@ import java.util.TimerTask;
 public class App extends JFrame implements KeyListener {
     private static Timer time;
     private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
-    ImageObserver levelobs;
-    boolean jobb, bal, lent, fent;
-    Car car = new Car(130, 400);
+    private ImageObserver levelobs;
+    private boolean jobb, bal, lent, fent;
+    private Car car = new Car(130, 400);
     private Image carimage = new ImageIcon(car.getImagePath()).getImage();
 
     //Creating the pedestrian
     // overview
-    Pedestrian pedestrian_1 = new Pedestrian(150, 200, 255, 200);
+    private Pedestrian pedestrian_1 = new Pedestrian(150, 200, 255, 200);
     private Image pedestrianImage = new ImageIcon(pedestrian_1.getImagePath()).getImage();
 
-    JFrame mainframe;
+    private JFrame mainframe;
 
     private App() throws IOException {
         mainframe = new JFrame();
