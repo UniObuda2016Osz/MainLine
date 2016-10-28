@@ -21,6 +21,7 @@ public class App extends JFrame implements KeyListener {
     private Image carimage = new ImageIcon(car.getImagePath()).getImage();
 
     //Creating the pedestrian
+    // overview
     Pedestrian pedestrian_1 = new Pedestrian(150, 200, 255, 200);
     private Image pedestrianImage = new ImageIcon(pedestrian_1.getImagePath()).getImage();
 
