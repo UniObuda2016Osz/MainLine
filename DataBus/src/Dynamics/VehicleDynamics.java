@@ -25,6 +25,11 @@ public class VehicleDynamics {
 
     }
 
+    public final double DRIVE_ENGINE_BREAK_DECLERATION = 0.20000000298023224;
+    public final double PARK_ENGINE_BREAK_DECLERATION = 0.30000001192092896;
+    public final double REVERSE_ENGINE_BREAK_DECLERATION = 0.375;
+    public final double NEUTRAL_ENGINE_BREAK_DECLERATION = 0;
+
     private final float GEAR_D_ACCELERATION_COEFFICIENT = 0.8f;
     private final float GEAR_R_ACCELERATION_COEFFICIENT = 1.5f;
     private final float GEAR_P_ACCELERATION_COEFFICIENT = 1.2f;
@@ -41,7 +46,7 @@ public class VehicleDynamics {
     // This is the decleration of the car body, when the car is not driven and the brake pedal is not pressed
     private final float STATIC_DECELERATION_COEFFICIENT = 0.2f;
 
-    private float getGearAcceleration() {
+    public float getGearAcceleration() {
         Bus.GearPosition gear = bus.getGearPosition();
         if (gear == Bus.GearPosition.NEUTRAL) {
             return GEAR_N_ACCELERATION_COEFFICIENT;
@@ -63,23 +68,23 @@ public class VehicleDynamics {
     }
 
 
-    private float calculateGaspedalAcceleration() {
+    public float calculateGaspedalAcceleration() {
         return bus.getGasPedal() / 100f;
     }
 
 
-    private float calculateBrakepedalDeceleration() {
+    public float calculateBrakepedalDeceleration() {
         return bus.getBrakePedal() / 100f * BRAKE_PEDAL_DECELERATION_COEFFICIENT;
     }
 
 
-    private float calculateEngineBrakeDeceleration() {
+    public float calculateEngineBrakeDeceleration() {
         float gearacceleration = this.getGearAcceleration();
         return gearacceleration / 4;
     }
 
 
-    private float calculateAcceleration() {
+    public float calculateAcceleration() {
         float gearacceleration = this.getGearAcceleration();
         float gaspedalacceleration = this.calculateGaspedalAcceleration();
         float enginebrakedecleration = this.calculateEngineBrakeDeceleration();
@@ -94,7 +99,7 @@ public class VehicleDynamics {
     }
 
 
-    private float getGearMaxSpeed() {
+    public float getGearMaxSpeed() {
         Bus.GearPosition gear = bus.getGearPosition();
         if (gear == Bus.GearPosition.NEUTRAL) {
             return GEAR_N_MAX_SPEED;
@@ -116,13 +121,13 @@ public class VehicleDynamics {
     }
 
 
-    private void updateAcceleration() {
+    public void updateAcceleration() {
         float newacceleration = this.calculateAcceleration();
         bus.setAcceleration((int)newacceleration);
     }
 
 
-    private void updateSpeed() {
+    public void updateSpeed() {
         float gearmaxspeed = this.getGearMaxSpeed();
         float currentspeed = bus.getCurrentSISpeed();
         float currentacc = bus.getAcceleration();

@@ -22,7 +22,6 @@ public class Main {
         }
         /*Call modules in the logical order here*/
         vehicleDynamics = VehicleDynamics.GetInstance();
-
     }
 
 }
