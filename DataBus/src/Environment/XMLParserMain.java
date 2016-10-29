@@ -78,7 +78,7 @@ public class XMLParserMain implements ISensor {
                 }
             }
             streamReader.close();
-            //writeOutTheObjects();
+            writeOutTheObjects();
             return true;
         } else {
             streamReader.close();
@@ -160,6 +160,7 @@ public class XMLParserMain implements ISensor {
             String[] splitName = tmpName.split("/");
             if (DynamicObjects != null) {
                 CreateClassElementByName(splitName[1], splitName[2], splitName[3]);
+                return false;
             } else {
                 streamReader.close();
                 return true;
