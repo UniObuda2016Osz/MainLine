@@ -3,8 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/DataBus/DataBus.iml" filepath="$PROJECT_DIR$/DataBus/DataBus.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MainLine.iml" filepath="$PROJECT_DIR$/MainLine.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MainLine.iml" filepath="$PROJECT_DIR$/MainLine.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FJKKL.iml" filepath="$PROJECT_DIR$/FJKKL.iml" />
     </modules>
   </component>
 </project>
