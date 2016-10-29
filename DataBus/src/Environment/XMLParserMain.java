@@ -485,11 +485,14 @@ public class XMLParserMain implements ISensor {
         int paralelLineValue = valueOfLineEquation(basicVector, paralelPoint);
         int centerPointLineValue = valueOfLineEquation(basicVector, objectCenter);
 
-        return (((centerPointLineValue-basicLineValue>=0)&& (centerPointLineValue-paralelLineValue<=0))||((centerPointLineValue-basicLineValue<=0 && centerPointLineValue-paralelLineValue>=0)));
+        return (((centerPointLineValue - basicLineValue >= 0)&&
+                (centerPointLineValue - paralelLineValue <= 0))||
+                ((centerPointLineValue - basicLineValue <= 0 &&
+                centerPointLineValue - paralelLineValue >= 0)));
     }
 
     private int valueOfLineEquation(int[] vector, int[] pointOnLine)
     {
-        return vector[0]*pointOnLine[0]+vector[1]*pointOnLine[1];
+        return vector[0] * pointOnLine[0] + vector[1] * pointOnLine[1];
     }
 }
