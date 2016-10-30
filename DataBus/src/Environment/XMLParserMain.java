@@ -464,11 +464,6 @@ public class XMLParserMain implements ISensor {
         return DynamicObjects;
     }
 
-    public List<WorldObject> getObjectsSeenForSensors() {
-        //itt le kell majd szűrni a szenzor által látott területen alapján
-        return DynamicObjects;
-    }
-
     public void writeOutTheObjects() {
         for (WorldObject object : DynamicObjects) {
             System.out.println("Objektum: " + object.toString());
@@ -490,21 +485,21 @@ public class XMLParserMain implements ISensor {
         int[] rightPoint = {rightX, rightY};
         int[] centerPoint = {centerX, centerY};
 
+        int[] vectorCenterToLeft = new int[2];
+        vectorCenterToLeft[0] = leftX - centerX;
+        vectorCenterToLeft[1] = leftY - centerY;
+
+        int[] vectorCenterToRight = new int[2];
+        vectorCenterToRight[0] = rightX - centerX;
+        vectorCenterToRight[1] = rightY - centerY;
+
+        int[] vectorLeftToRight = new int[2];
+        vectorLeftToRight[0] = rightX - leftX;
+        vectorLeftToRight[1] = rightY - leftX;
+
         List<WorldObject> DetectedObjects = new ArrayList<>();
         for (WorldObject object : DynamicObjects) {
            int[] objectCenter = object.getCenterPoint();
-
-            int[] vectorCenterToLeft = new int[2];
-            vectorCenterToLeft[0] = leftX - centerX;
-            vectorCenterToLeft[1] = leftY - centerY;
-
-            int[] vectorCenterToRight = new int[2];
-            vectorCenterToRight[0] = rightX - centerX;
-            vectorCenterToRight[1] = rightY - centerY;
-
-            int[] vectorLeftToRight = new int[2];
-            vectorLeftToRight[0] = rightX - leftX;
-            vectorLeftToRight[1] = rightY - leftX;
 
             if(pointBetweenLines(vectorCenterToLeft, objectCenter, leftPoint, rightPoint)) //jobb pont    //paraméterek: vector, alapegyenesen lévő pont, párhuzamos egyenesen lévő pont
                 if(pointBetweenLines(vectorCenterToRight, objectCenter, rightPoint, leftPoint)) //balpont
@@ -523,12 +518,12 @@ public class XMLParserMain implements ISensor {
         }
     }
 
-    public boolean pointBetweenLines(int[] basicVector, int[] objectCenter, int[] basicPoint, int[] paralelPoint) {
+    private boolean pointBetweenLines(int[] basicVector, int[] objectCenter, int[] basicPoint, int[] parallelPoint) {
         int basicLineValue = valueOfLineEquation(basicVector, basicPoint);
-        int paralelLineValue = valueOfLineEquation(basicVector, paralelPoint);
+        int parallelLineValue = valueOfLineEquation(basicVector, parallelPoint);
         int centerPointLineValue = valueOfLineEquation(basicVector, objectCenter);
 
-        return (((centerPointLineValue-basicLineValue>=0) && (centerPointLineValue-paralelLineValue<=0))||((centerPointLineValue-basicLineValue<=0 && centerPointLineValue-paralelLineValue>=0)));
+        return (((centerPointLineValue-basicLineValue>=0) && (centerPointLineValue-parallelLineValue<=0))||((centerPointLineValue-basicLineValue<=0 && centerPointLineValue-parallelLineValue>=0)));
     }
 
     private int valueOfLineEquation(int[] vector, int[] pointOnLine)
