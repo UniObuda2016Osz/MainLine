@@ -72,7 +72,7 @@ public class XMLParserMain implements ISensor {
     private void setRoadColor1(int[] roadColor1) { this.RoadColor1 = roadColor1; }
 
     private int[] RoadColor2; // 0 - g, 1 - type, 2 - index, 3 - r, 4 - a, 5 - name, 6 - b, (7 - text)
-    public int[] getRoadColor2() { return RoadColor2; }
+    private int[] getRoadColor2() { return RoadColor2; }
     private void setRoadColor2(int[] roadColor2) { RoadColor2 = roadColor2; }
 
     private int[] RoadColor3; // 0 - g, 1 - type, 2 - index, 3 - r, 4 - a, 5 - name, 6 - b, (7 - text)
@@ -496,14 +496,6 @@ public class XMLParserMain implements ISensor {
         }
     }
 
-
-
-    public void writeOutTheObjects() {
-        for (WorldObject object : DynamicObjects) {
-            System.out.println("Objektum: " + object.toString());
-        }
-    }
-
     @Override
     public List<WorldObject> getDetectedObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
 
@@ -539,15 +531,6 @@ public class XMLParserMain implements ISensor {
         return DetectedObjects;
     }
 
-    public void writeOutDetectedObjects() {
-        List<WorldObject> Detected = getDetectedObjects(3000, 3900, 3500, 3900, 3250, 4200);
-        System.out.println("Látott objektumok: ");
-        for (WorldObject object :Detected)
-        {
-            System.out.println(object.toString() + "\n");
-        }
-    }
-
     private boolean pointBetweenLines(int[] basicVector, int[] objectCenter, int[] basicPoint, int[] parallelPoint) {
         int basicLineValue = valueOfLineEquation(basicVector, basicPoint);
         int parallelLineValue = valueOfLineEquation(basicVector, parallelPoint);
@@ -559,5 +542,20 @@ public class XMLParserMain implements ISensor {
     private int valueOfLineEquation(int[] vector, int[] pointOnLine)
     {
         return vector[0]*pointOnLine[0]+vector[1]*pointOnLine[1];
+    }
+
+    private void writeOutDetectedObjects() {
+        List<WorldObject> Detected = getDetectedObjects(3000, 3900, 3500, 3900, 3250, 4200);
+        System.out.println("Látott objektumok: ");
+        for (WorldObject object :Detected)
+        {
+            System.out.println(object.toString() + "\n");
+        }
+    }
+
+    private void writeOutTheObjects() {
+        for (WorldObject object : DynamicObjects) {
+            System.out.println("Objektum: " + object.toString());
+        }
     }
 }
