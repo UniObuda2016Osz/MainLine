@@ -127,7 +127,8 @@ public class XMLParserMain implements ISensor {
                 }
             }
             streamReader.close();
-            //writeOutDetectedObjects();
+
+            writeOutDetectedObjects();
             return true;
         } else {
             streamReader.close();
@@ -545,12 +546,14 @@ public class XMLParserMain implements ISensor {
     }
 
     private void writeOutDetectedObjects() {
-        List<WorldObject> Detected = getDetectedObjects(3000, 3900, 3500, 3900, 3250, 4200);
+        List<WorldObject> Detected = getDetectedObjects(3220, 4124, 3230, 4124, 3225, 4130);
         System.out.println("Látott objektumok: ");
         for (WorldObject object :Detected)
         {
             System.out.println(object.toString() + "\n");
         }
+
+        //3225;4125
     }
 
     private void writeOutTheObjects() {
