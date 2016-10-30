@@ -12,5 +12,5 @@ public enum UltraSonicSensorPosition {
     REAR_OUTER_LEFT,
     REAR_INNER_LEFT,
     REAR_INNER_RIGHT,
-    REAR_OUTER,LEFT
+    REAR_OUTER_RIGHT
 }

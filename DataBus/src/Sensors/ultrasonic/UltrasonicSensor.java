@@ -18,14 +18,12 @@ public class UltrasonicSensor {
     private Car ownerCar;
     private UltraSonicSensorPosition positionOnCar;
 
-    public UltrasonicSensor(Car ownerCar, UltraSonicSensorPosition positionOnCar)
-    {
+    public UltrasonicSensor(Car ownerCar, UltraSonicSensorPosition positionOnCar) {
         this.ownerCar = ownerCar;
         this.positionOnCar = positionOnCar;
     }
 
-    public List<WorldObject> getCurrentVisibleObjects()
-    {
+    public List<WorldObject> getCurrentVisibleObjects() {
         Position currentBasePosition = getCurrentBasepoint();
         int centerX = currentBasePosition.getX();
         int centerY = currentBasePosition.getY();
@@ -39,18 +37,37 @@ public class UltrasonicSensor {
         return XMLParserMain.getInstance().getDetectedObjects(leftX, leftY, rightX, rightY, centerX, centerY);
     }
 
-    private Position getCurrentBasepoint()
-    {
+    private Position getCurrentBasepoint() {
         //TODO: calculate current base points for THIS (out of 8) sensor by:
         //TODO - ownerCar
         //TODO - positionOnCar
 
-        switch (positionOnCar)
-        {
-            //case (UltraSonicSensorPosition.FRONT_INNER_LEFT)
-            //etc...
-        }
+        int x = ownerCar.getWidth();
+        int y = ownerCar.getLength();
+        int carFacing = ownerCar.getDirection();
+        double environmentX;
+        double environmentY;
+        double r;
 
-        return new Position(-1,-1);
+        switch (positionOnCar) {
+            case FRONT_INNER_LEFT:
+            case FRONT_OUTER_LEFT:
+            case FRONT_INNER_RIGHT:
+            case FRONT_OUTER_RIGHT:
+                r = x / 2;
+                environmentX = Math.cos(carFacing) * r;
+                environmentY = -Math.sin(carFacing) * r;
+                return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
+            case REAR_INNER_LEFT:
+            case REAR_OUTER_LEFT:
+            case REAR_INNER_RIGHT:
+            case REAR_OUTER_RIGHT:
+                r = Math.sqrt(Math.pow(x / 2, 2) + Math.pow(y, 2));
+                environmentX = Math.cos(carFacing) * r;
+                environmentY = -Math.sin(carFacing) * r;
+                return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
+            default:
+                return new Position(0, 0);
+        }
     }
 }
