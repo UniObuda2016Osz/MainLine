@@ -34,8 +34,22 @@ public class LaneAdvanced extends WorldObject {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName()+  " elem adatai:  " + "   Id: " + this.getId() + "   Zlevel: " + this.getZLevel() + "   Opacity: " + this.getOpacity() + "  CanStuckOnIt: " + this.getCanStuckOnIt() + "  LaneAdvancedType: " + this.laneAdvancedType + "  RoadColor1: " + Arrays.toString(roadColor1) + "  RoadColor2: " + Arrays.toString(roadColor2) + "  RoadColor3: " + Arrays.toString(roadColor3) + "  RoadPaintigs1: " + this.roadPaintings1 + "  RoadPaintings2: " + this.roadPaintings2 + "  RoadPaintings3: " + this.roadPaintings3;
-
+        return "\n" + this.getClass().getSimpleName()+  " elem adatai:  " +
+                "\n   Id: " + this.getId() +
+                "\n   Position: " + Arrays.toString(this.getPosition()) +
+                "\n   Középpont: " + Arrays.toString(this.getCenterPoint()) +
+                "\n   Transform: "  + Arrays.toString(this.getTransform()) +
+                "\n   Zlevel: " + this.getZLevel() +
+                "\n   Opacity: " + this.getOpacity() +
+                "\n   CanStuckOnIt: " + this.getCanStuckOnIt() +
+                "\n   LaneSimpleType: " + this.laneAdvancedType +
+                "\n   RoadColor1: " + Arrays.toString(roadColor1) +
+                "\n   RoadColor2: " + Arrays.toString(roadColor2) +
+                "\n   RoadColor3: " + Arrays.toString(roadColor3) +
+                "\n   RoadPaintigs1: " + this.roadPaintings1 +
+                "\n   RoadPaintings2: " + this.roadPaintings2 +
+                "\n   RoadPaintings3: " + this.roadPaintings3 +
+                "\n";
     }
 }
 
