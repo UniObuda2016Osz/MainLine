@@ -54,6 +54,9 @@ public class Camera {
         for(WorldObject wo : fullList){
             // A full lista leszűrése utakra és táblákra.
             // a relevantList-hez hozzá kell adni a wo-t, ha a típusa tábla, vagy út.
+            //if (wo.equals(valamilyen út) || wo.equals(valamilyen tábla)){
+            //    relevantList.add(wo);
+            //}
         }
     }
 
