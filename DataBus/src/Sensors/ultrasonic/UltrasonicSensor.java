@@ -5,6 +5,7 @@ import Environment.WorldObject;
 import Environment.XMLParserMain;
 import Visuals.Car;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,7 +24,21 @@ public class UltrasonicSensor {
         this.setPositionOnCar(positionOnCar);
     }
 
-    public List<WorldObject> getCurrentVisibleObjects() {
+    /**
+     * @return all the solid objects this sensor detects
+     */
+    public List<WorldObject> getSolidWorldObjects() {
+        List<WorldObject> solidWorldObjects = new ArrayList<>();
+
+        for (WorldObject commonWorldObject : getCurrentVisibleObjects()) {
+            if (commonWorldObject.getCanStuckOnIt()) {
+                solidWorldObjects.add(commonWorldObject);
+            }
+        }
+        return solidWorldObjects;
+    }
+
+    private List<WorldObject> getCurrentVisibleObjects() {
         Position currentBasePosition = getCurrentBasepoint();
         int centerX = currentBasePosition.getX();
         int centerY = currentBasePosition.getY();
