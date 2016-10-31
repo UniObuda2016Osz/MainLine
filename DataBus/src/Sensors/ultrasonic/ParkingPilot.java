@@ -1,7 +1,12 @@
 package Sensors.ultrasonic;
 
+import Bus.Bus;
+import Environment.WorldObject;
 import Environment.misc.Parking;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -33,6 +38,21 @@ public class ParkingPilot {
     {
         //TODO: park by the information on the sensors...
 
+        Map<UltraSonicSensorPosition, List<WorldObject>> visibleObjects = new HashMap<>();
+
+        for (UltrasonicSensor us : ultraSonicSensors)
+        {
+            visibleObjects.put(us.getPositionOnCar(), us.getCurrentVisibleObjects());
+        }
+
+        if (visibleObjects.get(UltraSonicSensorPosition.FRONT_OUTER_LEFT).contains("bazi nagy szikla"))
+        {
+            Bus.getInstance().setSteeringWheelAngle(90);
+            //TODO: levair: lehet hogy itt a HMI-re kellene egy singleton, es a fizikai kormanyt tekerni
+            //TODO ugyanigy minden mas
+        }
+
+        //TODO etc...
     }
 
 }

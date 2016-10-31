@@ -20,7 +20,7 @@ public class UltrasonicSensor {
 
     public UltrasonicSensor(Car ownerCar, UltraSonicSensorPosition positionOnCar) {
         this.ownerCar = ownerCar;
-        this.positionOnCar = positionOnCar;
+        this.setPositionOnCar(positionOnCar);
     }
 
     public List<WorldObject> getCurrentVisibleObjects() {
@@ -38,9 +38,6 @@ public class UltrasonicSensor {
     }
 
     private Position getCurrentBasepoint() {
-        //TODO: calculate current base points for THIS (out of 8) sensor by:
-        //TODO - ownerCar
-        //TODO - positionOnCar
 
         int x = ownerCar.getWidth();
         int y = ownerCar.getLength();
@@ -49,7 +46,8 @@ public class UltrasonicSensor {
         double environmentY;
         double r;
 
-        switch (positionOnCar) {
+        //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
+        switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
             case FRONT_OUTER_LEFT:
             case FRONT_INNER_RIGHT:
@@ -67,7 +65,15 @@ public class UltrasonicSensor {
                 environmentY = -Math.sin(carFacing) * r;
                 return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
             default:
-                return new Position(0, 0);
+                throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
         }
+    }
+
+    public UltraSonicSensorPosition getPositionOnCar() {
+        return positionOnCar;
+    }
+
+    public void setPositionOnCar(UltraSonicSensorPosition positionOnCar) {
+        this.positionOnCar = positionOnCar;
     }
 }
