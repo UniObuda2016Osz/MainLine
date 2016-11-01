@@ -56,7 +56,7 @@ public class UltrasonicSensor {
 
         int x = ownerCar.getWidth();
         int y = ownerCar.getLength();
-        int carFacing = ownerCar.getDirection();
+        double carRotation = ownerCar.getRotation();
         double environmentX;
         double environmentY;
         double r;
@@ -68,16 +68,16 @@ public class UltrasonicSensor {
             case FRONT_INNER_RIGHT:
             case FRONT_OUTER_RIGHT:
                 r = x / 2;
-                environmentX = Math.cos(carFacing) * r;
-                environmentY = -Math.sin(carFacing) * r;
+                environmentX = Math.cos(carRotation) * r;
+                environmentY = -Math.sin(carRotation) * r;
                 return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
             case REAR_INNER_LEFT:
             case REAR_OUTER_LEFT:
             case REAR_INNER_RIGHT:
             case REAR_OUTER_RIGHT:
                 r = Math.sqrt(Math.pow(x / 2, 2) + Math.pow(y, 2));
-                environmentX = Math.cos(carFacing) * r;
-                environmentY = -Math.sin(carFacing) * r;
+                environmentX = Math.cos(carRotation) * r;
+                environmentY = -Math.sin(carRotation) * r;
                 return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
             default:
                 throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
