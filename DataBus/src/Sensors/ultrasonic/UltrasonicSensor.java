@@ -13,8 +13,12 @@ import java.util.List;
  */
 public class UltrasonicSensor {
 
-    public static final int MAX_REACHABLE_DISTANCE = 50;
-    public static final int WIDTH_ON_MAX_REACHABLE_DISTANCE = 70;
+    /*public static final int MAX_REACHABLE_DISTANCE = 50;
+    public static final int WIDTH_ON_MAX_REACHABLE_DISTANCE = 70;*/
+
+    public static final int VIEW_DISTANCE = 5;
+    public static final int VIEW_ANGLE = 90;
+
 
     private Car ownerCar;
     private UltraSonicSensorPosition positionOnCar;
@@ -43,14 +47,24 @@ public class UltrasonicSensor {
         int centerX = currentBasePosition.getX();
         int centerY = currentBasePosition.getY();
 
+        double rotation = ownerCar.getRotation();
+
         //TODO: calculate other 2 points of the triangle by the base point and MAX_REACHABLE_DISTANCE, WIDTH_ON_MAX_REACHABLE_DISTANCE properties
-        int leftX = -1;
-        int leftY = -1;
-        int rightX = -1;
-        int rightY = -1;
+
+
+        double rightAngle = (180 - VIEW_ANGLE) / 2;
+        double leftAngle = 180 - rightAngle;
+
+        int rightX = (int)Math.round((VIEW_DISTANCE * Math.cos(rightAngle + rotation)));
+        int rightY = (int)Math.round((VIEW_DISTANCE * Math.sin(rightAngle + rotation)));
+
+        int leftX = (int)Math.round((VIEW_DISTANCE * Math.cos(leftAngle + rotation)));
+        int leftY = (int)Math.round((VIEW_DISTANCE * Math.sin(leftAngle + rotation)));
 
         return XMLParserMain.getInstance().getDetectedObjects(leftX, leftY, rightX, rightY, centerX, centerY);
     }
+
+
 
     private Position getCurrentBasepoint() {
 
