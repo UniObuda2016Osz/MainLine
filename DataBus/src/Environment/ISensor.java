@@ -1,5 +1,6 @@
 package Environment;
 
+import javax.xml.stream.XMLStreamException;
 import java.util.List;
 
 /**
@@ -10,5 +11,5 @@ public interface ISensor {
     //left - távolabbi bal pont
     //right - távolabbi jobb pont
     //center - az autón lévő pont
-    List<WorldObject> getDetectedObjects(int leftpointX, int leftpointY, int rightpointX, int rightpointY, int centerX, int centerY);
+    List<WorldObject> getDetectedObjects(int leftpointX, int leftpointY, int rightpointX, int rightpointY, int centerX, int centerY) throws XMLStreamException;
 }

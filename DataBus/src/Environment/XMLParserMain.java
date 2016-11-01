@@ -16,15 +16,23 @@ import java.util.List;
 public class XMLParserMain implements ISensor {
 
     private XMLInputFactory factory;
-
     public XMLInputFactory getXMLInputFactory() {
         return factory;
     }
 
-    private XMLStreamReader streamReader;
+    private JFileChooser fileChooser;
+    public JFileChooser getFileChooser() { return fileChooser; }
+    public void setFileChooser(JFileChooser fileChooser) { this.fileChooser = fileChooser; }
 
+    public XMLStreamReader getGetStreamReader() { return getStreamReader; }
+    public void setGetStreamReader(XMLStreamReader getStreamReader) { this.getStreamReader = getStreamReader; }
+
+    private XMLStreamReader getStreamReader = null;
+
+    private void setScene(Scene scene) { this.scene = scene; }
     private Scene scene = null;
     public Scene getScene() { return this.scene; }
+
 
     private int Id;
     private int getId() { return Id; }
@@ -38,8 +46,14 @@ public class XMLParserMain implements ISensor {
     private String getParameterGroupName() { return parameterGroupName; }
     private void setParameterGroupName(String parameterGroupName) { this.parameterGroupName = parameterGroupName; }
 
+    public List<WorldObject> getDynamicObjects() { return DynamicObjects; }
+    public void setDynamicObjects(List<WorldObject> dynamicObjects) { DynamicObjects = dynamicObjects; }
     private List<WorldObject> DynamicObjects = null;
-    public List<WorldObject> getWorld() {
+
+    public List<WorldObject> getWorld() throws XMLStreamException{
+        if(getDynamicObjects()==null)
+            Parser();
+
         return DynamicObjects;
     }
 
@@ -106,15 +120,14 @@ public class XMLParserMain implements ISensor {
     }
 
     public boolean Parser() throws XMLStreamException {
-
         if (XmlFileOpener()) {
-            while (streamReader.hasNext()) {
-                int event = streamReader.next();
+            while (getStreamReader.hasNext()) {
+                int event = getStreamReader.next();
                 switch (event) {
                     case XMLStreamConstants.START_ELEMENT:
-                        if(scene == null)
+                        if(getScene() == null)
                             sceneCase();
-                        if(DynamicObjects==null)
+                        if(getDynamicObjects()==null)
                             objectsTag();
                         else {
                             objectCase();
@@ -126,30 +139,28 @@ public class XMLParserMain implements ISensor {
                         break;
                 }
             }
-            streamReader.close();
-
-            writeOutDetectedObjects();
+            getStreamReader.close();
+            writeOutTheObjects();
             return true;
         } else {
-            streamReader.close();
+            getStreamReader.close();
             return false;
         }
     }
 
     private void objectCaseWithEndElement() throws XMLStreamException{
-        if ("Object".equals(streamReader.getLocalName())) {
+        if ("Object".equals(getStreamReader.getLocalName())) {
             String[] splitName = getName().split("/");
-            if (DynamicObjects != null) {
+            if (getDynamicObjects() != null) {
                 CreateClassElementByName(splitName[1], splitName[2], splitName[3]);
             } else {
-                streamReader.close();
+                getStreamReader.close();
             }
         }
     }
 
-    final protected boolean XmlFileOpener() {
-
-        JFileChooser fileChooser = new JFileChooser(new File(System.getProperty("user.dir") + "/DataBus/src/Environment"));
+    private boolean XmlFileOpener() {
+        this.setFileChooser(new JFileChooser(new File(System.getProperty("user.dir") + "/DataBus/src/Environment")));
         int returnValue = fileChooser.showOpenDialog(fileChooser.getParent());
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
@@ -158,7 +169,7 @@ public class XMLParserMain implements ISensor {
             System.out.println("A feldolgozandó XML: " + parse[parse.length - 1]);
             try {
                 factory = XMLInputFactory.newInstance();
-                streamReader = factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(path));
+                setGetStreamReader(factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(path)));
                 return true;
 
             } catch (XMLStreamException e) {
@@ -172,56 +183,56 @@ public class XMLParserMain implements ISensor {
     }
 
     private void sceneCase() {
-        if ("Scene".equals(streamReader.getLocalName())) {
-            int sceneWidth = Integer.parseInt(streamReader.getAttributeValue("", "width"));
-            int sceneHeihgt = Integer.parseInt(streamReader.getAttributeValue("", "height"));
-            int sceneMeasureType = Integer.parseInt(streamReader.getAttributeValue("", "measureType"));
-            String sceneColor = streamReader.getAttributeValue("", "color");
-            scene = new Scene(sceneWidth,sceneHeihgt,sceneMeasureType,sceneColor);
+        if ("Scene".equals(getStreamReader.getLocalName())) {
+            int sceneWidth = Integer.parseInt(getStreamReader.getAttributeValue("", "width"));
+            int sceneHeihgt = Integer.parseInt(getStreamReader.getAttributeValue("", "height"));
+            int sceneMeasureType = Integer.parseInt(getStreamReader.getAttributeValue("", "measureType"));
+            String sceneColor = getStreamReader.getAttributeValue("", "color");
+            setScene(new Scene(sceneWidth,sceneHeihgt,sceneMeasureType,sceneColor));
         }
     }
 
     //for test cases
     final protected void objectCase() {
-        if ("Object".equals(streamReader.getLocalName())) {
-            setName(streamReader.getAttributeValue("", "name"));
-            setId(Integer.parseInt(streamReader.getAttributeValue("", "id")));
+        if ("Object".equals(getStreamReader.getLocalName())) {
+            setName(getStreamReader.getAttributeValue("", "name"));
+            setId(Integer.parseInt(getStreamReader.getAttributeValue("", "id")));
         }
     }
 
     private void objectsTag()
     {
-        if ("Objects".equals(streamReader.getLocalName())) {
-            DynamicObjects = new ArrayList<>();
+        if ("Objects".equals(getStreamReader.getLocalName())) {
+            setDynamicObjects(new ArrayList<>());
         }
     }
 
     private void checkIfTagEqual() {
 
-        if ("Position".equals(streamReader.getLocalName())) {
+        if ("Position".equals(getStreamReader.getLocalName())) {
             int[] tmpPosition = new int[2];
-            tmpPosition[0] = (int) Math.round(Double.parseDouble(streamReader.getAttributeValue("", "x")));
-            tmpPosition[1] = (int) Math.round(Double.parseDouble(streamReader.getAttributeValue("", "y")));
+            tmpPosition[0] = (int) Math.round(Double.parseDouble(getStreamReader.getAttributeValue("", "x")));
+            tmpPosition[1] = (int) Math.round(Double.parseDouble(getStreamReader.getAttributeValue("", "y")));
             setPosition(tmpPosition);
         }
-        if ("Transform".equals(streamReader.getLocalName())) {
+        if ("Transform".equals(getStreamReader.getLocalName())) {
             double[] tmpTransform = new double[4];
-            tmpTransform[0] = Double.parseDouble(streamReader.getAttributeValue("", "m21"));
-            tmpTransform[1] = Double.parseDouble(streamReader.getAttributeValue("", "m11"));
-            tmpTransform[2] = Double.parseDouble(streamReader.getAttributeValue("", "m22"));
-            tmpTransform[3] = Double.parseDouble(streamReader.getAttributeValue("", "m12"));
+            tmpTransform[0] = Double.parseDouble(getStreamReader.getAttributeValue("", "m11"));
+            tmpTransform[1] = Double.parseDouble(getStreamReader.getAttributeValue("", "m12"));
+            tmpTransform[2] = Double.parseDouble(getStreamReader.getAttributeValue("", "m21"));
+            tmpTransform[3] = Double.parseDouble(getStreamReader.getAttributeValue("", "m22"));
             setTransform(tmpTransform);
         }
-        if ("ZLevel".equals(streamReader.getLocalName())) {
-            setZLevel(Integer.parseInt(streamReader.getAttributeValue("", "ZLevel")));
+        if ("ZLevel".equals(getStreamReader.getLocalName())) {
+            setZLevel(Integer.parseInt(getStreamReader.getAttributeValue("", "ZLevel")));
         }
-        if ("Opacity".equals(streamReader.getLocalName())) {
-            setOpacity(Integer.parseInt(streamReader.getAttributeValue("", "Opacity")));
+        if ("Opacity".equals(getStreamReader.getLocalName())) {
+            setOpacity(Integer.parseInt(getStreamReader.getAttributeValue("", "Opacity")));
         }
-        if ("ParameterGroup".equals(streamReader.getLocalName())) {
+        if ("ParameterGroup".equals(getStreamReader.getLocalName())) {
             parameterGroupNameSwitch();
         }
-        if ("Parameter".equals(streamReader.getLocalName())) {
+        if ("Parameter".equals(getStreamReader.getLocalName())) {
             getParameterByGroupName();
         }
     }
@@ -230,41 +241,41 @@ public class XMLParserMain implements ISensor {
         switch (getParameterGroupName()) {
             case "RoadColor_1":
                 int[] tmpRoadColor1 = new int[4];
-                tmpRoadColor1[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
-                tmpRoadColor1[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
-                tmpRoadColor1[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
-                tmpRoadColor1[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
+                tmpRoadColor1[0] = Integer.parseInt(getStreamReader.getAttributeValue("", "r"));
+                tmpRoadColor1[1] = Integer.parseInt(getStreamReader.getAttributeValue("", "g"));
+                tmpRoadColor1[2] = Integer.parseInt(getStreamReader.getAttributeValue("", "b"));
+                tmpRoadColor1[3] = Integer.parseInt(getStreamReader.getAttributeValue("", "a"));
                 setRoadColor1(tmpRoadColor1);
                 break;
             case "RoadColor_2":
                 int[] tmpRoadColor2 = new int[4];
-                tmpRoadColor2[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
-                tmpRoadColor2[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
-                tmpRoadColor2[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
-                tmpRoadColor2[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
+                tmpRoadColor2[0] = Integer.parseInt(getStreamReader.getAttributeValue("", "r"));
+                tmpRoadColor2[1] = Integer.parseInt(getStreamReader.getAttributeValue("", "g"));
+                tmpRoadColor2[2] = Integer.parseInt(getStreamReader.getAttributeValue("", "b"));
+                tmpRoadColor2[3] = Integer.parseInt(getStreamReader.getAttributeValue("", "a"));
                 setRoadColor2(tmpRoadColor2);
                 break;
             case "RoadColor_3":
                 int[] tmpRoadColor3 = new int[4];
-                tmpRoadColor3[0] = Integer.parseInt(streamReader.getAttributeValue("", "r"));
-                tmpRoadColor3[1] = Integer.parseInt(streamReader.getAttributeValue("", "g"));
-                tmpRoadColor3[2] = Integer.parseInt(streamReader.getAttributeValue("", "b"));
-                tmpRoadColor3[3] = Integer.parseInt(streamReader.getAttributeValue("", "a"));
+                tmpRoadColor3[0] = Integer.parseInt(getStreamReader.getAttributeValue("", "r"));
+                tmpRoadColor3[1] = Integer.parseInt(getStreamReader.getAttributeValue("", "g"));
+                tmpRoadColor3[2] = Integer.parseInt(getStreamReader.getAttributeValue("", "b"));
+                tmpRoadColor3[3] = Integer.parseInt(getStreamReader.getAttributeValue("", "a"));
                 setRoadColor3(tmpRoadColor3);
                 break;
             case "RoadPainting_1":
-                if ("true".equals(streamReader.getAttributeValue("", "value"))) {
-                    setRoadPainting1(streamReader.getAttributeValue("", "name"));
+                if ("true".equals(getStreamReader.getAttributeValue("", "value"))) {
+                    setRoadPainting1(getStreamReader.getAttributeValue("", "name"));
                 }
                 break;
             case "RoadPainting_2":
-                if ("true".equals(streamReader.getAttributeValue("", "value"))) {
-                    setRoadPainting2(streamReader.getAttributeValue("", "name"));
+                if ("true".equals(getStreamReader.getAttributeValue("", "value"))) {
+                    setRoadPainting2(getStreamReader.getAttributeValue("", "name"));
                 }
                 break;
             case "RoadPainting_3":
-                if ("true".equals(streamReader.getAttributeValue("", "value"))) {
-                    setRoadPainting3(streamReader.getAttributeValue("", "name"));
+                if ("true".equals(getStreamReader.getAttributeValue("", "value"))) {
+                    setRoadPainting3(getStreamReader.getAttributeValue("", "name"));
                 }
                 break;
             case "":
@@ -275,7 +286,7 @@ public class XMLParserMain implements ISensor {
     }
 
     private void parameterGroupNameSwitch() {
-        switch (streamReader.getAttributeValue("", "name")) {
+        switch (getStreamReader.getAttributeValue("", "name")) {
             case "RoadColor_1":
                 setParameterGroupName("RoadColor_1");
                 break;
@@ -305,14 +316,14 @@ public class XMLParserMain implements ISensor {
         switch (collectionType) {
             //misc mappában lévők
             case "crosswalks":
-                DynamicObjects.add(new Crosswalk(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
+                getDynamicObjects().add(new Crosswalk(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
                 break;
             case "people": {
-                DynamicObjects.add(new People(getId(), getPosition(), getTransform(), getZLevel(), getOpacity())); //int Id,  startPosition, int[] Transform, int Zlevel, int Opacity)
+                getDynamicObjects().add(new People(getId(), getPosition(), getTransform(), getZLevel(), getOpacity())); //int Id,  startPosition, int[] Transform, int Zlevel, int Opacity)
             }
             break;
             case "trees":
-                DynamicObjects.add(new Tree(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
+                getDynamicObjects().add(new Tree(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
                 break;
             case "parking":
                 parkingCollectionSwitch(collection, collectionType, elementType);
@@ -342,22 +353,22 @@ public class XMLParserMain implements ISensor {
     private void createDirectionTable(String elementType) {
         switch (elementType) {
             case "209-30_.svg":
-                DynamicObjects.add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Forward));
+                getDynamicObjects().add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Forward));
                 break;
             case "211-10_.svg":
-                DynamicObjects.add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Left));
+                getDynamicObjects().add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Left));
                 break;
             case "211-20_.svg":
-                DynamicObjects.add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Right));
+                getDynamicObjects().add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Right));
                 break;
             case "214-10_.svg":
-                DynamicObjects.add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.ForwardLeft));
+                getDynamicObjects().add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.ForwardLeft));
                 break;
             case "214-20_.svg":
-                DynamicObjects.add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.ForwardRight));
+                getDynamicObjects().add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.ForwardRight));
                 break;
             case "215_.svg":
-                DynamicObjects.add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Round));
+                getDynamicObjects().add(new Direction(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Direction.DirectionType.Round));
                 break;
             default:
                 break;
@@ -367,13 +378,13 @@ public class XMLParserMain implements ISensor {
     private void createPriorityTable(String elementType) {
         switch (elementType) {
             case "205_.svg":
-                DynamicObjects.add(new Priority(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Priority.PriorityType.Yield));
+                getDynamicObjects().add(new Priority(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Priority.PriorityType.Yield));
                 break;
             case "206_.svg":
-                DynamicObjects.add(new Priority(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Priority.PriorityType.Stop));
+                getDynamicObjects().add(new Priority(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Priority.PriorityType.Stop));
                 break;
             case "306_.svg":
-                DynamicObjects.add(new Priority(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Priority.PriorityType.Priority));
+                getDynamicObjects().add(new Priority(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Priority.PriorityType.Priority));
                 break;
             default:
                 break;
@@ -383,25 +394,25 @@ public class XMLParserMain implements ISensor {
     private void createSpeedTable(String elementType) {
         switch (elementType) {
             case "274_51_.svg": //10
-                DynamicObjects.add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Ten));
+                getDynamicObjects().add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Ten));
                 break;
             case "274_52_.svg": //20
-                DynamicObjects.add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Twenty));
+                getDynamicObjects().add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Twenty));
                 break;
             case "274_54_.svg": //400
-                DynamicObjects.add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Forty));
+                getDynamicObjects().add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Forty));
                 break;
             case "274_55_.svg": //50
-                DynamicObjects.add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Fifty));
+                getDynamicObjects().add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Fifty));
                 break;
             case "274_57_.svg": //70
-                DynamicObjects.add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Seventy));
+                getDynamicObjects().add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Seventy));
                 break;
             case "274_59_.svg": //90
-                DynamicObjects.add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Ninety));
+                getDynamicObjects().add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Ninety));
                 break;
             case "274_60_.svg": //100
-                DynamicObjects.add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Hundred));
+                getDynamicObjects().add(new Speed(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), Speed.SpeedType.Hundred));
                 break;
             default:
                 break;
@@ -411,16 +422,16 @@ public class XMLParserMain implements ISensor {
     private void create2LaneAdvanced(String elementType) {
         switch (elementType) {
             case "2_t_junction_l.tile":
-                DynamicObjects.add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
+                getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
                 break;
             case "2_t_junction_r.tile":
-                DynamicObjects.add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionRight));
+                getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionRight));
                 break;
             case "2_rotary.tile":
-                DynamicObjects.add(new LaneAdvanced(getId(), getPosition(), 1400, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.Rotary));
+                getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 1400, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.Rotary));
                 break;
             case "2_crossroads_2.tile":
-                DynamicObjects.add(new LaneAdvanced(getId(), getPosition(), 1400, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.CrossRoads));
+                getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 1400, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.CrossRoads));
                 break;
             default:
                 break;
@@ -430,25 +441,25 @@ public class XMLParserMain implements ISensor {
     private void create2laneSimple(String elementType) {
         switch (elementType) {
             case "2_simple_45l.tile":
-                DynamicObjects.add(new LaneSimple(getId(), getPosition(), 390, 370, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Left45));
+                getDynamicObjects().add(new LaneSimple(getId(), getPosition(), 390, 370, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Left45));
                 break;
             case "2_simple_45r.tile":
-                DynamicObjects.add(new LaneSimple(getId(), getPosition(), 390, 370, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Right45));
+                getDynamicObjects().add(new LaneSimple(getId(), getPosition(), 390, 370, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Right45));
                 break;
             case "2_simple_65l.tile":
-                DynamicObjects.add(new LaneSimple(getId(), getPosition(), 450, 475, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Left65));
+                getDynamicObjects().add(new LaneSimple(getId(), getPosition(), 450, 475, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Left65));
                 break;
             case "2_simple_65r.tile":
-                DynamicObjects.add(new LaneSimple(getId(), getPosition(), 450, 475, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Right65));
+                getDynamicObjects().add(new LaneSimple(getId(), getPosition(), 450, 475, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Right65));
                 break;
             case "2_simple_90l.tile":
-                DynamicObjects.add(new LaneSimple(getId(), getPosition(), 530, 530, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Left90));
+                getDynamicObjects().add(new LaneSimple(getId(), getPosition(), 530, 530, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Left90));
                 break;
             case "2_simple_90r.tile":
-                DynamicObjects.add(new LaneSimple(getId(), getPosition(), 530, 530, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Right90));
+                getDynamicObjects().add(new LaneSimple(getId(), getPosition(), 530, 530, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Right90));
                 break;
             case "2_simple_s.tile":
-                DynamicObjects.add(new LaneSimple(getId(), getPosition(), 350, 350, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Straight));
+                getDynamicObjects().add(new LaneSimple(getId(), getPosition(), 350, 350, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneSimple.RoadPaintings1.valueOf(getRoadPainting1()), LaneSimple.RoadPaintings2.valueOf(getRoadPainting2()), LaneSimple.RoadPaintings3.valueOf(getRoadPainting3()), LaneSimple.LaneSimpleType.Straight));
                 break;
             default:
                 break;
@@ -471,10 +482,10 @@ public class XMLParserMain implements ISensor {
     private void createParkingSign(String elementType) {
         switch (elementType) {
             case "314_10_.svg": //bal
-                DynamicObjects.add(new ParkingSign(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), ParkingSign.ParkingSignType.ParkingLeft));
+                getDynamicObjects().add(new ParkingSign(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), ParkingSign.ParkingSignType.ParkingLeft));
                 break;
             case "314_20_.svg": //jobb
-                DynamicObjects.add((new ParkingSign(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), ParkingSign.ParkingSignType.ParkingRight)));
+                getDynamicObjects().add((new ParkingSign(getId(), getPosition(), getTransform(), getZLevel(), getOpacity(), ParkingSign.ParkingSignType.ParkingRight)));
                 break;
             default:
                 break;
@@ -484,13 +495,13 @@ public class XMLParserMain implements ISensor {
     private void createParkingMisc(String elementType) {
         switch (elementType) {
             case "parking_0.svg":
-                DynamicObjects.add(new Parking(getId(), getPosition(), 150, 600, getTransform(), getZLevel(), getOpacity(), Parking.ParkingElement.ParallelParking, false));
+                getDynamicObjects().add(new Parking(getId(), getPosition(), 150, 600, getTransform(), getZLevel(), getOpacity(), Parking.ParkingElement.ParallelParking, false));
                 break;
             case "parking_90.svg":
-                DynamicObjects.add(new Parking(getId(), getPosition(), 300, 460, getTransform(), getZLevel(), getOpacity(), Parking.ParkingElement.PerpendicularParking, false));
+                getDynamicObjects().add(new Parking(getId(), getPosition(), 300, 460, getTransform(), getZLevel(), getOpacity(), Parking.ParkingElement.PerpendicularParking, false));
                 break;
             case "parking_bollard.pix":
-                DynamicObjects.add(new Parking(getId(), getPosition(), 80, 75, getTransform(), getZLevel(), getOpacity(), Parking.ParkingElement.Bollard, true));
+                getDynamicObjects().add(new Parking(getId(), getPosition(), 80, 75, getTransform(), getZLevel(), getOpacity(), Parking.ParkingElement.Bollard, true));
                 break;
             default:
                 break;
@@ -498,8 +509,9 @@ public class XMLParserMain implements ISensor {
     }
 
     @Override
-    public List<WorldObject> getDetectedObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) {
-
+    public List<WorldObject> getDetectedObjects(int leftX, int leftY, int rightX, int rightY, int centerX, int centerY) throws XMLStreamException {
+        if(getDynamicObjects()==null)
+            Parser();
         //left - távolabbi bal pont
         //right - távolabbi jobb pont
         //center - az autón lévő pont
@@ -545,15 +557,13 @@ public class XMLParserMain implements ISensor {
         return vector[0]*pointOnLine[0]+vector[1]*pointOnLine[1];
     }
 
-    private void writeOutDetectedObjects() {
+    private void writeOutDetectedObjects() throws XMLStreamException {
         List<WorldObject> Detected = getDetectedObjects(3220, 4124, 3230, 4124, 3225, 4130);
-        System.out.println("Látott objektumok: ");
+        System.out.println("Látott objektumok: " + Detected.size() + " db");
         for (WorldObject object :Detected)
         {
             System.out.println(object.toString() + "\n");
         }
-
-        //3225;4125
     }
 
     private void writeOutTheObjects() {
