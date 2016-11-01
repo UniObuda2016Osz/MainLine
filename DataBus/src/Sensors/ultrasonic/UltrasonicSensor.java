@@ -55,11 +55,11 @@ public class UltrasonicSensor {
         double rightAngle = (180 - VIEW_ANGLE) / 2;
         double leftAngle = 180 - rightAngle;
 
-        int rightX = (int)Math.round((VIEW_DISTANCE * Math.cos(rightAngle + rotation)));
-        int rightY = (int)Math.round((VIEW_DISTANCE * Math.sin(rightAngle + rotation)));
+        int rightX = centerX + (int)Math.round((VIEW_DISTANCE * Math.cos(rightAngle + rotation)));
+        int rightY = centerY + (int)Math.round((VIEW_DISTANCE * Math.sin(rightAngle + rotation)));
 
-        int leftX = (int)Math.round((VIEW_DISTANCE * Math.cos(leftAngle + rotation)));
-        int leftY = (int)Math.round((VIEW_DISTANCE * Math.sin(leftAngle + rotation)));
+        int leftX = centerX + (int)Math.round((VIEW_DISTANCE * Math.cos(leftAngle + rotation)));
+        int leftY = centerY + (int)Math.round((VIEW_DISTANCE * Math.sin(leftAngle + rotation)));
 
         return XMLParserMain.getInstance().getDetectedObjects(leftX, leftY, rightX, rightY, centerX, centerY);
     }
