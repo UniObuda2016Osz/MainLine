@@ -1,14 +1,17 @@
 package Visuals;
 
+import Environment.WorldObject;
+import Sensors.Camera;
+
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.ImageObserver;
 import java.io.IOException;
-import java.util.TimerTask;
+import java.util.*;
 
 // ...
 
@@ -168,6 +171,12 @@ public class App extends JFrame implements KeyListener {
 
     public static void main(String[] args) throws IOException {
         new App();
+        // A kamera működésének tesztelése
+        /*Car car = new Car(500, 500);
+        Camera cam = new Camera(car);
+        java.util.List<WorldObject> relevantObjects = new ArrayList<>();
+        relevantObjects = cam.getEnvironmentRelevantObjects();
+        System.out.println(relevantObjects.get(0));*/
     }
 }
 
