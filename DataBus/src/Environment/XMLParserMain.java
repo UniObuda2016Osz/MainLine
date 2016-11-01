@@ -78,7 +78,8 @@ public class XMLParserMain implements ISensor {
                 }
             }
             streamReader.close();
-            //writeOutTheObjects();
+            writeOutTheObjects();
+            //getDetectedObjects(3000, 3900, 3500, 3900, 3250, 4600);
             return true;
         } else {
             streamReader.close();
@@ -452,6 +453,8 @@ public class XMLParserMain implements ISensor {
 
         List<WorldObject> DetectedObjects = new ArrayList<>();
         for (WorldObject object : DynamicObjects) {
+            int[] pos = object.getPosition();
+            System.out.println("ID: " + object.getId() + "   Pozíció: " + pos[0] + " " + pos[1]);
            /* int[] position = object.getPosition();
             int width = object.getWidth();
             int height = object.getHeight();
@@ -474,7 +477,7 @@ public class XMLParserMain implements ISensor {
                     if(pointBetweenLines(vectorLeftToRight, objectCenter, leftPoint centerPoint)) //centerpont
                         DetectedObjects.add(object);*/
 
-            System.out.println("Objektum: " + object.toString());
+            //System.out.println("Objektum: " + object.toString());
         }
 
         return null;

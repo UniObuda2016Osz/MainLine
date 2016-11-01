@@ -6,7 +6,20 @@ import java.util.ResourceBundle;
 /**
  * Created by Akos on 2016. 09. 27..
  */
- public abstract class WorldObject {
+ public class WorldObject {
+
+    public static WorldObject getInstance() {
+        if (instance == null)
+            instance = new WorldObject(0,new int[] {3050,3950}, 350, 350, new double[] {1,0,0,1}, 0, 1, true);
+
+        return instance;
+    }
+
+    public static void setInstance(WorldObject instance) {
+        WorldObject.instance = instance;
+    }
+
+    private static WorldObject instance = null;
 
     //id
     private int id;
