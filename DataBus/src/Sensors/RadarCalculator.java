@@ -40,6 +40,37 @@ public class RadarCalculator {
         }
     }
 
+    public void calculateActualOffset(Car car) {
+        double carRotation = car.getRotation();
+        double carXRightCorner = car.getXCoord() + car.getWidth() / 2;
+        double carXLeftCorner = car.getXCoord() - car.getWidth() / 2;
+        double carYRightCorner = car.getYCoord() + car.getLength() / 2;
+        double carYLeftCorner = car.getYCoord() - car.getLength() / 2;
+        double carRotatedRightCorner = carXRightCorner * Math.cos(carRotation) + carYRightCorner * Math.sin(carRotation);
+        double carRotatedLeftCorner = carXLeftCorner * Math.cos(carRotation) + carYLeftCorner * Math.sin(carRotation);
+
+        for (DetectedObject obj : calculatedObjects) {
+            double objX = obj.getNpc().getCenterPoint()[0];
+            double objY = obj.getNpc().getCenterPoint()[1];
+            double objWidth = obj.getNpc().getWidth();
+            double objLength = obj.getNpc().getHeight();
+
+            double objXRightCorner = objX + objWidth / 2;
+            double objXLeftCorner = objX - objWidth / 2;
+            double objYRightCorner = objY + objLength / 2;
+            double objYLeftCorner = objY - objLength / 2;
+
+            double objRightCorner = objXRightCorner * Math.cos(carRotation) + objYRightCorner * Math.sin(carRotation);
+            double objLeftCorner = objXLeftCorner * Math.cos(carRotation) + objYLeftCorner * Math.sin(carRotation);
+
+            int leftoffset = (int)(carRotatedLeftCorner - objRightCorner);
+            int rightoffset = (int)(objLeftCorner - carRotatedRightCorner);
+
+            obj.setLeftOffset(leftoffset);
+            obj.setRightOffset(rightoffset);
+        }
+    }
+
 
     public class DetectedObject {
 
