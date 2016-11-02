@@ -66,8 +66,8 @@ public class UltrasonicSensor {
      * public for testing purposes
      */
     public Position getFurthestVisibleRightSidePoint(Position sensorsPosition) {
-        int rightX = sensorsPosition.getX() + (int)Math.round((VIEW_DISTANCE * Math.cos(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
-        int rightY = sensorsPosition.getY() + (int)Math.round((VIEW_DISTANCE * Math.sin(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+        int rightX = sensorsPosition.getX() + (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
+        int rightY = sensorsPosition.getY() + (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
         return new Position(rightX, rightY);
     }
 
@@ -75,8 +75,8 @@ public class UltrasonicSensor {
      * public for testing purposes
      */
     public Position getFurthestVisibleLeftSidePoint(Position sensorsPosition) {
-        int leftX = sensorsPosition.getX() + (int)Math.round((VIEW_DISTANCE * Math.cos(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
-        int leftY = sensorsPosition.getY() + (int)Math.round((VIEW_DISTANCE * Math.sin(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+        int leftX = sensorsPosition.getX() + (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
+        int leftY = sensorsPosition.getY() + (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
         return new Position(leftX, leftY);
     }
 
