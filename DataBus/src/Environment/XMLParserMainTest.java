@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import javax.xml.stream.XMLStreamException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -15,6 +18,8 @@ public class XMLParserMainTest {
 
     @org.junit.Before
     public void setUp() throws Exception {
+        if(parser.getDynamicObjects()==null)
+            parser.Parser();
     }
 
     @org.junit.Test
@@ -22,7 +27,7 @@ public class XMLParserMainTest {
         assert(parser.getClass() != null);
     }
 
-    @Test
+    @org.junit.Test
     public void PositionGetterReturnsSetterGivenValue(){
         parser.setPosition(new int[]{0,1});
         Assert.assertArrayEquals(new int[]{0,1},parser.getPosition());
@@ -30,7 +35,7 @@ public class XMLParserMainTest {
         Assert.assertArrayEquals(new int[]{1,0}, parser.getPosition());
     }
 
-    @Test
+    @org.junit.Test
     public void TransformGetterReturnsSetterGivenValue(){
         parser.setTransform(new double[]{0,1,1,0});
         Assert.assertArrayEquals(new double[]{0.00,1.00,1.00,0.00}, parser.getTransform(),0.01);
@@ -38,17 +43,34 @@ public class XMLParserMainTest {
         Assert.assertArrayEquals(new double[]{1,0,0,1}, parser.getTransform(),0.1);
     }
 
-    @Test
+    @org.junit.Test
     public void IsDynamicObjectsNotNullAfterParsing() throws XMLStreamException {
-        parser.Parser();
         assert(parser.getWorld()!=null);
     }
 
-    @Test
+    @org.junit.Test
     public void IsReadedObjectEqualsWithManualCreatedObject() throws XMLStreamException{
-        parser.Parser();
-        LaneSimple object = new LaneSimple(0,new int[]{3050,3950},350,350,new double[]{1,0,0,1},0,1,new int[]{255,255,255,255},new int[]{255,255,255,255},new int[]{255,255,255,255}, LaneSimple.RoadPaintings1.rp_sep_1_s, LaneSimple.RoadPaintings2.rp_sep_2_d, LaneSimple.RoadPaintings3.rp_sep_3_s, LaneSimple.LaneSimpleType.Straight);
-        assertEquals(object.toString(),parser.getWorld().get(0).toString());
+        //List<WorldObject> list = new ArrayList<>();
+        //list.add(new LaneSimple(0,new int[]{3050,3950},350,350,new double[]{1,0,0,1},0,1,new int[]{255,255,255,255},new int[]{255,255,255,255},new int[]{255,255,255,255}, LaneSimple.RoadPaintings1.rp_sep_1_s, LaneSimple.RoadPaintings2.rp_sep_2_d, LaneSimple.RoadPaintings3.rp_sep_3_s, LaneSimple.LaneSimpleType.Straight));
+        WorldObject obj = new LaneSimple(0,new int[]{3050,3950},350,350,new double[]{1,0,0,1},0,1,new int[]{255,255,255,255},new int[]{255,255,255,255},new int[]{255,255,255,255}, LaneSimple.RoadPaintings1.rp_sep_1_s, LaneSimple.RoadPaintings2.rp_sep_2_d, LaneSimple.RoadPaintings3.rp_sep_3_s, LaneSimple.LaneSimpleType.Straight);
+        //WorldObject object2 = parser.getWorld().get(0);
+        assertEquals( obj.toString(),parser.getWorld().get(0).toString());
+        //assertEquals(list.get(0).toString(), parser.getWorld().get(0));
+    }
+
+    @org.junit.Test
+    public void TestGetWorld() throws XMLStreamException
+    {
+        assertEquals(parser.getDynamicObjects(), parser.getWorld());
+    }
+
+    @org.junit.Test
+    public void TestGetDetectedObjects() throws XMLStreamException
+    {
+        List<WorldObject> objs = parser.getDetectedObjects(3200,4120,3250,4120,3225,4140);
+        System.out.println("Méret: " + objs.size());
+        //Assert.assertEquals(parser.getDynamicObjects().get(0).toString().trim(), objs.toString().trim());
+        assertEquals(parser.getDynamicObjects().get(0), objs.get(0));
     }
 
     /*@Test
