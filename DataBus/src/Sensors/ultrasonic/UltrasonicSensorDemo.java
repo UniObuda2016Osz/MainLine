@@ -23,7 +23,7 @@ public class UltrasonicSensorDemo {
         UltrasonicSensor us = new UltrasonicSensor(car, UltraSonicSensorPosition.FRONT_INNER_LEFT);
         Position case1_sensorBasePosition = us.getCurrentBasepoint();
         Position case1_sensorFurthestLeftPosition = us.getFurthestVisibleLeftSidePoint(case1_sensorBasePosition);
-        Position case1_sensorFurthestRightPosition = us.getFurthestVisibleLeftSidePoint(case1_sensorBasePosition);
+        Position case1_sensorFurthestRightPosition = us.getFurthestVisibleRightSidePoint(case1_sensorBasePosition);
         printMap(case1_carCenterPosition, case1_sensorBasePosition, case1_sensorFurthestLeftPosition, case1_sensorFurthestRightPosition);
 
     }
