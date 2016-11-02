@@ -24,10 +24,10 @@ public class XMLParserMain implements ISensor {
     public JFileChooser getFileChooser() { return fileChooser; }
     public void setFileChooser(JFileChooser fileChooser) { this.fileChooser = fileChooser; }
 
-    public XMLStreamReader getGetStreamReader() { return getStreamReader; }
-    public void setGetStreamReader(XMLStreamReader getStreamReader) { this.getStreamReader = getStreamReader; }
+    public XMLStreamReader getStreamReader() { return StreamReader; }
+    public void setStreamReader(XMLStreamReader StreamReader) { this.StreamReader = StreamReader; }
 
-    private XMLStreamReader getStreamReader = null;
+    private XMLStreamReader StreamReader = null;
 
     private void setScene(Scene scene) { this.scene = scene; }
     private Scene scene = null;
@@ -121,8 +121,8 @@ public class XMLParserMain implements ISensor {
 
     public boolean Parser() throws XMLStreamException {
         if (XmlFileOpener()) {
-            while (getStreamReader.hasNext()) {
-                int event = getStreamReader.next();
+            while (getStreamReader().hasNext()) {
+                int event = getStreamReader().next();
                 switch (event) {
                     case XMLStreamConstants.START_ELEMENT:
                         if(getScene() == null)
@@ -139,22 +139,22 @@ public class XMLParserMain implements ISensor {
                         break;
                 }
             }
-            getStreamReader.close();
+            getStreamReader().close();
             writeOutTheObjects();
             return true;
         } else {
-            getStreamReader.close();
+            getStreamReader().close();
             return false;
         }
     }
 
     private void objectCaseWithEndElement() throws XMLStreamException{
-        if ("Object".equals(getStreamReader.getLocalName())) {
+        if ("Object".equals(getStreamReader().getLocalName())) {
             String[] splitName = getName().split("/");
             if (getDynamicObjects() != null) {
                 CreateClassElementByName(splitName[1], splitName[2], splitName[3]);
             } else {
-                getStreamReader.close();
+                getStreamReader().close();
             }
         }
     }
