@@ -2,6 +2,7 @@ package Sensors;
 
 
 import Environment.WorldObject;
+import Visuals.Car;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 public class RadarCalculator {
 
-    private List<DetectedObject> calculatedObjects;
+    private List<DetectedObject> calculatedObjects = new ArrayList<DetectedObject>();
 
     public List<DetectedObject> getCalculatedObject() {
         return calculatedObjects;
@@ -21,10 +22,11 @@ public class RadarCalculator {
         this.calculatedObjects = calculatedObjects;
     }
 
-    public void calculateActualDistance(ArrayList<WorldObject> detectedObjects){
+    public void calculateActualDistance(ArrayList<WorldObject> detectedObjects, Car car){
         for(WorldObject obj : detectedObjects) {
-            //TODO: calculate distance
-            DetectedObject detectedObject = null;
+            DetectedObject detectedObject = new DetectedObject(obj);
+            int[]tempCoordinates={obj.getCenterPoint()[0]-car.getXCoord(), obj.getCenterPoint()[1]-car.getYCoord()};
+            detectedObject.setActualDistance((float) Math.sqrt(tempCoordinates[0]*tempCoordinates[0]+tempCoordinates[1]*tempCoordinates[1]));
             calculatedObjects.add(detectedObject);
         }
     }
