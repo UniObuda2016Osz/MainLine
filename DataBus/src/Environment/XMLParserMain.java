@@ -140,7 +140,8 @@ public class XMLParserMain implements ISensor {
                 }
             }
             getStreamReader().close();
-            writeOutTheObjects();
+            //writeOutTheObjects();
+            //writeOutDetectedObejcets();
             return true;
         } else {
             getStreamReader().close();
