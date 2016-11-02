@@ -169,7 +169,7 @@ public class XMLParserMain implements ISensor {
             System.out.println("A feldolgozandó XML: " + parse[parse.length - 1]);
             try {
                 factory = XMLInputFactory.newInstance();
-                setGetStreamReader(factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(path)));
+                setStreamReader(factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(path)));
                 return true;
 
             } catch (XMLStreamException e) {
@@ -183,56 +183,56 @@ public class XMLParserMain implements ISensor {
     }
 
     private void sceneCase() {
-        if ("Scene".equals(getStreamReader.getLocalName())) {
-            int sceneWidth = Integer.parseInt(getStreamReader.getAttributeValue("", "width"));
-            int sceneHeihgt = Integer.parseInt(getStreamReader.getAttributeValue("", "height"));
-            int sceneMeasureType = Integer.parseInt(getStreamReader.getAttributeValue("", "measureType"));
-            String sceneColor = getStreamReader.getAttributeValue("", "color");
+        if ("Scene".equals(getStreamReader().getLocalName())) {
+            int sceneWidth = Integer.parseInt(getStreamReader().getAttributeValue("", "width"));
+            int sceneHeihgt = Integer.parseInt(getStreamReader().getAttributeValue("", "height"));
+            int sceneMeasureType = Integer.parseInt(getStreamReader().getAttributeValue("", "measureType"));
+            String sceneColor = getStreamReader().getAttributeValue("", "color");
             setScene(new Scene(sceneWidth,sceneHeihgt,sceneMeasureType,sceneColor));
         }
     }
 
     //for test cases
     final protected void objectCase() {
-        if ("Object".equals(getStreamReader.getLocalName())) {
-            setName(getStreamReader.getAttributeValue("", "name"));
-            setId(Integer.parseInt(getStreamReader.getAttributeValue("", "id")));
+        if ("Object".equals(getStreamReader().getLocalName())) {
+            setName(getStreamReader().getAttributeValue("", "name"));
+            setId(Integer.parseInt(getStreamReader().getAttributeValue("", "id")));
         }
     }
 
     private void objectsTag()
     {
-        if ("Objects".equals(getStreamReader.getLocalName())) {
+        if ("Objects".equals(getStreamReader().getLocalName())) {
             setDynamicObjects(new ArrayList<>());
         }
     }
 
     private void checkIfTagEqual() {
 
-        if ("Position".equals(getStreamReader.getLocalName())) {
+        if ("Position".equals(getStreamReader().getLocalName())) {
             int[] tmpPosition = new int[2];
-            tmpPosition[0] = (int) Math.round(Double.parseDouble(getStreamReader.getAttributeValue("", "x")));
-            tmpPosition[1] = (int) Math.round(Double.parseDouble(getStreamReader.getAttributeValue("", "y")));
+            tmpPosition[0] = (int) Math.round(Double.parseDouble(getStreamReader().getAttributeValue("", "x")));
+            tmpPosition[1] = (int) Math.round(Double.parseDouble(getStreamReader().getAttributeValue("", "y")));
             setPosition(tmpPosition);
         }
-        if ("Transform".equals(getStreamReader.getLocalName())) {
+        if ("Transform".equals(getStreamReader().getLocalName())) {
             double[] tmpTransform = new double[4];
-            tmpTransform[0] = Double.parseDouble(getStreamReader.getAttributeValue("", "m11"));
-            tmpTransform[1] = Double.parseDouble(getStreamReader.getAttributeValue("", "m12"));
-            tmpTransform[2] = Double.parseDouble(getStreamReader.getAttributeValue("", "m21"));
-            tmpTransform[3] = Double.parseDouble(getStreamReader.getAttributeValue("", "m22"));
+            tmpTransform[0] = Double.parseDouble(getStreamReader().getAttributeValue("", "m11"));
+            tmpTransform[1] = Double.parseDouble(getStreamReader().getAttributeValue("", "m12"));
+            tmpTransform[2] = Double.parseDouble(getStreamReader().getAttributeValue("", "m21"));
+            tmpTransform[3] = Double.parseDouble(getStreamReader().getAttributeValue("", "m22"));
             setTransform(tmpTransform);
         }
-        if ("ZLevel".equals(getStreamReader.getLocalName())) {
-            setZLevel(Integer.parseInt(getStreamReader.getAttributeValue("", "ZLevel")));
+        if ("ZLevel".equals(getStreamReader().getLocalName())) {
+            setZLevel(Integer.parseInt(getStreamReader().getAttributeValue("", "ZLevel")));
         }
-        if ("Opacity".equals(getStreamReader.getLocalName())) {
-            setOpacity(Integer.parseInt(getStreamReader.getAttributeValue("", "Opacity")));
+        if ("Opacity".equals(getStreamReader().getLocalName())) {
+            setOpacity(Integer.parseInt(getStreamReader().getAttributeValue("", "Opacity")));
         }
-        if ("ParameterGroup".equals(getStreamReader.getLocalName())) {
+        if ("ParameterGroup".equals(getStreamReader().getLocalName())) {
             parameterGroupNameSwitch();
         }
-        if ("Parameter".equals(getStreamReader.getLocalName())) {
+        if ("Parameter".equals(getStreamReader().getLocalName())) {
             getParameterByGroupName();
         }
     }
@@ -241,41 +241,41 @@ public class XMLParserMain implements ISensor {
         switch (getParameterGroupName()) {
             case "RoadColor_1":
                 int[] tmpRoadColor1 = new int[4];
-                tmpRoadColor1[0] = Integer.parseInt(getStreamReader.getAttributeValue("", "r"));
-                tmpRoadColor1[1] = Integer.parseInt(getStreamReader.getAttributeValue("", "g"));
-                tmpRoadColor1[2] = Integer.parseInt(getStreamReader.getAttributeValue("", "b"));
-                tmpRoadColor1[3] = Integer.parseInt(getStreamReader.getAttributeValue("", "a"));
+                tmpRoadColor1[0] = Integer.parseInt(getStreamReader().getAttributeValue("", "r"));
+                tmpRoadColor1[1] = Integer.parseInt(getStreamReader().getAttributeValue("", "g"));
+                tmpRoadColor1[2] = Integer.parseInt(getStreamReader().getAttributeValue("", "b"));
+                tmpRoadColor1[3] = Integer.parseInt(getStreamReader().getAttributeValue("", "a"));
                 setRoadColor1(tmpRoadColor1);
                 break;
             case "RoadColor_2":
                 int[] tmpRoadColor2 = new int[4];
-                tmpRoadColor2[0] = Integer.parseInt(getStreamReader.getAttributeValue("", "r"));
-                tmpRoadColor2[1] = Integer.parseInt(getStreamReader.getAttributeValue("", "g"));
-                tmpRoadColor2[2] = Integer.parseInt(getStreamReader.getAttributeValue("", "b"));
-                tmpRoadColor2[3] = Integer.parseInt(getStreamReader.getAttributeValue("", "a"));
+                tmpRoadColor2[0] = Integer.parseInt(getStreamReader().getAttributeValue("", "r"));
+                tmpRoadColor2[1] = Integer.parseInt(getStreamReader().getAttributeValue("", "g"));
+                tmpRoadColor2[2] = Integer.parseInt(getStreamReader().getAttributeValue("", "b"));
+                tmpRoadColor2[3] = Integer.parseInt(getStreamReader().getAttributeValue("", "a"));
                 setRoadColor2(tmpRoadColor2);
                 break;
             case "RoadColor_3":
                 int[] tmpRoadColor3 = new int[4];
-                tmpRoadColor3[0] = Integer.parseInt(getStreamReader.getAttributeValue("", "r"));
-                tmpRoadColor3[1] = Integer.parseInt(getStreamReader.getAttributeValue("", "g"));
-                tmpRoadColor3[2] = Integer.parseInt(getStreamReader.getAttributeValue("", "b"));
-                tmpRoadColor3[3] = Integer.parseInt(getStreamReader.getAttributeValue("", "a"));
+                tmpRoadColor3[0] = Integer.parseInt(getStreamReader().getAttributeValue("", "r"));
+                tmpRoadColor3[1] = Integer.parseInt(getStreamReader().getAttributeValue("", "g"));
+                tmpRoadColor3[2] = Integer.parseInt(getStreamReader().getAttributeValue("", "b"));
+                tmpRoadColor3[3] = Integer.parseInt(getStreamReader().getAttributeValue("", "a"));
                 setRoadColor3(tmpRoadColor3);
                 break;
             case "RoadPainting_1":
-                if ("true".equals(getStreamReader.getAttributeValue("", "value"))) {
-                    setRoadPainting1(getStreamReader.getAttributeValue("", "name"));
+                if ("true".equals(getStreamReader().getAttributeValue("", "value"))) {
+                    setRoadPainting1(getStreamReader().getAttributeValue("", "name"));
                 }
                 break;
             case "RoadPainting_2":
-                if ("true".equals(getStreamReader.getAttributeValue("", "value"))) {
-                    setRoadPainting2(getStreamReader.getAttributeValue("", "name"));
+                if ("true".equals(getStreamReader().getAttributeValue("", "value"))) {
+                    setRoadPainting2(getStreamReader().getAttributeValue("", "name"));
                 }
                 break;
             case "RoadPainting_3":
-                if ("true".equals(getStreamReader.getAttributeValue("", "value"))) {
-                    setRoadPainting3(getStreamReader.getAttributeValue("", "name"));
+                if ("true".equals(getStreamReader().getAttributeValue("", "value"))) {
+                    setRoadPainting3(getStreamReader().getAttributeValue("", "name"));
                 }
                 break;
             case "":
@@ -286,7 +286,7 @@ public class XMLParserMain implements ISensor {
     }
 
     private void parameterGroupNameSwitch() {
-        switch (getStreamReader.getAttributeValue("", "name")) {
+        switch (getStreamReader().getAttributeValue("", "name")) {
             case "RoadColor_1":
                 setParameterGroupName("RoadColor_1");
                 break;
