@@ -40,4 +40,21 @@ public class RadarCalculatorTest {
 
         assertEquals(calculator.getCalculatedObject().get(0).getActualDistance(),12.727922439575195,0);
     }
+
+    @Test
+    public void testCalculateSpeed() {
+        ArrayList<WorldObject> detectedObjects = new ArrayList<WorldObject>();
+        int[]startPosition = {10,10};
+        double[] transform = {0,0,0,0};
+        NpcCar obj = new NpcCar(1,startPosition,5,20,transform,0,0,0,0);
+        obj.setMovingSpeed(10);
+        detectedObjects.add(obj);
+
+        Car car = new Car(1,1);
+        car.setSpeed(70);
+        calculator.calculateActualDistance(detectedObjects,car);
+        calculator.calculateActualSpeed(car);
+
+        assertEquals(calculator.getCalculatedObject().get(0).getActualSpeed(),60,0);
+    }
 }

@@ -1,6 +1,7 @@
 package Sensors;
 
 
+import Environment.NPC.NPC;
 import Environment.WorldObject;
 import Visuals.Car;
 
@@ -24,17 +25,18 @@ public class RadarCalculator {
 
     public void calculateActualDistance(ArrayList<WorldObject> detectedObjects, Car car){
         for(WorldObject obj : detectedObjects) {
-            DetectedObject detectedObject = new DetectedObject(obj);
+            DetectedObject detectedObject = new DetectedObject();
+            detectedObject.setNpc((NPC) obj);
             int[]tempCoordinates={obj.getCenterPoint()[0]-car.getXCoord(), obj.getCenterPoint()[1]-car.getYCoord()};
             detectedObject.setActualDistance((float) Math.sqrt(tempCoordinates[0]*tempCoordinates[0]+tempCoordinates[1]*tempCoordinates[1]));
             calculatedObjects.add(detectedObject);
         }
     }
 
-    public void calculateActualSpeed(){
+    public void calculateActualSpeed(Car car){
         for(DetectedObject obj : calculatedObjects) {
-            //TODO: calculate speed
-            obj.setActualSpeed(100);
+            obj.setActualSpeed((float) (car.getSpeed()-obj.getNpc().getMovingSpeed()));
+            int a;
         }
     }
 
@@ -45,13 +47,13 @@ public class RadarCalculator {
         private float actualDistance;
         private int leftOffset;
         private int rightOffset;
-        private WorldObject worldObject;
+        private NPC npc;
 
-        public DetectedObject(WorldObject worldObject) {
-            this.worldObject = worldObject;
-            this.leftOffset = worldObject.getCenterPoint()[1] - worldObject.getWidth()/2;
-            this.rightOffset = worldObject.getCenterPoint()[1] + worldObject.getWidth()/2;
-        }
+       //public DetectedObject(NPC npc) {
+            //this.npc = npc;
+            //this.leftOffset = npc.getCenterPoint()[1] - npc.getWidth()/2;
+            //this.rightOffset = npc.getCenterPoint()[1] + npc.getWidth()/2;
+       //}
 
         public float getActualSpeed() {
             return actualSpeed;
@@ -85,12 +87,12 @@ public class RadarCalculator {
             this.rightOffset = rightOffset;
         }
 
-        public WorldObject getWorldObject() {
-            return worldObject;
+        public NPC getNpc() {
+            return npc;
         }
 
-        public void setWorldObject(WorldObject worldObject) {
-            this.worldObject = worldObject;
+        public void setNpc(NPC npc) {
+            this.npc = npc;
         }
     }
 
