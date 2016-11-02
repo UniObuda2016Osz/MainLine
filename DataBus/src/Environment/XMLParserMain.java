@@ -1,5 +1,8 @@
 package Environment;
 
+import Environment.NPC.Cyclist;
+import Environment.NPC.NpcCar;
+import Environment.NPC.Pedestrian;
 import Environment.misc.*;
 import Environment.road_signs.*;
 import Environment.road_tiles.LaneAdvanced;
@@ -9,6 +12,7 @@ import javax.xml.stream.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by ral2bp on 2016.09.29..
@@ -54,7 +58,7 @@ public class XMLParserMain implements ISensor {
         if(getDynamicObjects()==null)
             Parser();
 
-        return DynamicObjects;
+        return getDynamicObjects();
     }
 
     private int[] Position;
@@ -104,6 +108,10 @@ public class XMLParserMain implements ISensor {
     private String RoadPainting3;
     private String getRoadPainting3() { return RoadPainting3; }
     private void setRoadPainting3(String roadPainting3) { RoadPainting3 = roadPainting3; }
+
+    public List<WorldObject> getDetectedObjects() { return DetectedObjects; }
+    public void setDetectedObjects(List<WorldObject> detectedObjects) { DetectedObjects = detectedObjects; }
+    private List<WorldObject> DetectedObjects = null;
 
 
     private static XMLParserMain instance = null;
@@ -323,6 +331,9 @@ public class XMLParserMain implements ISensor {
                 getDynamicObjects().add(new People(getId(), getPosition(), getTransform(), getZLevel(), getOpacity())); //int Id,  startPosition, int[] Transform, int Zlevel, int Opacity)
             }
             break;
+            /*case "people":
+                getDynamicObjects().add(new Pedestrian(getId(), getPosition(), 80, 80, getTransform(), getZLevel(), getOpacity(), 0,0));
+                break;*/
             case "trees":
                 getDynamicObjects().add(new Tree(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
                 break;
@@ -345,6 +356,12 @@ public class XMLParserMain implements ISensor {
                 break;
             case "2_lane_advanced":
                 create2LaneAdvanced(elementType);
+                break;
+            case "bicycles":
+                getDynamicObjects().add(new Cyclist(getId(),getPosition(), 80, 120, getTransform(), getZLevel(), getOpacity(), 0, 0));
+                break;
+            case "cars":
+                getDynamicObjects().add(new NpcCar(getId(), getPosition(), 100, 240, getTransform(), getZLevel(), getOpacity(), 0, 0));
                 break;
             default:
                 break;
@@ -533,16 +550,16 @@ public class XMLParserMain implements ISensor {
         vectorLeftToRight[0] = rightX - leftX;
         vectorLeftToRight[1] = rightY - leftX;
 
-        List<WorldObject> DetectedObjects = new ArrayList<>();
-        for (WorldObject object : DynamicObjects) {
+        setDetectedObjects(new ArrayList<>());
+        for (WorldObject object : getDynamicObjects()) {
            int[] objectCenter = object.getCenterPoint();
 
             if(pointBetweenLines(vectorCenterToLeft, objectCenter, leftPoint, rightPoint)) //jobb pont    //paraméterek: vector, alapegyenesen lévő pont, párhuzamos egyenesen lévő pont
                 if(pointBetweenLines(vectorCenterToRight, objectCenter, rightPoint, leftPoint)) //balpont
                     if(pointBetweenLines(vectorLeftToRight, objectCenter, leftPoint, centerPoint)) //centerpont
-                        DetectedObjects.add(object);
+                        getDetectedObjects().add(object);
         }
-        return DetectedObjects;
+        return getDetectedObjects();
     }
 
     private boolean pointBetweenLines(int[] basicVector, int[] objectCenter, int[] basicPoint, int[] parallelPoint) {
@@ -568,7 +585,7 @@ public class XMLParserMain implements ISensor {
     }
 
     private void writeOutTheObjects() {
-        for (WorldObject object : DynamicObjects) {
+        for (WorldObject object : getDynamicObjects()) {
             System.out.println("Objektum: " + object.toString());
         }
     }

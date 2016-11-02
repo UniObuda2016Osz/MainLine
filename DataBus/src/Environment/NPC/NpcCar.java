@@ -1,6 +1,6 @@
 package Environment.NPC;
 
-import Sensors.Camera;
+//import Sensors.Camera;
 import Sensors.Radar;
 
 /**
@@ -9,7 +9,7 @@ import Sensors.Radar;
 public class NpcCar extends NPC {
 
     private String imagePath;
-    private Camera camera;
+    //private Camera camera;
     private Radar radar;
     //private Ultrasonic ultrasonic;
 
