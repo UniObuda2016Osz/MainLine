@@ -87,10 +87,17 @@ public class UltrasonicSensor {
 
         int x = ownerCar.getWidth();
         int y = ownerCar.getLength();
+
         double carRotation = ownerCar.getRotation();
         double environmentX;
         double environmentY;
         double r;
+
+
+        //FIXME levair: amig ez a function bugos, addig legyen a car pozicioja
+        if ("FIXME".equals("FIXME")) {
+            return new Position(ownerCar.getXCoord(), ownerCar.getYCoord());
+        }
 
         //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
         switch (getPositionOnCar()) {
