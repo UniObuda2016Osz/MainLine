@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class UltrasonicSensor {
 
-    /*public static final int MAX_REACHABLE_DISTANCE = 50;
-    public static final int WIDTH_ON_MAX_REACHABLE_DISTANCE = 70;*/
-
     public static final int VIEW_DISTANCE = 5;
     public static final int VIEW_ANGLE = 90;
+
+    public static final double RIGHT_SIDE_ANGLE_OF_VIEW = (180 - VIEW_ANGLE) / 2;
+    public static final double LEFT_SIDE_ANGLE_OF_VIEW = 180 - RIGHT_SIDE_ANGLE_OF_VIEW;
 
 
     private Car ownerCar;
@@ -29,12 +29,13 @@ public class UltrasonicSensor {
     }
 
     /**
-     * @return all the solid objects this sensor detects
+     * @return all the SOLID objects this sensor detects
+     * Parking Pilot should use this and only this function directly.
      */
     public List<WorldObject> getSolidWorldObjects() {
         List<WorldObject> solidWorldObjects = new ArrayList<>();
 
-        for (WorldObject commonWorldObject : getCurrentVisibleObjects()) {
+        for (WorldObject commonWorldObject : getAllCurrentVisibleObjects()) {
             if (commonWorldObject.getCanStuckOnIt()) {
                 solidWorldObjects.add(commonWorldObject);
             }
@@ -42,31 +43,47 @@ public class UltrasonicSensor {
         return solidWorldObjects;
     }
 
-    private List<WorldObject> getCurrentVisibleObjects() {
+    /**
+     * @return all the objects this sensor detects (public for testing purposes)
+     */
+    public List<WorldObject> getAllCurrentVisibleObjects() {
         Position currentBasePosition = getCurrentBasepoint();
         int centerX = currentBasePosition.getX();
         int centerY = currentBasePosition.getY();
 
-        double rotation = ownerCar.getRotation();
+        Position furthestVisibleLeftSidePoint = getFurthestVisibleLeftSidePoint(currentBasePosition);
+        int leftX = furthestVisibleLeftSidePoint.getX();
+        int leftY = furthestVisibleLeftSidePoint.getY();
 
-        //TODO: calculate other 2 points of the triangle by the base point and MAX_REACHABLE_DISTANCE, WIDTH_ON_MAX_REACHABLE_DISTANCE properties
-
-
-        double rightAngle = (180 - VIEW_ANGLE) / 2;
-        double leftAngle = 180 - rightAngle;
-
-        int rightX = centerX + (int)Math.round((VIEW_DISTANCE * Math.cos(rightAngle + rotation)));
-        int rightY = centerY + (int)Math.round((VIEW_DISTANCE * Math.sin(rightAngle + rotation)));
-
-        int leftX = centerX + (int)Math.round((VIEW_DISTANCE * Math.cos(leftAngle + rotation)));
-        int leftY = centerY + (int)Math.round((VIEW_DISTANCE * Math.sin(leftAngle + rotation)));
+        Position furthestVisibleRightSidePoint = getFurthestVisibleRightSidePoint(currentBasePosition);
+        int rightX = furthestVisibleRightSidePoint.getX();
+        int rightY = furthestVisibleRightSidePoint.getY();
 
         return XMLParserMain.getInstance().getDetectedObjects(leftX, leftY, rightX, rightY, centerX, centerY);
     }
 
+    /**
+     * public for testing purposes
+     */
+    public Position getFurthestVisibleRightSidePoint(Position sensorsPosition) {
+        int rightX = sensorsPosition.getX() + (int)Math.round((VIEW_DISTANCE * Math.cos(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+        int rightY = sensorsPosition.getY() + (int)Math.round((VIEW_DISTANCE * Math.sin(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+        return new Position(rightX, rightY);
+    }
 
+    /**
+     * public for testing purposes
+     */
+    public Position getFurthestVisibleLeftSidePoint(Position sensorsPosition) {
+        int leftX = sensorsPosition.getX() + (int)Math.round((VIEW_DISTANCE * Math.cos(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+        int leftY = sensorsPosition.getY() + (int)Math.round((VIEW_DISTANCE * Math.sin(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+        return new Position(leftX, leftY);
+    }
 
-    private Position getCurrentBasepoint() {
+    /**
+     * public for testing purposes
+     */
+    public Position getCurrentBasepoint() {
 
         int x = ownerCar.getWidth();
         int y = ownerCar.getLength();
