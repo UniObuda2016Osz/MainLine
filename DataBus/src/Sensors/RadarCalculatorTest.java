@@ -15,9 +15,9 @@ public class RadarCalculatorTest {
     @org.junit.Test
     public void testDetectedObjectListGetterSetter() {
         List<RadarCalculator.DetectedObject> list = new ArrayList<RadarCalculator.DetectedObject>();
-        calculator.setDetectedObject(list);
+        calculator.setCalculatedObject(list);
 
-        assertTrue(calculator.getDetectedObject() != null);
+        assertTrue(calculator.getCalculatedObject() != null);
 
     }
 }

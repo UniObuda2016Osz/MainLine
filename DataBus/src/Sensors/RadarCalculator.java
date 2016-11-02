@@ -3,6 +3,7 @@ package Sensors;
 
 import Environment.WorldObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,14 +11,29 @@ import java.util.List;
  */
 public class RadarCalculator {
 
-    private List<DetectedObject> detectedObject;
+    private List<DetectedObject> calculatedObjects;
 
-    public List<DetectedObject> getDetectedObject() {
-        return detectedObject;
+    public List<DetectedObject> getCalculatedObject() {
+        return calculatedObjects;
     }
 
-    public void setDetectedObject(List<DetectedObject> detectedObject) {
-        this.detectedObject = detectedObject;
+    public void setCalculatedObject(List<DetectedObject> calculatedObjects) {
+        this.calculatedObjects = calculatedObjects;
+    }
+
+    public void calculateActualDistance(ArrayList<WorldObject> detectedObjects){
+        for(WorldObject obj : detectedObjects) {
+            //TODO: calculate distance
+            DetectedObject detectedObject = null;
+            calculatedObjects.add(detectedObject);
+        }
+    }
+
+    public void calculateActualSpeed(){
+        for(DetectedObject obj : calculatedObjects) {
+            //TODO: calculate speed
+            obj.setActualSpeed(100);
+        }
     }
 
 
