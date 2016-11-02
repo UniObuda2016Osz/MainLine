@@ -16,11 +16,11 @@ public class UltrasonicSensorDemo {
         //CASE1
         System.out.print("Case 1\t");
         Position case1_carCenterPosition = new Position(10,10);
-        Car car = new Car(case1_carCenterPosition.getX(),case1_carCenterPosition.getY());
-        System.out.print("Placing car at 10,10\t");
-        car.setDirection(0);
-        System.out.print("Car direction set to 0 degrees\n");
-        UltrasonicSensor us = new UltrasonicSensor(car, UltraSonicSensorPosition.FRONT_INNER_LEFT);
+        Car case1_car = new Car(case1_carCenterPosition.getX(),case1_carCenterPosition.getY());
+        System.out.print("Placing car at " + case1_carCenterPosition.toString() + "\t");
+        case1_car.setRotation(0);
+        System.out.print("Car rotation set to " + case1_car.getRotation() + " degrees\n");
+        UltrasonicSensor us = new UltrasonicSensor(case1_car, UltraSonicSensorPosition.FRONT_INNER_LEFT);
         Position case1_sensorBasePosition = us.getCurrentBasepoint();
         Position case1_sensorFurthestLeftPosition = us.getFurthestVisibleLeftSidePoint(case1_sensorBasePosition);
         Position case1_sensorFurthestRightPosition = us.getFurthestVisibleRightSidePoint(case1_sensorBasePosition);
