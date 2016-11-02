@@ -2,10 +2,8 @@ package Sensors;
 
 import Environment.WorldObject;
 import Environment.XMLParserMain;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by ral2bp on 2016.09.29..
@@ -13,6 +11,7 @@ import java.util.List;
 
 public class Radar {
 
+    private RadarCalculator radarCalculator;
     private WorldObject WO;
     private XMLParserMain xml;
     private ArrayList<WorldObject> detectedObjects;
@@ -22,8 +21,9 @@ public class Radar {
     public int[][] Triangle = new int[3][2];
     public double[] transformation;
     public Radar(){
-        detectedObjects = new ArrayList<>();
-
+        setDetectedObjects(new ArrayList<>());
+        radarCalculator = new RadarCalculator();
+        transformation = new double[]{0,0};
     }
 
     private void Refresh(){
@@ -31,16 +31,33 @@ public class Radar {
         RadarCoord[0] = (double)WO.getCenterPoint()[0]+WO.getHeight()*transformation[0];
         RadarCoord[1] = (double)WO.getCenterPoint()[1]+WO.getHeight()*transformation[1];
     }
-    private void GetObjectsFromEnvironment(){
-        detectedObjects = (ArrayList)xml.getDetectedObjects(this.Triangle[2][1],this.Triangle[2][2],this.Triangle[3][1],this.Triangle[3][2],this.Triangle[1][1],this.Triangle[1][2]);
+    public void GetObjectsFromEnvironment(){
+        setDetectedObjects((ArrayList)xml.getDetectedObjects(this.Triangle[1][0],this.Triangle[1][1],this.Triangle[2][0],this.Triangle[2][1],this.Triangle[0][0],this.Triangle[0][1]));
     }
 
-    private void CalculateTriangle(){
-        this.Triangle[1][1] = (int)Math.round(RadarCoord[1]);
-        this.Triangle[1][2] = (int)Math.round(RadarCoord[2]);
-        this.Triangle[2][1] = (int)Math.round(RadarCoord[1] + radarDistance*transformation[0]);
-        this.Triangle[2][2] = (int)Math.round(RadarCoord[2] + Math.tan(radarRadiusInDegree/2)*radarDistance*transformation[1]);
-        this.Triangle[3][1] = (int)Math.round(RadarCoord[1] - radarDistance*transformation[0]);
-        this.Triangle[3][2] = (int)Math.round(RadarCoord[2] - Math.tan(radarRadiusInDegree/2)*radarDistance*transformation[1]);
+    public void CalculateTriangle(){
+        this.Triangle[0][0] = (int)Math.round(RadarCoord[0]);
+        this.Triangle[0][1] = (int)Math.round(RadarCoord[1]);
+        this.Triangle[1][0] = (int)Math.round(RadarCoord[0] + radarDistance*transformation[0]);
+        this.Triangle[1][1] = (int)Math.round(RadarCoord[1] + Math.tan(radarRadiusInDegree/2)*radarDistance*transformation[1]);
+        this.Triangle[2][0] = (int)Math.round(RadarCoord[0] - radarDistance*transformation[0]);
+        this.Triangle[2][1] = (int)Math.round(RadarCoord[1] - Math.tan(radarRadiusInDegree/2)*radarDistance*transformation[1]);
+    }
+
+    public void setRadarCoord(double x, double y){
+        RadarCoord[0] = x;
+        RadarCoord[1] = y;
+    }
+
+    public ArrayList<WorldObject> getDetectedObjects() {
+        return detectedObjects;
+    }
+
+    public void setDetectedObjects(ArrayList<WorldObject> detectedObjects) {
+        this.detectedObjects = detectedObjects;
+    }
+
+    public RadarCalculator getRadarCalculator() {
+        return radarCalculator;
     }
 }

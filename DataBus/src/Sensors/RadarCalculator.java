@@ -7,6 +7,8 @@ import Visuals.Car;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Balazs on 2016.10.31..
@@ -30,13 +32,14 @@ public class RadarCalculator {
             int[]tempCoordinates={obj.getCenterPoint()[0]-car.getXCoord(), obj.getCenterPoint()[1]-car.getYCoord()};
             detectedObject.setActualDistance((float) Math.sqrt(tempCoordinates[0]*tempCoordinates[0]+tempCoordinates[1]*tempCoordinates[1]));
             calculatedObjects.add(detectedObject);
+            System.out.println(obj.getId() +  " Objektum távolsága: " + detectedObject.getActualDistance() + " m");
         }
     }
 
     public void calculateActualSpeed(Car car){
         for(DetectedObject obj : calculatedObjects) {
             obj.setActualSpeed((float) (car.getSpeed()-obj.getNpc().getMovingSpeed()));
-            int a;
+            System.out.println(obj.getNpc().getId() +  " Objektum relatív sebessége: " + obj.getActualSpeed() + " km/h");
         }
     }
 
@@ -68,6 +71,7 @@ public class RadarCalculator {
 
             obj.setLeftOffset(leftoffset);
             obj.setRightOffset(rightoffset);
+            System.out.println(obj.getNpc().getId() +  " Objektum offsetje balra: " + leftoffset + " jobbra: " + rightoffset);
         }
     }
 
