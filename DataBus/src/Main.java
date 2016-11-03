@@ -1,5 +1,8 @@
 import Dynamics.VehicleDynamics;
 import Environment.*;
+import Sensors.Camera;
+import Visuals.Car;
+
 import javax.xml.stream.XMLStreamException;
 
 
@@ -22,6 +25,11 @@ public class Main {
         }
         /*Call modules in the logical order here*/
         vehicleDynamics = VehicleDynamics.GetInstance();
+
+        Car car = new Car(1200,1000);
+        Camera cam = new Camera(car);
+        System.out.println(cam.getEnvironmentRelevantObjects());
+
     }
 
 }
