@@ -2,7 +2,7 @@ package Environment;
 
 import Environment.NPC.Cyclist;
 import Environment.NPC.NpcCar;
-import Environment.NPC.Pedestrian;
+import Environment.NPC.People;
 import Environment.misc.*;
 import Environment.road_signs.*;
 import Environment.road_tiles.LaneAdvanced;
@@ -12,7 +12,6 @@ import javax.xml.stream.*;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by ral2bp on 2016.09.29..
@@ -152,8 +151,6 @@ public class XMLParserMain implements ISensor {
                 }
             }
             getStreamReader().close();
-            //writeOutTheObjects();
-            //writeOutDetectedObjcets();
             return true;
         } else {
             getStreamReader().close();
@@ -331,13 +328,9 @@ public class XMLParserMain implements ISensor {
             case "crosswalks":
                 getDynamicObjects().add(new Crosswalk(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
                 break;
-            case "people": {
+            case "people":
                 getDynamicObjects().add(new People(getId(), getPosition(), getTransform(), getZLevel(), getOpacity())); //int Id,  startPosition, int[] Transform, int Zlevel, int Opacity)
-            }
-            break;
-            /*case "people":
-                getDynamicObjects().add(new Pedestrian(getId(), getPosition(), 80, 80, getTransform(), getZLevel(), getOpacity(), 0,0));
-                break;*/
+                break;
             case "trees":
                 getDynamicObjects().add(new Tree(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
                 break;
@@ -444,7 +437,7 @@ public class XMLParserMain implements ISensor {
     private void create2LaneAdvanced(String elementType) {
         switch (elementType) {
             case "2_t_junction_l.tile":
-                getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
+                        getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
                 break;
             case "2_t_junction_r.tile":
                 getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionRight));

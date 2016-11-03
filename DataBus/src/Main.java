@@ -21,9 +21,6 @@ public class Main {
         catch (XMLStreamException e) {
             System.out.println(String.format("%s\n" + "%s", "Sikertelen feldolgozás", e.getMessage()));
         }
-
-        xmlParser.writeOutTheObjects();
-        xmlParser.writeOutDetectedObjects();
         /*Call modules in the logical order here*/
         vehicleDynamics = VehicleDynamics.GetInstance();
     }

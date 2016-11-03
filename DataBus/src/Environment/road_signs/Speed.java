@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by nemeth on 2016. 09. 30..
  */
-public class Speed extends WorldObject{
+public class Speed extends RoadSign{
 
     public Speed(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity, SpeedType speedType) {
         super(Id, startPosition, 80, 80, Transform, Zlevel, Opacity, false);
