@@ -2,6 +2,7 @@ package Sensors;
 
 import Environment.WorldObject;
 import Environment.XMLParserMain;
+import Visuals.Car;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,8 @@ public class Radar {
     private ArrayList<WorldObject> detectedObjects;
     private static final int radarDistance = 200;
     private static final int radarRadiusInDegree = 30;
+    private Car car;
+    private double carRotation;
     public double[] RadarCoord = new double[2];
     public int[][] Triangle = new int[3][2];
     public double[] transformation;
@@ -35,13 +38,13 @@ public class Radar {
         setDetectedObjects((ArrayList)xml.getDetectedObjects(this.Triangle[1][0],this.Triangle[1][1],this.Triangle[2][0],this.Triangle[2][1],this.Triangle[0][0],this.Triangle[0][1]));
     }
 
-    public void CalculateTriangle(){
+    public void CalculateTriangle(Car car){
         this.Triangle[0][0] = (int)Math.round(RadarCoord[0]);
         this.Triangle[0][1] = (int)Math.round(RadarCoord[1]);
-        this.Triangle[1][0] = (int)Math.round(RadarCoord[0] + radarDistance*transformation[0]);
-        this.Triangle[1][1] = (int)Math.round(RadarCoord[1] + Math.tan(radarRadiusInDegree/2)*radarDistance*transformation[1]);
-        this.Triangle[2][0] = (int)Math.round(RadarCoord[0] - radarDistance*transformation[0]);
-        this.Triangle[2][1] = (int)Math.round(RadarCoord[1] - Math.tan(radarRadiusInDegree/2)*radarDistance*transformation[1]);
+        this.Triangle[1][0] = (int)Math.round(RadarCoord[0] + radarDistance*Math.cos(car.getRotation()));
+        this.Triangle[1][1] = (int)Math.round(RadarCoord[1] + Math.tan(radarRadiusInDegree/2)*radarDistance*Math.cos(car.getRotation()));
+        this.Triangle[2][0] = (int)Math.round(RadarCoord[0] - radarDistance*Math.cos(car.getRotation()));
+        this.Triangle[2][1] = (int)Math.round(RadarCoord[1] - Math.tan(radarRadiusInDegree/2)*radarDistance*Math.cos(car.getRotation()));
     }
 
     public void setRadarCoord(double x, double y){

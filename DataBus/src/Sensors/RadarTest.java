@@ -24,14 +24,15 @@ public class RadarTest {
 
     public void Demo(){
         radar.setRadarCoord(1,1);
-        radar.CalculateTriangle();
+        Car car = new Car(1,1);
+        radar.CalculateTriangle(car);
         //radar.GetObjectsFromEnvironment();
         //Mock
         ArrayList<WorldObject> detectedObjects = new ArrayList<WorldObject>();
         detectedObjects.add(new NpcCar(1,new int[]{10,10},10,25,new double[]{0,0,0,0},0,0,0,45));
         detectedObjects.add(new NpcCar(2,new int[]{15,20},10,25,new double[]{0,0,0,0},0,0,0,55));
 
-        Car car = new Car(1,1);
+
         car.setSpeed(60);
 
         System.out.println("\nAutó sebessége: " + car.getSpeed() + " km/h pozíciója: [1,1]\n");
