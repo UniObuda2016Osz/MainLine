@@ -28,7 +28,7 @@ public class UltrasonicSensorDemo {
         Position case1_carCenterPosition = new Position(30,30);
         Car case1_car = new Car(case1_carCenterPosition.getX(),case1_carCenterPosition.getY());
 
-        case1_car.setRotation(-45);
+        case1_car.setRotation(0);
 
         UltrasonicSensor us = new UltrasonicSensor(case1_car, UltraSonicSensorPosition.FRONT_INNER_LEFT);
         Position case1_sensorBasePosition = us.getCurrentBasepoint();

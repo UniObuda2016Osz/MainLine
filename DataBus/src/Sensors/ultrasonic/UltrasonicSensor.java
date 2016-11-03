@@ -93,12 +93,6 @@ public class UltrasonicSensor {
         double environmentY;
         double r;
 
-
-        //FIXME levair: amig ez a function bugos, addig legyen a car pozicioja
-        if ("FIXME".equals("FIXME")) {
-            return new Position(ownerCar.getXCoord(), ownerCar.getYCoord());
-        }
-
         //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
@@ -106,8 +100,8 @@ public class UltrasonicSensor {
             case FRONT_INNER_RIGHT:
             case FRONT_OUTER_RIGHT:
                 r = x / 2;
-                environmentX = Math.cos(carRotation) * r;
-                environmentY = -Math.sin(carRotation) * r;
+                environmentY = Math.cos(carRotation) * r; //FIXME levair: itt felcsereltem az Y-t az X-szel, te tovabbra sem jo teljesen...rework
+                environmentX = -Math.sin(carRotation) * r;
                 return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
             case REAR_INNER_LEFT:
             case REAR_OUTER_LEFT:
