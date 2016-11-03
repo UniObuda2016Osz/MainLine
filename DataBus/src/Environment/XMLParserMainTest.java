@@ -68,8 +68,7 @@ public class XMLParserMainTest {
     public void TestGetDetectedObjects() throws XMLStreamException
     {
         List<WorldObject> objs = parser.getDetectedObjects(3200,4120,3250,4120,3225,4140);
-        System.out.println("Méret: " + objs.size());
-        //Assert.assertEquals(parser.getDynamicObjects().get(0).toString().trim(), objs.toString().trim());
+        System.out.println("Látott objektumok száma: " + objs.size());
         assertEquals(parser.getDynamicObjects().get(0), objs.get(0));
     }
 

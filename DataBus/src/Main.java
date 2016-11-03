@@ -8,11 +8,12 @@ import javax.xml.stream.XMLStreamException;
  */
 public class Main {
     private static VehicleDynamics vehicleDynamics;
-    public static void main(String[] args){
+    private static XMLParserMain xmlParser;
+    public static void main(String[] args) throws XMLStreamException {
         System.out.println("Main has started");
-
+        xmlParser = XMLParserMain.getInstance();
         try {
-            if (new XMLParserMain().Parser())
+            if (xmlParser.Parser())
                 System.out.println("Sikeres feldolgozás");
             else
                 System.out.println("Sikertelen feldolgozás");
@@ -20,6 +21,9 @@ public class Main {
         catch (XMLStreamException e) {
             System.out.println(String.format("%s\n" + "%s", "Sikertelen feldolgozás", e.getMessage()));
         }
+
+        xmlParser.writeOutTheObjects();
+        xmlParser.writeOutDetectedObjects();
         /*Call modules in the logical order here*/
         vehicleDynamics = VehicleDynamics.GetInstance();
     }

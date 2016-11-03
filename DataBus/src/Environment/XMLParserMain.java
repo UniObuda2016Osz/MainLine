@@ -20,6 +20,10 @@ import java.util.Random;
 public class XMLParserMain implements ISensor {
 
     private XMLInputFactory factory;
+
+    private XMLParserMain() {
+    }
+
     public XMLInputFactory getXMLInputFactory() {
         return factory;
     }
@@ -149,7 +153,7 @@ public class XMLParserMain implements ISensor {
             }
             getStreamReader().close();
             //writeOutTheObjects();
-            //writeOutDetectedObejcets();
+            //writeOutDetectedObjcets();
             return true;
         } else {
             getStreamReader().close();
@@ -575,7 +579,7 @@ public class XMLParserMain implements ISensor {
         return vector[0]*pointOnLine[0]+vector[1]*pointOnLine[1];
     }
 
-    private void writeOutDetectedObjects() throws XMLStreamException {
+    public void writeOutDetectedObjects() throws XMLStreamException {
         List<WorldObject> Detected = getDetectedObjects(3220, 4124, 3230, 4124, 3225, 4130);
         System.out.println("Látott objektumok: " + Detected.size() + " db");
         for (WorldObject object :Detected)
@@ -584,7 +588,7 @@ public class XMLParserMain implements ISensor {
         }
     }
 
-    private void writeOutTheObjects() {
+    public void writeOutTheObjects() {
         for (WorldObject object : getDynamicObjects()) {
             System.out.println("Objektum: " + object.toString());
         }
