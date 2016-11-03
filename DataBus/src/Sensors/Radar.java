@@ -20,19 +20,21 @@ public class Radar {
     private static final int radarRadiusInDegree = 30;
     private Car car;
     private double carRotation;
-    public double[] RadarCoord = new double[2];
-    public int[][] Triangle = new int[3][2];
+    public double[] RadarCoord;
+    public int[][] Triangle;
     public double[] transformation;
     public Radar(){
         setDetectedObjects(new ArrayList<>());
         radarCalculator = new RadarCalculator();
         transformation = new double[]{0,0};
+        Triangle = new int[3][2];
+        RadarCoord = new double[2];
     }
 
     private void Refresh(){
-        transformation = WO.getTransform();
-        RadarCoord[0] = (double)WO.getCenterPoint()[0]+WO.getHeight()*transformation[0];
-        RadarCoord[1] = (double)WO.getCenterPoint()[1]+WO.getHeight()*transformation[1];
+
+        RadarCoord[0] = (double)car.getXCoord()+car.getWidth()/2*Math.cos(car.getRotation());
+        RadarCoord[1] = (double)car.getYCoord()*Math.cos(car.getRotation());
     }
     public void GetObjectsFromEnvironment(){
         setDetectedObjects((ArrayList)xml.getDetectedObjects(this.Triangle[1][0],this.Triangle[1][1],this.Triangle[2][0],this.Triangle[2][1],this.Triangle[0][0],this.Triangle[0][1]));

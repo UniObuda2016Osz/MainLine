@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import Environment.XMLParserMain;
 
 /**
  * Created by csegenyr on 2016.10.31..
@@ -14,7 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class RadarTest {
 
     Radar radar = new Radar();
-
+    //XMLParserMain xml = new XMLParserMain();
 
     @Test
     public void DemoTest()
