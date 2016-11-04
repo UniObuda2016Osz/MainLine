@@ -1,4 +1,4 @@
-package com.app.visual;
+package hu.oe.nik.autonomouscar.visual;
 
 import javax.swing.*;
 
