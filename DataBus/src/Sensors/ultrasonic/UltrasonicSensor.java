@@ -5,6 +5,7 @@ import Environment.WorldObject;
 import Environment.XMLParserMain;
 import Visuals.Car;
 
+import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +33,7 @@ public class UltrasonicSensor {
      * @return all the SOLID objects this sensor detects
      * Parking Pilot should use this and only this function directly.
      */
-    public List<WorldObject> getSolidWorldObjects() {
+    public List<WorldObject> getSolidWorldObjects() throws XMLStreamException {
         List<WorldObject> solidWorldObjects = new ArrayList<>();
 
         for (WorldObject commonWorldObject : getAllCurrentVisibleObjects()) {
@@ -46,7 +47,7 @@ public class UltrasonicSensor {
     /**
      * @return all the objects this sensor detects (public for testing purposes)
      */
-    public List<WorldObject> getAllCurrentVisibleObjects() {
+    public List<WorldObject> getAllCurrentVisibleObjects() throws XMLStreamException {
         Position currentBasePosition = getCurrentBasepoint();
         int centerX = currentBasePosition.getX();
         int centerY = currentBasePosition.getY();

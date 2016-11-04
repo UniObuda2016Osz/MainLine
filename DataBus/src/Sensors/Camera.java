@@ -4,6 +4,7 @@ import Environment.WorldObject;
 import Environment.XMLParserMain;
 import Visuals.Car;
 
+import javax.xml.stream.XMLStreamException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Camera {
         this.setCenterCoordinatesOfCar(new int[2]);
     }
 
-    public List<WorldObject> getEnvironmentRelevantObjects(){
+    public List<WorldObject> getEnvironmentRelevantObjects() throws XMLStreamException {
         setActualFieldView();
         this.fullList = this.parser.getDetectedObjects(
                 leftUpperCoordinatesOfFieldView[0], leftUpperCoordinatesOfFieldView[1],
