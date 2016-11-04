@@ -11,11 +11,12 @@ import javax.xml.stream.XMLStreamException;
  */
 public class Main {
     private static VehicleDynamics vehicleDynamics;
-    public static void main(String[] args){
+    private static XMLParserMain xmlParser;
+    public static void main(String[] args) throws XMLStreamException {
         System.out.println("Main has started");
-
+        xmlParser = XMLParserMain.getInstance();
         try {
-            if (new XMLParserMain().Parser())
+            if (xmlParser.Parser())
                 System.out.println("Sikeres feldolgozás");
             else
                 System.out.println("Sikertelen feldolgozás");

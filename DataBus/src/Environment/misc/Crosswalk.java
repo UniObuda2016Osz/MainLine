@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by Akos on 2016. 09. 27..
  */
-public class Crosswalk extends WorldObject{
+public class Crosswalk extends Misc{
 
     public Crosswalk(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity) {
         super(Id, startPosition, 350, 190, Transform, Zlevel, Opacity, false);

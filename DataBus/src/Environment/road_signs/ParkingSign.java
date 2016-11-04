@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by nemeth on 2016.10.07..
  */
-public class ParkingSign extends WorldObject {
+public class ParkingSign extends RoadSign {
 
     public ParkingSign(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity, ParkingSignType parkingSignType) {
         super(Id, startPosition, 80, 80, Transform, Zlevel, Opacity, false);

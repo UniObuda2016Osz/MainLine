@@ -7,7 +7,7 @@ import java.util.Arrays;
 /**
  * Created by nemeth on 2016. 09. 30..
  */
-public class Direction extends WorldObject {
+public class Direction extends RoadSign {
     public Direction(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity, DirectionType directionType) {
         super(Id, startPosition, 80, 80, Transform, Zlevel, Opacity, false);
         this.directionType = directionType;
