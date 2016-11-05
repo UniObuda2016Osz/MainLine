@@ -1,19 +1,22 @@
 package Sensors;
 
 
+import Environment.NPC.Cyclist;
 import Environment.NPC.NPC;
+import Environment.NPC.NpcCar;
+import Environment.NPC.Pedestrian;
 import Environment.WorldObject;
 import Visuals.Car;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Created by Balazs on 2016.10.31..
  */
 public class RadarCalculator {
+
+    public enum NPCType { Cyclist,  Car, Pedestrian, Other }
 
     private List<DetectedObject> calculatedObjects = new ArrayList<DetectedObject>();
 
@@ -23,6 +26,27 @@ public class RadarCalculator {
 
     public void setCalculatedObject(List<DetectedObject> calculatedObjects) {
         this.calculatedObjects = calculatedObjects;
+    }
+
+    private NPCType GetType(WorldObject WO){
+        NPCType returnValue=NPCType.Other;
+
+        Class c = WO.getClass();
+
+        if(c == Cyclist.class)
+            returnValue=NPCType.Cyclist;
+        else if (c==Pedestrian.class)
+            returnValue=NPCType.Pedestrian;
+        else if (c== NpcCar.class)
+            returnValue=NPCType.Car;
+
+        return returnValue;
+    }
+
+    public void getTypeOfNPCList(){
+        for(DetectedObject obj : calculatedObjects){
+            obj.setNpctype(GetType(obj.getNpc()));
+        }
     }
 
     public void calculateActualDistance(ArrayList<WorldObject> detectedObjects, Car car){
@@ -83,6 +107,7 @@ public class RadarCalculator {
         private int leftOffset;
         private int rightOffset;
         private NPC npc;
+        private NPCType npctype;
 
        //public DetectedObject(NPC npc) {
             //this.npc = npc;
@@ -128,6 +153,14 @@ public class RadarCalculator {
 
         public void setNpc(NPC npc) {
             this.npc = npc;
+        }
+
+        public NPCType getNpctype() {
+            return npctype;
+        }
+
+        public void setNpctype(NPCType npctype) {
+            this.npctype = npctype;
         }
     }
 

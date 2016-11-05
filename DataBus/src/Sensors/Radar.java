@@ -10,10 +10,10 @@ import java.util.ArrayList;
  * Created by ral2bp on 2016.09.29..
  */
 
+
 public class Radar {
 
     private RadarCalculator radarCalculator;
-    private WorldObject WO;
     private XMLParserMain xml;
     private ArrayList<WorldObject> detectedObjects;
     private static final int radarDistance = 200;
