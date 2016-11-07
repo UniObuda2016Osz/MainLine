@@ -30,6 +30,7 @@ public class Car {
     public Car(int xCord, int yCord) {
         setLength(50);
         setWidth(50);
+        // TODO will not work because the image file is moved to the resources folder
         setImagePath("./ref/car.png");
         setXCoord(xCord);
         setYCoord(yCord);

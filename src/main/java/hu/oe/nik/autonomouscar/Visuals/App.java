@@ -15,7 +15,9 @@ import java.io.IOException;
 
 public class App extends JFrame implements KeyListener {
     private static Timer time;
-    private Image backgroundImage = new ImageIcon("./ref/level2.png").getImage();
+    ClassLoader classLoader = getClass().getClassLoader();
+
+    private Image backgroundImage;
     private ImageObserver levelobs;
     private boolean jobb, bal, lent, fent;
     private Car car = new Car(130, 400);
@@ -29,6 +31,10 @@ public class App extends JFrame implements KeyListener {
     private JFrame mainframe;
 
     private App() throws IOException {
+        // FIXME more elegent solution to read from the resources folder
+        // it might return with null if no file exists with the provided name, add some checks
+        backgroundImage = new ImageIcon(classLoader.getResource("level2.png")).getImage();
+
         mainframe = new JFrame();
         mainframe.addKeyListener(this);
         setTitle("Smart Auto Simulation App");
