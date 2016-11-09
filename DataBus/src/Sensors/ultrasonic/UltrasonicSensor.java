@@ -33,8 +33,7 @@ public class UltrasonicSensor {
      * @return all the SOLID objects this sensor detects
      * Parking Pilot should use this and only this function directly.
      */
-    //modified by: fzsolt
-    public double GetDistanceToClosestObject () throws XMLStreamException {
+    public List<WorldObject> getSolidWorldObjects() throws XMLStreamException {
         List<WorldObject> solidWorldObjects = new ArrayList<>();
         double distance=Double.MAX_VALUE;
         for (WorldObject commonWorldObject : getAllCurrentVisibleObjects()) {
@@ -44,7 +43,6 @@ public class UltrasonicSensor {
         }
         return distance;
     }
-
 
     /**
      * @return all the objects this sensor detects (public for testing purposes)
