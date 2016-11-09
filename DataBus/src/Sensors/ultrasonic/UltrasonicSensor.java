@@ -70,9 +70,25 @@ public class UltrasonicSensor {
 
     //Javítva JaszyKitti
     public Position getFurthestVisibleRightSidePoint(Position sensorsPosition) {
-        int rightX = sensorsPosition.getX() - (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation() ) ));
-        int rightY = sensorsPosition.getY() - (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()  ) ));
-        return new Position(rightX, rightY);
+        switch (getPositionOnCar()) {
+            case FRONT_INNER_LEFT:
+            case FRONT_OUTER_LEFT:
+            case FRONT_INNER_RIGHT:
+            case FRONT_OUTER_RIGHT:
+                int frontRightX = sensorsPosition.getX() - (int) Math.round(VIEW_DISTANCE * Math.cos(Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                int frontRightY = sensorsPosition.getY() - (int) Math.round(VIEW_DISTANCE * Math.sin(Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                return new Position(frontRightX, frontRightY);
+            case REAR_INNER_LEFT:
+            case REAR_OUTER_LEFT:
+            case REAR_INNER_RIGHT:
+            case REAR_OUTER_RIGHT:
+                int rearRightX = sensorsPosition.getX() + (int) Math.round(VIEW_DISTANCE * Math.cos(Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                int rearRightY = sensorsPosition.getY() + (int) Math.round(VIEW_DISTANCE * Math.sin(Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                return new Position(rearRightX, rearRightY);
+            default:
+                throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
+        }
+
     }
 
     /**
@@ -81,9 +97,25 @@ public class UltrasonicSensor {
 
     //Javítva JaszyKitti
     public Position getFurthestVisibleLeftSidePoint(Position sensorsPosition) {
-        int leftX = sensorsPosition.getX() + (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation() )));
-        int leftY = sensorsPosition.getY() + (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation() ) ));
-        return new Position(leftX, leftY);
+        switch (getPositionOnCar()) {
+            case FRONT_INNER_LEFT:
+            case FRONT_OUTER_LEFT:
+            case FRONT_INNER_RIGHT:
+            case FRONT_OUTER_RIGHT:
+                int frontLeftX = sensorsPosition.getX() + (int) Math.round(VIEW_DISTANCE * Math.cos(Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                int frontLeftY = sensorsPosition.getY() + (int) Math.round(VIEW_DISTANCE * Math.sin(Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                return new Position(frontLeftX, frontLeftY);
+            case REAR_INNER_LEFT:
+            case REAR_OUTER_LEFT:
+            case REAR_INNER_RIGHT:
+            case REAR_OUTER_RIGHT:
+                int rearLeftX = sensorsPosition.getX() - (int) Math.round(VIEW_DISTANCE * Math.cos(Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                int rearLeftY = sensorsPosition.getY() - (int) Math.round(VIEW_DISTANCE * Math.sin(Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation())));
+                return new Position(rearLeftX, rearLeftY);
+            default:
+                throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
+        }
+
     }
 
     /**
@@ -113,13 +145,15 @@ public class UltrasonicSensor {
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
                 return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+
+            //Javítva JaszyKitti
             case REAR_INNER_LEFT:
             case REAR_OUTER_LEFT:
             case REAR_INNER_RIGHT:
             case REAR_OUTER_RIGHT:
-                r = Math.sqrt(Math.pow(x / 2, 2) + Math.pow(y, 2));
-                environmentX = XcarPos + Math.cos(Math.toRadians(carRotation)) * r;
-                environmentY = YcarPos + Math.sin(Math.toRadians(carRotation)) * r;
+                r = y / 2;
+                environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
+                environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
                 return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
             default:
                 throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
