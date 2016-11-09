@@ -33,16 +33,18 @@ public class UltrasonicSensor {
      * @return all the SOLID objects this sensor detects
      * Parking Pilot should use this and only this function directly.
      */
-    public List<WorldObject> getSolidWorldObjects() throws XMLStreamException {
+    //modified by: fzsolt
+    public double GetDistanceToClosestObject () throws XMLStreamException {
         List<WorldObject> solidWorldObjects = new ArrayList<>();
-
+        double distance=Double.MAX_VALUE;
         for (WorldObject commonWorldObject : getAllCurrentVisibleObjects()) {
-            if (commonWorldObject.getCanStuckOnIt()) {
-                solidWorldObjects.add(commonWorldObject);
-            }
+            double temp_distance=Math.sqrt(Math.pow(getCurrentBasepoint().getX()-commonWorldObject.getPosition()[0],2)+Math.pow(getCurrentBasepoint().getY()-commonWorldObject.getPosition()[1],2)); //remélhetőleg a position vektor első eleme az x koordináta
+            if(temp_distance<distance)
+                distance=temp_distance;
         }
-        return solidWorldObjects;
+        return distance;
     }
+
 
     /**
      * @return all the objects this sensor detects (public for testing purposes)
