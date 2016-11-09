@@ -36,12 +36,8 @@ public class UltrasonicSensor {
     public List<WorldObject> getSolidWorldObjects() throws XMLStreamException {
         List<WorldObject> solidWorldObjects = new ArrayList<>();
 
-        for (WorldObject commonWorldObject : getAllCurrentVisibleObjects()) {
-            if (commonWorldObject.getCanStuckOnIt()) {
-                solidWorldObjects.add(commonWorldObject);
-            }
-        }
-        return solidWorldObjects;
+        //TODO: levair - return only the relevant ones
+        return getAllCurrentVisibleObjects();
     }
 
     /**
