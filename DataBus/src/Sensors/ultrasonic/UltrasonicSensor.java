@@ -60,23 +60,28 @@ public class UltrasonicSensor {
         int rightY = furthestVisibleRightSidePoint.getY();
 
         return XMLParserMain.getInstance().getDetectedObjects(leftX, leftY, rightX, rightY, centerX, centerY);
+
     }
 
     /**
      * public for testing purposes
      */
+
+    //Javítva JaszyKitti
     public Position getFurthestVisibleRightSidePoint(Position sensorsPosition) {
-        int rightX = sensorsPosition.getX() + (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
-        int rightY = sensorsPosition.getY() + (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
+        int rightX = sensorsPosition.getX() - (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation() ) ));
+        int rightY = sensorsPosition.getY() - (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()  ) ));
         return new Position(rightX, rightY);
     }
 
     /**
      * public for testing purposes
      */
+
+    //Javítva JaszyKitti
     public Position getFurthestVisibleLeftSidePoint(Position sensorsPosition) {
-        int leftX = sensorsPosition.getX() + (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
-        int leftY = sensorsPosition.getY() + (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(LEFT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation()) ));
+        int leftX = sensorsPosition.getX() + (int)Math.round(VIEW_DISTANCE * Math.cos( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation() )));
+        int leftY = sensorsPosition.getY() + (int)Math.round(VIEW_DISTANCE * Math.sin( Math.toRadians(RIGHT_SIDE_ANGLE_OF_VIEW + ownerCar.getRotation() ) ));
         return new Position(leftX, leftY);
     }
 
@@ -88,29 +93,33 @@ public class UltrasonicSensor {
         int x = ownerCar.getWidth();
         int y = ownerCar.getLength();
 
+        int XcarPos = ownerCar.getXCoord();
+        int YcarPos = ownerCar.getYCoord();
+
         double carRotation = ownerCar.getRotation();
         double environmentX;
         double environmentY;
         double r;
 
         //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
+        //Javítva JaszyKitti
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
             case FRONT_OUTER_LEFT:
             case FRONT_INNER_RIGHT:
             case FRONT_OUTER_RIGHT:
-                r = x / 2;
-                environmentY = Math.cos(carRotation) * r; //FIXME levair: itt felcsereltem az Y-t az X-szel, te tovabbra sem jo teljesen...rework
-                environmentX = -Math.sin(carRotation) * r;
-                return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
+                r = y / 2;
+                environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
+                environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
+                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
             case REAR_INNER_LEFT:
             case REAR_OUTER_LEFT:
             case REAR_INNER_RIGHT:
             case REAR_OUTER_RIGHT:
                 r = Math.sqrt(Math.pow(x / 2, 2) + Math.pow(y, 2));
-                environmentX = Math.cos(carRotation) * r;
-                environmentY = -Math.sin(carRotation) * r;
-                return new Position(ownerCar.getXCoord() + (int) environmentX, ownerCar.getYCoord() + (int) environmentY);
+                environmentX = XcarPos + Math.cos(Math.toRadians(carRotation)) * r;
+                environmentY = YcarPos + Math.sin(Math.toRadians(carRotation)) * r;
+                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
             default:
                 throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
         }
