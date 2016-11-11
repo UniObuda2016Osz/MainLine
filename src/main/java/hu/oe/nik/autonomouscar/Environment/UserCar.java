@@ -2,10 +2,30 @@ package hu.oe.nik.autonomouscar.Environment;
 
 import hu.oe.nik.autonomouscar.Sensors.Radar;
 
+
+
+
+
 /**
- * Created by Akos on 2016. 11. 02..
+ * Created by Akos on 1991. 11. 02..
  */
-public class UserCar extends WorldObject {
+public class UserCar {
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public int getDirection() {
         return direction;
@@ -83,13 +103,14 @@ public class UserCar extends WorldObject {
         this.rotation = rotation;
     }
 
+    //public void getXCoord() { return this. }
 
     public void setXCoord(int newXposition) {
-        this.getPosition()[0]=newXposition;
+        x=newXposition;
     }
 
     public void setYCoord(int newYposition) {
-        this.getPosition()[1]=newYposition;
+        y=newYposition;
     }
 
     private int direction;
@@ -102,23 +123,41 @@ public class UserCar extends WorldObject {
     private double velocityX = 0;
     private double velocityY = 0;
     private double rotation=0;
+    private int x;
+    private int y;
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
     }
 
-    public UserCar(int Id, int[] startPosition, int width, int height, double[] Transform, int Zlevel, int Opacity, boolean CanStuckOnIt) {
-        super(Id, startPosition, width, height, Transform, Zlevel, Opacity, CanStuckOnIt);
+    public UserCar(int x, int y) {
+        this.x=x;
+        this.y=y;
+        this.direction = direction;
     }
 
-    public void accelerateAuto(int howmuch){
+    public void AccelerateAuto(int howmuch){
         setSpeed(getSpeed() + howmuch);
         this.setMove(true);
     }
 
+    public void DecreaseAuto(int howmancs) {
+        if (getSpeed() > 0) {
+            setSpeed(getSpeed() - howmancs);
+            this.setMove(true);
+        }
+    }
+
+    public void DecreaseSpeed() {
+        while (getSpeed() > 0) {
+            setSpeed(getSpeed() - 1);
+            this.setMove(true);
+        }
+    }
+
     public void Move(int verticalMovement, int horizontalMovement) {
-        setXCoord(getPosition()[0] + horizontalMovement);
-        setYCoord(getPosition()[1] + verticalMovement);
+        setXCoord(getX() + horizontalMovement);
+        setYCoord(getY() + verticalMovement);
         this.setMove(true);
     }
 
@@ -131,4 +170,6 @@ public class UserCar extends WorldObject {
     {
         this.setCrashed(true);
     }
+
+
 }
