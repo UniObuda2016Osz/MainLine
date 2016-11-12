@@ -1,5 +1,7 @@
 package Sensors;
 
+import Environment.NPC.Cyclist;
+import Environment.NPC.NPC;
 import Environment.NPC.NpcCar;
 import Environment.WorldObject;
 import Visuals.Car;
@@ -20,11 +22,10 @@ public class RadarCalculatorTest {
 
     @Test
     public void testDetectedObjectListGetterSetter() {
-        List<RadarCalculator.DetectedObject> list = new ArrayList<RadarCalculator.DetectedObject>();
+        List<DetectedObject> list = new ArrayList<DetectedObject>();
         calculator.setCalculatedObject(list);
 
         assertTrue(calculator.getCalculatedObject() != null);
-
     }
 
     @Test
@@ -56,5 +57,17 @@ public class RadarCalculatorTest {
         calculator.calculateActualSpeed(car);
 
         assertEquals(calculator.getCalculatedObject().get(0).getActualSpeed(),60,0);
+    }
+
+    @Test
+    public void testCalculateTypeOfNPCList(){
+        NPC npc = new Cyclist(10, new int[]{1,1}, 10, 10, new double[]{0,0, 0, 0}, 0, 0, 0,0);
+        ArrayList<DetectedObject> list = new ArrayList<>();
+        DetectedObject DO = new DetectedObject();
+        DO.setNpc(npc);
+        list.add(DO);
+        calculator.setCalculatedObject(list);
+        calculator.CalculateTypeOfNPCList();
+        assertEquals(calculator.getCalculatedObject().get(0).getNpctype(), RadarCalculator.NPCType.Cyclist);
     }
 }
