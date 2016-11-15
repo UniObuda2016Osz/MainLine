@@ -125,6 +125,7 @@ public class UserCar {
     private double rotation=0;
     private int x;
     private int y;
+    UserCarControlling controlling;
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
@@ -134,6 +135,7 @@ public class UserCar {
         this.x=x;
         this.y=y;
         this.direction = direction;
+        controlling = new UserCarControlling(this);
     }
 
     public void AccelerateAuto(int howmuch){

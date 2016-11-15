@@ -1,5 +1,6 @@
 package hu.oe.nik.autonomouscar.Environment;
 
+import javax.jws.soap.SOAPBinding;
 import java.awt.event.KeyEvent;
 
 
@@ -11,9 +12,9 @@ public class UserCarControlling {
     UserCar userCar;
     private boolean fent,lent,bal,jobb=false;
 
-    public UserCarControlling()
+    public UserCarControlling(UserCar userCar)
     {
-        this.userCar=new UserCar(300,300);
+        this.userCar = userCar;
     }
 
 
