@@ -161,35 +161,43 @@ public class UltrasonicSensor {
         double r = DistanceFromCenter;
 
         //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
-        //4x2 szenzor a sugarak miatt
+        //8 különálló szenzor OK
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
-            case FRONT_INNER_RIGHT:
-                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/4, 2)+ Math.pow(ownerCar.getLength()/2, 2));
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
-                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+                return new Position((int) Math.round(environmentX - 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 4*(Math.cos(Math.toRadians(carRotation)))));
+            case FRONT_INNER_RIGHT:
+                environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
+                environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
+                return new Position((int) Math.round(environmentX + 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 4*(Math.cos(Math.toRadians(carRotation)))));
 
             case FRONT_OUTER_LEFT:
-            case FRONT_OUTER_RIGHT:
-                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2));
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
-                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+                return new Position((int) Math.round(environmentX - 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 8*(Math.cos(Math.toRadians(carRotation)))));
+            case FRONT_OUTER_RIGHT:
+                environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
+                environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
+                return new Position((int) Math.round(environmentX + 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 8*(Math.cos(Math.toRadians(carRotation)))));
 
             case REAR_INNER_LEFT:
-            case REAR_INNER_RIGHT:
-                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/4, 2)+ Math.pow(ownerCar.getLength()/2, 2));
                 environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
                 environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
-                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+                return new Position((int) Math.round(environmentX - 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 4*(Math.cos(Math.toRadians(carRotation)))));
+            case REAR_INNER_RIGHT:
+                environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
+                environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
+                return new Position((int) Math.round(environmentX + 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 4*(Math.cos(Math.toRadians(carRotation)))));
 
             case REAR_OUTER_LEFT:
-            case REAR_OUTER_RIGHT:
-                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2));
                 environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
                 environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
-                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+                return new Position((int) Math.round(environmentX - 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 8*(Math.cos(Math.toRadians(carRotation)))));
+            case REAR_OUTER_RIGHT:
+                environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
+                environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
+                return new Position((int) Math.round(environmentX + 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 8*(Math.cos(Math.toRadians(carRotation)))));
 
             default:
                 throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
