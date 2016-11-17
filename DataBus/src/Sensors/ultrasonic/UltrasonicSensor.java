@@ -23,10 +23,36 @@ public class UltrasonicSensor {
 
     private Car ownerCar;
     private UltraSonicSensorPosition positionOnCar;
+    private double DistanceFromCenter;
 
     public UltrasonicSensor(Car ownerCar, UltraSonicSensorPosition positionOnCar) {
         this.ownerCar = ownerCar;
         this.setPositionOnCar(positionOnCar);
+
+        //Kiszámolom hogy az első és a hátsó szenzoroknak mekkora a sugara
+        switch (positionOnCar) {
+            case FRONT_INNER_LEFT:
+            case REAR_INNER_LEFT:
+            case FRONT_INNER_RIGHT:
+            case REAR_INNER_RIGHT:
+                DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth()/4, 2)+ Math.pow(ownerCar.getLength()/2, 2));
+                return;
+            case REAR_OUTER_LEFT:
+            case FRONT_OUTER_LEFT:
+            case REAR_OUTER_RIGHT:
+            case FRONT_OUTER_RIGHT:
+                if (ownerCar.getLength() == ownerCar.getWidth()) //Akkor érvényes ha az autó szélessége és hosszúsága megegyezik
+                {
+                    DistanceFromCenter = Math.sqrt(2) * (ownerCar.getWidth() / 2);
+                    return;
+                }
+                else {
+                    DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth() / 2, 2) + Math.pow(ownerCar.getLength() / 2, 2));
+                    return;
+                }
+            default:
+                throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
+        }
     }
 
     /**
@@ -68,7 +94,6 @@ public class UltrasonicSensor {
      * public for testing purposes
      */
 
-    //Javítva JaszyKitti
     public Position getFurthestVisibleRightSidePoint(Position sensorsPosition) {
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
@@ -95,7 +120,6 @@ public class UltrasonicSensor {
      * public for testing purposes
      */
 
-    //Javítva JaszyKitti
     public Position getFurthestVisibleLeftSidePoint(Position sensorsPosition) {
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
@@ -132,29 +156,39 @@ public class UltrasonicSensor {
         double carRotation = ownerCar.getRotation();
         double environmentX;
         double environmentY;
-        double r;
+        double r = DistanceFromCenter;
 
         //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
-        //Javítva JaszyKitti
+
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
-            case FRONT_OUTER_LEFT:
             case FRONT_INNER_RIGHT:
-            case FRONT_OUTER_RIGHT:
-                r = y / 2;
+                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/4, 2)+ Math.pow(ownerCar.getLength()/2, 2));
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
                 return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
 
-            //Javítva JaszyKitti
+            case FRONT_OUTER_LEFT:
+            case FRONT_OUTER_RIGHT:
+                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2));
+                environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
+                environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
+                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+
             case REAR_INNER_LEFT:
-            case REAR_OUTER_LEFT:
             case REAR_INNER_RIGHT:
-            case REAR_OUTER_RIGHT:
-                r = y / 2;
+                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/4, 2)+ Math.pow(ownerCar.getLength()/2, 2));
                 environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
                 environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
                 return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+
+            case REAR_OUTER_LEFT:
+            case REAR_OUTER_RIGHT:
+                //r = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2));
+                environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
+                environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
+                return new Position((int) Math.round(environmentX), (int) Math.round(environmentY));
+
             default:
                 throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
         }
