@@ -437,7 +437,7 @@ public class XMLParserMain implements ISensor {
     private void create2LaneAdvanced(String elementType) {
         switch (elementType) {
             case "2_t_junction_l.tile":
-                        getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
+                getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
                 break;
             case "2_t_junction_r.tile":
                 getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionRight));
