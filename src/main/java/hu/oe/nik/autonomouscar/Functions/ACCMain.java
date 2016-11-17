@@ -88,5 +88,14 @@ public class ACCMain {
         this.isAccOn = false;
     }
 
-
+    @Override
+    public String toString() {
+        return "ACCMain{" +
+                "actualSpeed=" + actualSpeed +
+                ", targetSpeed=" + targetSpeed +
+                ", timegap=" + timegap +
+                ", acceleration=" + acceleration +
+                ", isAccOn=" + isAccOn +
+                '}';
+    }
 }
