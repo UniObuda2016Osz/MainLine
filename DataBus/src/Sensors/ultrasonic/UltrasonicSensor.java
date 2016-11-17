@@ -163,7 +163,7 @@ public class UltrasonicSensor {
         double r = DistanceFromCenter;
 
         //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
-
+        //4x2 szenzor a sugarak miatt
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
             case FRONT_INNER_RIGHT:
