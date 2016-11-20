@@ -11,6 +11,14 @@ import hu.oe.nik.autonomouscar.Sensors.Radar;
  */
 public class UserCar {
 
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
     public int getX() {
         return x;
     }
@@ -125,6 +133,8 @@ public class UserCar {
     private double rotation=0;
     private int x;
     private int y;
+    private int width;
+    private int height;
     UserCarControlling controlling;
 
     public void setImagePath(String imagePath) {
@@ -132,8 +142,10 @@ public class UserCar {
     }
 
     public UserCar(int x, int y) {
-        this.x=x;
-        this.y=y;
+        this.width = 100;
+        this.height = 240;
+        this.x = x;
+        this.y = y;
         this.direction = direction;
         controlling = new UserCarControlling(this);
     }
@@ -144,10 +156,13 @@ public class UserCar {
     }
 
     public void DecreaseAuto(int howmancs) {
-        if (getSpeed() > 0) {
-            setSpeed(getSpeed() - howmancs);
+        double aktSebesseg=getSpeed()-howmancs;
+        if (aktSebesseg > 0) {
+            setSpeed(aktSebesseg);
             this.setMove(true);
         }
+        else
+            this.setMove(false);
     }
 
     public void DecreaseSpeed() {

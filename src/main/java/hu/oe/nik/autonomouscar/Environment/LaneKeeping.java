@@ -23,10 +23,10 @@ public class LaneKeeping {
         }
 
 //        ?meg kell jelenítenünk a sebesség korlátot, vagyis a táblákat? //User interface(Traffic Sign display) available
-        for(WorldObject wo : Camera.getRelevantObjects) {
-            if(wo.equals(Speed))
-                Bus.getInstance().setSpeedLimitValue((Speed)wo.getSpeedType().toString());
-        }
+//        for(WorldObject wo : Camera.getRelevantObjects) {
+//            if(wo.equals(Speed))
+//                Bus.getInstance().setSpeedLimitValue((Speed)wo.getSpeedType().toString());
+//        }
 
     }
 }
