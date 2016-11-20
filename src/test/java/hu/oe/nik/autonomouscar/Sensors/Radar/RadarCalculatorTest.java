@@ -1,10 +1,10 @@
-package Sensors;
+package hu.oe.nik.autonomouscar.Sensors.Radar;
 
-import Environment.NPC.Cyclist;
-import Environment.NPC.NPC;
-import Environment.NPC.NpcCar;
-import Environment.WorldObject;
-import Visuals.Car;
+import hu.oe.nik.autonomouscar.Environment.NPC.Cyclist;
+import hu.oe.nik.autonomouscar.Environment.NPC.NPC;
+import hu.oe.nik.autonomouscar.Environment.NPC.NpcCar;
+import hu.oe.nik.autonomouscar.Environment.UserCar;
+import hu.oe.nik.autonomouscar.Environment.WorldObject;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class RadarCalculatorTest {
         WorldObject obj = new NpcCar(1,startPosition,5,20,transform,0,0,0,0);
         detectedObjects.add(obj);
 
-        Car car = new Car(1,1);
+        UserCar car = new UserCar(1,1);
         calculator.calculateActualDistance(detectedObjects,car);
 
         assertEquals(calculator.getCalculatedObject().get(0).getActualDistance(),12.727922439575195,0);
@@ -51,7 +51,7 @@ public class RadarCalculatorTest {
         obj.setMovingSpeed(10);
         detectedObjects.add(obj);
 
-        Car car = new Car(1,1);
+        UserCar car = new UserCar(1,1);
         car.setSpeed(70);
         calculator.calculateActualDistance(detectedObjects,car);
         calculator.calculateActualSpeed(car);

@@ -1,12 +1,12 @@
-package Sensors;
+package hu.oe.nik.autonomouscar.Sensors.Radar;
 
 
-import Environment.NPC.Cyclist;
-import Environment.NPC.NPC;
-import Environment.NPC.NpcCar;
-import Environment.NPC.Pedestrian;
-import Environment.WorldObject;
-import Visuals.Car;
+import hu.oe.nik.autonomouscar.Environment.NPC.Cyclist;
+import hu.oe.nik.autonomouscar.Environment.NPC.NPC;
+import hu.oe.nik.autonomouscar.Environment.NPC.NpcCar;
+import hu.oe.nik.autonomouscar.Environment.NPC.People;
+import hu.oe.nik.autonomouscar.Environment.UserCar;
+import hu.oe.nik.autonomouscar.Environment.WorldObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,10 @@ import java.util.List;
  */
 public class RadarCalculator {
 
+    public void setCalculatedObject(List<DetectedObject> list) {
+        calculatedObjects = list;
+    }
+
     public enum NPCType {Cyclist, Car, Pedestrian, Other}
 
     private List<DetectedObject> calculatedObjects = new ArrayList<DetectedObject>();
@@ -24,8 +28,11 @@ public class RadarCalculator {
         return calculatedObjects;
     }
 
-    public void setCalculatedObject(List<DetectedObject> calculatedObjects) {
-        this.calculatedObjects = calculatedObjects;
+    public void Main(ArrayList<WorldObject> list, UserCar car){
+        calculateActualDistance(list, car);
+        calculateActualSpeed(car);
+        calculateActualOffset(car);
+        CalculateTypeOfNPCList();
     }
 
     private NPCType GetType(WorldObject WO) {
@@ -35,7 +42,7 @@ public class RadarCalculator {
 
         if (c == Cyclist.class)
             returnValue = NPCType.Cyclist;
-        else if (c == Pedestrian.class)
+        else if (c == People.class)
             returnValue = NPCType.Pedestrian;
         else if (c == NpcCar.class)
             returnValue = NPCType.Car;
@@ -43,36 +50,34 @@ public class RadarCalculator {
         return returnValue;
     }
 
-    public void CalculateTypeOfNPCList() {
+    void CalculateTypeOfNPCList() {
         for (DetectedObject obj : calculatedObjects) {
             obj.setNpctype(GetType(obj.getNpc()));
         }
     }
 
-    public void calculateActualDistance(ArrayList<WorldObject> detectedObjects, Car car) {
+    void calculateActualDistance(ArrayList<WorldObject> detectedObjects, UserCar car) {
         for (WorldObject obj : detectedObjects) {
             DetectedObject detectedObject = new DetectedObject();
             detectedObject.setNpc((NPC) obj);
-            int[] tempCoordinates = {obj.getCenterPoint()[0] - car.getXCoord(), obj.getCenterPoint()[1] - car.getYCoord()};
+            int[] tempCoordinates = {obj.getCenterPoint()[0] - car.getX(), obj.getCenterPoint()[1] - car.getY()};
             detectedObject.setActualDistance((float) Math.sqrt(tempCoordinates[0] * tempCoordinates[0] + tempCoordinates[1] * tempCoordinates[1]));
             calculatedObjects.add(detectedObject);
-            System.out.println(obj.getId() + " Objektum távolsága: " + detectedObject.getActualDistance() + " m");
         }
     }
 
-    public void calculateActualSpeed(Car car) {
+    void calculateActualSpeed(UserCar car) {
         for (DetectedObject obj : calculatedObjects) {
             obj.setActualSpeed((float) (car.getSpeed() - obj.getNpc().getMovingSpeed()));
-            System.out.println(obj.getNpc().getId() + " Objektum relatív sebessége: " + obj.getActualSpeed() + " km/h");
         }
     }
 
-    public void calculateActualOffset(Car car) {
+    void calculateActualOffset(UserCar car) {
         double carRotation = car.getRotation();
-        double carXRightCorner = car.getXCoord() + car.getWidth() / 2;
-        double carXLeftCorner = car.getXCoord() - car.getWidth() / 2;
-        double carYRightCorner = car.getYCoord() + car.getLength() / 2;
-        double carYLeftCorner = car.getYCoord() - car.getLength() / 2;
+        double carXRightCorner = car.getX() + car.getWidth() / 2;
+        double carXLeftCorner = car.getX() - car.getWidth() / 2;
+        double carYRightCorner = car.getY() + car.getHeight() / 2;
+        double carYLeftCorner = car.getY() - car.getHeight() / 2;
         double carRotatedRightCorner = carXRightCorner * Math.cos(carRotation) + carYRightCorner * Math.sin(carRotation);
         double carRotatedLeftCorner = carXLeftCorner * Math.cos(carRotation) + carYLeftCorner * Math.sin(carRotation);
 
@@ -95,7 +100,6 @@ public class RadarCalculator {
 
             obj.setLeftOffset(leftoffset);
             obj.setRightOffset(rightoffset);
-            System.out.println(obj.getNpc().getId() + " Objektum offsetje balra: " + leftoffset + " jobbra: " + rightoffset);
         }
     }
 }

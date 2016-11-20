@@ -1,7 +1,7 @@
-package Sensors;
+package hu.oe.nik.autonomouscar.Sensors.Radar;
 
 
-import Environment.NPC.Cyclist;
+import hu.oe.nik.autonomouscar.Environment.NPC.Cyclist;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

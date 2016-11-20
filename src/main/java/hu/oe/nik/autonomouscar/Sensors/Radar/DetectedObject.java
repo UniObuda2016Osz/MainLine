@@ -1,6 +1,6 @@
-package Sensors;
+package hu.oe.nik.autonomouscar.Sensors.Radar;
 
-import Environment.NPC.NPC;
+import hu.oe.nik.autonomouscar.Environment.NPC.NPC;
 
 /**
  * Created by judit on 2016. 11. 12..

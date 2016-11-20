@@ -1,5 +1,9 @@
 package hu.oe.nik.autonomouscar.Bus;
 
+import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
+
+import java.util.ArrayList;
+
 public class Bus {
     /*data members, getters, setters*/
     private boolean ACCMainSwitchState;
@@ -94,6 +98,7 @@ public class Bus {
 
     private boolean DirectionIndicatorRightActive;
 
+
     public enum GearPosition{
         PARK,REVERSE,NEUTRAL,DRIVE
     }
@@ -126,6 +131,17 @@ public class Bus {
 
         return instance;
     }
+
+    private ArrayList<DetectedObject> fourNearestFromRadar;
+
+    public ArrayList<DetectedObject> getFourNearestFromRadar() {
+        return fourNearestFromRadar;
+    }
+
+    public void setFourNearestFromRadar(ArrayList<DetectedObject> fourNearestFromRadar) {
+        this.fourNearestFromRadar = fourNearestFromRadar;
+    }
+
 
     private static Bus instance = null;
 

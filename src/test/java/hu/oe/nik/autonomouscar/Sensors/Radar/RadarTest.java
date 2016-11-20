@@ -1,24 +1,14 @@
-package Sensors;
-import Environment.NPC.NpcCar;
-import Environment.WorldObject;
-import Visuals.Car;
-import org.junit.Test;
-
-import java.util.ArrayList;
-
-import static org.junit.Assert.assertEquals;
-import Environment.XMLParserMain;
-
+package hu.oe.nik.autonomouscar.Sensors.Radar;
 /**
  * Created by csegenyr on 2016.10.31..
  */
 public class RadarTest {
 
-    Radar radar = new Radar();
+    //Radar radar = new Radar();
     //XMLParserMain xml = new XMLParserMain();
 
-    @Test
-    public void DemoTest()
+//    @Test
+/*    public void DemoTest()
     {
         Demo();
     }
@@ -41,7 +31,7 @@ public class RadarTest {
         radar.getRadarCalculator().calculateActualDistance(detectedObjects,car);
         radar.getRadarCalculator().calculateActualSpeed(car);
         radar.getRadarCalculator().calculateActualOffset(car);
-    }
+    }*/
 
 
 }
