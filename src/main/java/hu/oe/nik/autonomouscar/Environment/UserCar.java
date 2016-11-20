@@ -156,10 +156,13 @@ public class UserCar {
     }
 
     public void DecreaseAuto(int howmancs) {
-        if (getSpeed() > 0) {
-            setSpeed(getSpeed() - howmancs);
+        double aktSebesseg=getSpeed()-howmancs;
+        if (aktSebesseg > 0) {
+            setSpeed(aktSebesseg);
             this.setMove(true);
         }
+        else
+            this.setMove(false);
     }
 
     public void DecreaseSpeed() {
