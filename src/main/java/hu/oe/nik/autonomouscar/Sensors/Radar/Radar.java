@@ -54,7 +54,12 @@ public class Radar {
         RadarCoord[1] = (double)car.getY()*Math.cos(car.getRotation());
     }
     private void GetObjectsFromEnvironment() throws XMLStreamException{
-        ArrayList<WorldObject> inTriangle = (ArrayList) xmlP.getDetectedObjects(this.Triangle[1][0], this.Triangle[1][1], this.Triangle[2][0], this.Triangle[2][1], this.Triangle[0][0], this.Triangle[0][1]);
+        ArrayList<WorldObject> inTriangle = new ArrayList<>();
+        try {
+            inTriangle = (ArrayList) xmlP.getDetectedObjects(this.Triangle[1][0], this.Triangle[1][1], this.Triangle[2][0], this.Triangle[2][1], this.Triangle[0][0], this.Triangle[0][1]);
+        } catch (Exception e){
+        }
+
         for(WorldObject wo : inTriangle){
             if(wo.getClass()== Cyclist.class || wo.getClass() == People.class || wo.getClass()== NpcCar.class){
                 detectedObjects.add(wo);

@@ -5,7 +5,7 @@ import hu.oe.nik.autonomouscar.Environment.NPC.NPC;
 /**
  * Created by judit on 2016. 11. 12..
  */
-public class DetectedObject {
+public class DetectedObject implements Comparable {
 
     private float actualSpeed;
     private float actualDistance;
@@ -66,5 +66,10 @@ public class DetectedObject {
 
     public void setNpctype(RadarCalculator.NPCType npctype) {
         this.npctype = npctype;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return Math.round(actualDistance - ((DetectedObject)o).getActualDistance());
     }
 }

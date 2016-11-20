@@ -1,10 +1,13 @@
 package hu.oe.nik.autonomouscar.Sensors.Radar;
+
+import hu.oe.nik.autonomouscar.Environment.UserCar;
+
 /**
  * Created by csegenyr on 2016.10.31..
  */
 public class RadarTest {
 
-    //Radar radar = new Radar();
+    Radar radar = new Radar(new UserCar(100,100));
     //XMLParserMain xml = new XMLParserMain();
 
 //    @Test
@@ -12,8 +15,9 @@ public class RadarTest {
     {
         Demo();
     }
+*/
 
-    public void Demo(){
+/*    public void Demo(){
         radar.setRadarCoord(1,1);
         Car car = new Car(1,1);
         radar.CalculateTriangle(car);

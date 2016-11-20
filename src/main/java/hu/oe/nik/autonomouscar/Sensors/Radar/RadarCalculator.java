@@ -1,6 +1,7 @@
 package hu.oe.nik.autonomouscar.Sensors.Radar;
 
 
+import hu.oe.nik.autonomouscar.Bus.Bus;
 import hu.oe.nik.autonomouscar.Environment.NPC.Cyclist;
 import hu.oe.nik.autonomouscar.Environment.NPC.NPC;
 import hu.oe.nik.autonomouscar.Environment.NPC.NpcCar;
@@ -9,6 +10,7 @@ import hu.oe.nik.autonomouscar.Environment.UserCar;
 import hu.oe.nik.autonomouscar.Environment.WorldObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -33,6 +35,16 @@ public class RadarCalculator {
         calculateActualSpeed(car);
         calculateActualOffset(car);
         CalculateTypeOfNPCList();
+        writeFourNearestToBus();
+    }
+
+    private void writeFourNearestToBus() {
+        Collections.sort(calculatedObjects);
+        ArrayList<DetectedObject> temp = new ArrayList<>();
+        for(int i=0; i<4 && calculatedObjects.size()>i; i++){
+            temp.add(calculatedObjects.get(i));
+        }
+        Bus.getInstance().setFourNearestFromRadar(temp);
     }
 
     private NPCType GetType(WorldObject WO) {
