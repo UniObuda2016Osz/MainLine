@@ -1,6 +1,6 @@
-package Sensors.ultrasonic;
+package hu.oe.nik.autonomouscar.Sensors.ultrasonic;
 
-import Environment.WorldObject;
+import hu.oe.nik.autonomouscar.Environment.WorldObject;
 
 /**
  * Created by Anonimus on 2016.11.10..

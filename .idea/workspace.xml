@@ -2,120 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d370d4d9-a4cc-40ba-b0e3-89154ce86fa6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensorDemo.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/hamcrest-core-1.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/lib/junit-4.12.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/App$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/App$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/App$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/App.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/Bus$GearPosition.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/Bus.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/BusTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/AbstractLayout.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/DimensionInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/GridConstraints.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/GridLayoutManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/HorizontalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/LayoutState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/Spacer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/SupportCode.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Mitro_team/com/intellij/uiDesigner/core/VerticalInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ref/App.form" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ref/App.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/ref/Car.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/test.txt" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Bus/Bus.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Bus/Bus.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Bus/BusTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Bus/BusTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/EnergyLoss.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Dynamics/EnergyLoss.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/EnergyLossTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Dynamics/EnergyLossTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/Engine.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Dynamics/Engine.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/EngineTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Dynamics/EngineTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/Timer.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Dynamics/Timer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/TimerListener.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Dynamics/TimerListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/TimerTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Dynamics/TimerTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/VehicleDynamics.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Dynamics/VehicleDynamics.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/VehicleDynamicsDemo.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Dynamics/VehicleDynamicsDemo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/VehicleDynamicsDemoTimerListener.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Dynamics/VehicleDynamicsDemoTimerListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Dynamics/VehicleDynamicsTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Dynamics/VehicleDynamicsTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/ISensor.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/ISensor.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/NPC/Cyclist.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/NPC/Cyclist.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/NPC/IMovable.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/NPC/IMovable.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/NPC/NPC.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/NPC/NPC.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/NPC/NpcCar.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/NPC/NpcCar.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/NPC/People.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/NPC/People.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/Position.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/Position.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/RoadPaintings.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/RoadPaintings.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/Scene.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/Scene.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/UserCar.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/WorldObject.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/WorldObject.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/WorldObjectTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Environment/WorldObjectTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/XMLParserMain.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/XMLParserMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/XMLParserMainTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Environment/XMLParserMainTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/crosswalk.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/crosswalk.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/misc.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/misc.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/misc/Crosswalk.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/misc/Crosswalk.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/misc/Misc.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/misc/Misc.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/misc/Parking.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/misc/Parking.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/misc/Tree.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/misc/Tree.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/parking.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/parking.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_1.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_1.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_signs/Direction.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_signs/Direction.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_signs/ParkingSign.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_signs/ParkingSign.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_signs/Priority.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_signs/Priority.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_signs/RoadSign.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_signs/RoadSign.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_signs/Speed.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_signs/Speed.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_signs_example.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_signs_example.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_tiles/LaneAdvanced.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneAdvanced.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_tiles/LaneSimple.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneSimple.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_tiles/RoadTile.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_tiles/RoadTile.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_tiles_2_lane_advanced_example.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_tiles_2_lane_advanced_example.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_tiles_2_lane_advanced_example_2.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_tiles_2_lane_advanced_example_2.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/road_tiles_2_lane_simple_example.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/road_tiles_2_lane_simple_example.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Environment/test.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/test.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Functions/ACCMain.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/ACCMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Main.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Main.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Sensors/Camera.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Camera.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Sensors/CameraTest.java" afterPath="$PROJECT_DIR$/src/test/java/hu/oe/nik/autonomouscar/Sensors/CameraTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Sensors/Radar.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Radar.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltraSonicSensorPosition.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltraSonicSensorPosition.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/App.form" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/App.form" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/App.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/App.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/Car.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/Car.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/CarTest.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/CarTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/DisplayMain.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/DisplayMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/component/HMIPanel.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/component/HMIPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/component/HMIPanelUpdater.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/component/HMIPanelUpdater.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/instrument/CarInstrumentContainer.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/instrument/CarInstrumentContainer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/instrument/DirectionIndicatingLight.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/instrument/DirectionIndicatingLight.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/instrument/Pedal.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/instrument/Pedal.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/instrument/SteeringWheel.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/instrument/SteeringWheel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/listener/HMIKeyListener.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/listener/HMIKeyListener.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/mock/EngineMock.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/mock/EngineMock.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/resources/steeringwheel-transparent-small.png" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/resources/steeringwheel-transparent-small.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/resources/steeringwheel-transparent.png" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/resources/steeringwheel-transparent.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMI/util/HMILabel.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMI/util/HMILabel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMIMain.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMIMain.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMITest/PedalTest.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMITest/PedalTest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/HMITest/SteeringWheeltest.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/HMITest/SteeringWheeltest.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/Pedestrian.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/Pedestrian.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Visuals/road_2.xml" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/road_2.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/com/app/visual/App.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/visual/App.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ref/car.png" afterPath="$PROJECT_DIR$/src/main/resources/car.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ref/level2.png" afterPath="$PROJECT_DIR$/src/main/resources/level2.png" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/ref/pedestrian.png" afterPath="$PROJECT_DIR$/src/main/resources/pedestrian.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_all_1_3.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/DataBus/DataBus.iml" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MainLine.iml" afterPath="$PROJECT_DIR$/MainLine.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java" />
     </list>
     <ignored path="MainLine.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -132,11 +34,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ClosestWorldObjectWithDistance.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java">
+      <file leaf-file-name="UltrasonicSensor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="391">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding>
+                <element signature="e#10780#10781#0" expanded="true" />
+                <element signature="e#10816#10817#0" expanded="true" />
+                <element signature="e#10892#10893#0" expanded="true" />
+                <element signature="e#10942#10943#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClosestWorldObjectWithDistance.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+              <folding>
+                <element signature="e#314#315#0" expanded="true" />
+                <element signature="e#350#351#0" expanded="true" />
+                <element signature="e#413#414#0" expanded="true" />
+                <element signature="e#463#464#0" expanded="true" />
+                <element signature="e#498#499#0" expanded="true" />
+                <element signature="e#529#530#0" expanded="true" />
+                <element signature="e#577#578#0" expanded="true" />
+                <element signature="e#617#618#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UltraSonicSensorPosition.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltraSonicSensorPosition.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UltrasonicSensorDemo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="918">
+              <caret line="69" column="57" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="XMLParserMain.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/XMLParserMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="543">
+              <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -144,12 +100,35 @@
       </file>
     </leaf>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GradleLocalSettings">
     <option name="externalProjectsViewState">
       <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectFrameBounds">
@@ -183,6 +162,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -211,7 +193,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="DataBus" />
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -225,11 +207,97 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="DataBus" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MainLine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MainLine" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autonomouscar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MainLine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MainLine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autonomouscar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sensors" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MainLine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MainLine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="autonomouscar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Sensors" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -239,122 +307,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensorDemo.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
-  <component name="RunManager" selected="Application.UltrasonicSensorDemo">
+  <component name="RunManager" selected="Application.UltrasonicSensorDemo (1)">
     <configuration default="false" name="UltrasonicSensorDemo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -372,6 +327,26 @@
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="DataBus" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="UltrasonicSensorDemo (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="hu.oe.nik.autonomouscar.Sensors.ultrasonic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltrasonicSensorDemo" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="MainLine" />
       <envs />
       <method />
     </configuration>
@@ -619,12 +594,14 @@
       <listeners />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="Application.UltrasonicSensorDemo" />
+      <item index="1" class="java.lang.String" itemvalue="Application.UltrasonicSensorDemo (1)" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Application.UltrasonicSensorDemo" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.UltrasonicSensorDemo (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Application.UltrasonicSensorDemo" />
       </list>
     </recent_temporary>
   </component>
@@ -647,12 +624,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.4941435" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32868218" sideWeight="0.50292826" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32868218" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32868218" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -693,72 +670,85 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltraSonicSensorPosition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensorDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltraSonicSensorPosition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="72" column="19" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/Camera.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="40" column="41" selection-start-line="40" selection-start-column="41" selection-end-line="40" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensorDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
+        <state relative-caret-position="119">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltraSonicSensorPosition.java" />
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensorDemo.java" />
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensor.java" />
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltraSonicSensorPosition.java" />
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensor.java" />
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/Camera.java" />
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/UltrasonicSensorDemo.java" />
+    <entry file="file://$PROJECT_DIR$/DataBus/src/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/ClosestWorldObjectWithDistance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding>
+            <element signature="e#314#315#0" expanded="true" />
+            <element signature="e#350#351#0" expanded="true" />
+            <element signature="e#413#414#0" expanded="true" />
+            <element signature="e#463#464#0" expanded="true" />
+            <element signature="e#498#499#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#577#578#0" expanded="true" />
+            <element signature="e#617#618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#10780#10781#0" expanded="true" />
+            <element signature="e#10816#10817#0" expanded="true" />
+            <element signature="e#10892#10893#0" expanded="true" />
+            <element signature="e#10942#10943#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltraSonicSensorPosition.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="918">
+          <caret line="69" column="57" selection-start-line="69" selection-start-column="57" selection-end-line="69" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/XMLParserMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="155" column="0" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding />
         </state>
       </provider>
