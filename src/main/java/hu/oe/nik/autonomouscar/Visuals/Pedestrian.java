@@ -23,8 +23,7 @@ public class Pedestrian {
         this.endYPos=endYPos;
         xPos = startXPos;
         yPos = startYPos;
-        // TODO will not work because the image file is moved to the resources folder
-        imagePath = "./ref/pedestrian.png";
+        imagePath = "pedestrian.png";
 
         distance = Math.sqrt(Math.pow(endXPos-startXPos,2)+Math.pow(endYPos-startYPos,2));
         directionX = (endXPos-startXPos) / distance;

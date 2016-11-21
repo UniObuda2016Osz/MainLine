@@ -21,19 +21,20 @@ public class App extends JFrame implements KeyListener {
     private ImageObserver levelobs;
     private boolean jobb, bal, lent, fent;
     private Car car = new Car(130, 400);
-    private Image carimage = new ImageIcon(car.getImagePath()).getImage();
-
-    //Creating the pedestrian
-    // overview
     private Pedestrian pedestrian_1 = new Pedestrian(150, 200, 255, 200);
-    private Image pedestrianImage = new ImageIcon(pedestrian_1.getImagePath()).getImage();
+    private Image carimage ;
+    private Image pedestrianImage;
+
+
 
     private JFrame mainframe;
 
     private App() throws IOException {
-        // FIXME more elegent solution to read from the resources folder
+
         // it might return with null if no file exists with the provided name, add some checks
         backgroundImage = new ImageIcon(classLoader.getResource("level2.png")).getImage();
+        carimage = new ImageIcon(classLoader.getResource(car.getImagePath())).getImage();
+        pedestrianImage = new ImageIcon(classLoader.getResource(pedestrian_1.getImagePath())).getImage();
 
         mainframe = new JFrame();
         mainframe.addKeyListener(this);
@@ -78,10 +79,7 @@ public class App extends JFrame implements KeyListener {
         buttonPanel.add(exitButton);
         add(buttonPanel, BorderLayout.NORTH);
 
-        JTextArea center = new JTextArea("Itt lesz majd a térkép ...");
-        center.setBorder(new EmptyBorder(new Insets(10, 10, 10, 10)));
-        center.setBackground(Color.white);
-        add(center, BorderLayout.CENTER);
+
 
         setVisible(true);
         //Timer
