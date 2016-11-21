@@ -133,4 +133,28 @@ public class Bus {
         ACCMainSwitchState = false; //default main switch state value: off
     }
 
+    private boolean laneKeeping;
+
+    public boolean isLaneKeepingOn() {
+        return laneKeeping;
+    }
+
+    public void setLaneKeeping(boolean laneKeeping) {
+        this.laneKeeping = laneKeeping;
+    }
+
+    private String speedLimitValue;
+
+    public String getSpeedLimitValue() {
+        return speedLimitValue;
+    }
+
+    public void setSpeedLimitValue(String speedLimitValue) {
+        this.speedLimitValue = speedLimitValue;
+    }
+
+
+
+
+
 }

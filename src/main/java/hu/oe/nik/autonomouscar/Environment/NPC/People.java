@@ -7,15 +7,11 @@ import java.util.Arrays;
 /**
  * Created by Akos on 2016. 09. 27..
  */
-public class People extends WorldObject implements IMovable{
-
-
-    int Width = 80;
-    int Height = 80;
-    public People(int Id, int[] startPosition, double[] Transform, int Zlevel, int Opacity) {
-        super(Id, startPosition, 75, 80, Transform, Zlevel, Opacity, true);
+public class People extends NPC{
+    
+    public People(int Id, int[] startPosition, int Width, int Height, double[] Transform, int Zlevel, int Opacity, int movingDegree, int movingSpeed) {
+        super(Id, startPosition, 75, 80, Transform, Zlevel, Opacity, movingDegree, movingSpeed);
     }
-
 
     @Override
     public String toString() {
