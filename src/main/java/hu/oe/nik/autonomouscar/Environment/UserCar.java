@@ -1,6 +1,6 @@
 package hu.oe.nik.autonomouscar.Environment;
 
-import hu.oe.nik.autonomouscar.Sensors.Radar;
+import hu.oe.nik.autonomouscar.Sensors.Radar.Radar;
 
 
 
