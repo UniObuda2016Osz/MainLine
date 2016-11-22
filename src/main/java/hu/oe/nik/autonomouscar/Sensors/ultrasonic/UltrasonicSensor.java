@@ -35,7 +35,7 @@ public class UltrasonicSensor {
             case REAR_INNER_LEFT:
             case FRONT_INNER_RIGHT:
             case REAR_INNER_RIGHT:
-                DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2));
+                DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2)); //ownerCar.getWidth()/4 volt
                 return;
             case REAR_OUTER_LEFT:
             case FRONT_OUTER_LEFT:

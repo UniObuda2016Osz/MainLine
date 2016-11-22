@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1239e05d-1af1-4469-adc4-1cd7b16c847f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/NPC/People.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/NPC/People.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Crosswalk.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Crosswalk.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Parking.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Parking.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Tree.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Tree.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Direction.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Direction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/ParkingSign.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/ParkingSign.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Priority.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Priority.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Speed.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Speed.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneAdvanced.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneAdvanced.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneSimple.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneSimple.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo$UltrasonicDemoFrame.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo$UltrasonicDemoFrame.class" />
+    <list default="true" id="1239e05d-1af1-4469-adc4-1cd7b16c847f" name="Default" comment="sensors are in line">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java" />
     </list>
     <ignored path="MainLine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,11 +35,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UltrasonicSensor.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UltrasonicSensor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+            <state relative-caret-position="264">
+              <caret line="37" column="149" selection-start-line="37" selection-start-column="149" selection-end-line="37" selection-end-column="149" />
               <folding />
             </state>
           </provider>
@@ -76,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UltrasonicSensorDemo.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UltrasonicSensorDemo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="76" column="26" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
+            <state relative-caret-position="102">
+              <caret line="90" column="54" selection-start-line="90" selection-start-column="54" selection-end-line="90" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -589,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1479819213578</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="sensors are in line">
+      <created>1479819392755</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1479819392755</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -726,18 +722,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+        <state relative-caret-position="102">
+          <caret line="90" column="54" selection-start-line="90" selection-start-column="54" selection-end-line="90" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="76" column="26" selection-start-line="76" selection-start-column="26" selection-end-line="76" selection-end-column="26" />
+        <state relative-caret-position="264">
+          <caret line="37" column="149" selection-start-line="37" selection-start-column="149" selection-end-line="37" selection-end-column="149" />
           <folding />
         </state>
       </provider>
