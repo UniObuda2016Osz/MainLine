@@ -170,16 +170,14 @@ public class XMLParserMain implements ISensor {
     }
 
     private boolean XmlFileOpener() {
-        this.setFileChooser(new JFileChooser(new File(System.getProperty("user.dir") + "/DataBus/src/Environment")));
+        this.setFileChooser(new JFileChooser(new File(System.getProperty("user.dir") + "/src/main/resources")));
         int returnValue = fileChooser.showOpenDialog(fileChooser.getParent());
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            String[] parse = selectedFile.getPath().split("\\\\");
-            String path = parse[parse.length - 2] + "\\" + parse[parse.length - 1];
-            System.out.println("A feldolgozandó XML: " + parse[parse.length - 1]);
+            System.out.println("A feldolgozandó XMLs: " + selectedFile.getName());
             try {
                 factory = XMLInputFactory.newInstance();
-                setStreamReader(factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(path)));
+                setStreamReader(factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(selectedFile.getName())));
                 return true;
 
             } catch (XMLStreamException e) {
@@ -329,7 +327,7 @@ public class XMLParserMain implements ISensor {
                 getDynamicObjects().add(new Crosswalk(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
                 break;
             case "people":
-                getDynamicObjects().add(new People(getId(), getPosition(), getTransform(), getZLevel(), getOpacity())); //int Id,  startPosition, int[] Transform, int Zlevel, int Opacity)
+                getDynamicObjects().add(new People(getId(), getPosition(),80,80, getTransform(), getZLevel(), getOpacity(),0,0)); //int Id,  startPosition, int[] Transform, int Zlevel, int Opacity)
                 break;
             case "trees":
                 getDynamicObjects().add(new Tree(getId(), getPosition(), getTransform(), getZLevel(), getOpacity()));
@@ -437,7 +435,7 @@ public class XMLParserMain implements ISensor {
     private void create2LaneAdvanced(String elementType) {
         switch (elementType) {
             case "2_t_junction_l.tile":
-                        getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
+                getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionLeft));
                 break;
             case "2_t_junction_r.tile":
                 getDynamicObjects().add(new LaneAdvanced(getId(), getPosition(), 890, 1400, getTransform(), getZLevel(), getOpacity(), getRoadColor1(), getRoadColor2(), getRoadColor3(), LaneAdvanced.RoadPaintings1.valueOf(getRoadPainting1()), LaneAdvanced.RoadPaintings2.valueOf(getRoadPainting2()), LaneAdvanced.RoadPaintings3.valueOf(getRoadPainting3()), LaneAdvanced.LaneAdvancedType.TJunctionRight));
@@ -573,7 +571,8 @@ public class XMLParserMain implements ISensor {
     }
 
     public void writeOutDetectedObjects() throws XMLStreamException {
-        List<WorldObject> Detected = getDetectedObjects(3220, 4124, 3230, 4124, 3225, 4130);
+        //List<WorldObject> Detected = getDetectedObjects(3220, 4124, 3230, 4124, 3225, 4130);
+        List<WorldObject> Detected = getDetectedObjects(3175, 4065, 3274, 4065, 3225, 4165);
         System.out.println("Látott objektumok: " + Detected.size() + " db");
         for (WorldObject object :Detected)
         {

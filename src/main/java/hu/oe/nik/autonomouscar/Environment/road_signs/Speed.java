@@ -17,6 +17,10 @@ public class Speed extends RoadSign{
     public enum SpeedType { Ten, Twenty, Forty, Fifty, Seventy, Ninety, Hundred}
     SpeedType speedType;
 
+    public SpeedType getSpeedType() {
+        return speedType;
+    }
+
     @Override
     public String toString() {
         return "\n" + this.getClass().getSimpleName()+  " elem adatai:  " +
