@@ -76,7 +76,7 @@ public class UltrasonicSensorDemo {
                             Position sensorFurthestRightPosition = us[k].getFurthestVisibleRightSidePoint(sensorBasePosition);
                             java.util.List<WorldObject> detectedObjects = us[k].getAllCurrentVisibleObjects();
                             if (sensorBasePosition.getX() == x && sensorBasePosition.getY() == y) {
-                                grid.setBackground(Color.WHITE);
+                                grid.setBackground(Color.MAGENTA);
                                 grid.setText("B"+k);
                             } else if (sensorFurthestLeftPosition.getX() == x && sensorFurthestLeftPosition.getY() == y) {
                                 grid.setBackground(Color.CYAN);

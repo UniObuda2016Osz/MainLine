@@ -35,7 +35,7 @@ public class UltrasonicSensor {
             case REAR_INNER_LEFT:
             case FRONT_INNER_RIGHT:
             case REAR_INNER_RIGHT:
-                DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth()/4, 2)+ Math.pow(ownerCar.getLength()/2, 2));
+                DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2)); //ownerCar.getWidth()/4 volt
                 return;
             case REAR_OUTER_LEFT:
             case FRONT_OUTER_LEFT:
@@ -155,6 +155,9 @@ public class UltrasonicSensor {
         int x = ownerCar.getWidth();
         int y = ownerCar.getLength();
 
+        double innerMultiplier = (x / 2)/3; // a szakaszt fel kell osztani 2/3 : 1/3 arányban, így 2/3 távolság lesz a senzorok kozt
+        double outerMultiplier = x / 2;
+
         int XcarPos = ownerCar.getXCoord();
         int YcarPos = ownerCar.getYCoord();
 
@@ -163,44 +166,45 @@ public class UltrasonicSensor {
         double environmentY;
         double r = DistanceFromCenter;
 
+
         //FIXME levair: minden US-nek egy kicsit mashol kellene lenni, de ez raer kesobb
         //8 különálló szenzor OK
         switch (getPositionOnCar()) {
             case FRONT_INNER_LEFT:
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
-                return new Position((int) Math.round(environmentX - 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 4*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX - innerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + innerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
             case FRONT_INNER_RIGHT:
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
-                return new Position((int) Math.round(environmentX + 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 4*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX + innerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - innerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
 
             case FRONT_OUTER_LEFT:
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
-                return new Position((int) Math.round(environmentX - 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 8*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX - outerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + outerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
             case FRONT_OUTER_RIGHT:
                 environmentY = YcarPos + (Math.sin(Math.toRadians(carRotation)) * r);
                 environmentX = (XcarPos + Math.cos(Math.toRadians(carRotation)) * r);
-                return new Position((int) Math.round(environmentX + 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 8*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX + outerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - outerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
 
             case REAR_INNER_LEFT:
                 environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
                 environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
-                return new Position((int) Math.round(environmentX - 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 4*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX - innerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + innerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
             case REAR_INNER_RIGHT:
                 environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
                 environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
-                return new Position((int) Math.round(environmentX + 4*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 4*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX + innerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - innerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
 
             case REAR_OUTER_LEFT:
                 environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
                 environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
-                return new Position((int) Math.round(environmentX - 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + 8*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX - outerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY + outerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
             case REAR_OUTER_RIGHT:
                 environmentX = XcarPos - Math.cos(Math.toRadians(carRotation)) * r;
                 environmentY = YcarPos - Math.sin(Math.toRadians(carRotation)) * r;
-                return new Position((int) Math.round(environmentX + 8*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - 8*(Math.cos(Math.toRadians(carRotation)))));
+                return new Position((int) Math.round(environmentX + outerMultiplier*Math.sin(Math.toRadians(carRotation))), (int) Math.round(environmentY - outerMultiplier*(Math.cos(Math.toRadians(carRotation)))));
 
             default:
                 throw new RuntimeException("Unimplemented UltrasonicSensorPosition " + getPositionOnCar().name());
