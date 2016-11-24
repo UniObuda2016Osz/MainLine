@@ -3,6 +3,8 @@ package hu.oe.nik.autonomouscar.Visuals;
 import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltraSonicSensorPosition;
 import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltrasonicSensor;
 
+import java.util.HashMap;
+
 /**
  * Created by preil on 2016. 10. 05..
  */
@@ -19,17 +21,8 @@ public class Car {
     private double steering = 0;
     private double velocityX = 0;
     private double velocityY = 0;
-    private double rotation=0;
-    private UltrasonicSensor [] ultrasonicSensors;
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
+    private double rotation = 0;
+    private HashMap<UltraSonicSensorPosition, UltrasonicSensor> ultrasonicSensors;
 
     public Car(int xCord, int yCord) {
         setLength(50);
@@ -41,15 +34,23 @@ public class Car {
         this.setMove(false);
         this.setCrashed(false);
         this.setDirection(45);
-        ultrasonicSensors=new UltrasonicSensor[8];// a szenzorok az autó bal első szélétől nullától vannak sorszámozva az óra mutató járásával megegyező irányban
-        ultrasonicSensors[0] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_LEFT);
-        ultrasonicSensors[1] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_LEFT);
-        ultrasonicSensors[2] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_RIGHT);
-        ultrasonicSensors[3] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_RIGHT);
-        ultrasonicSensors[4] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_RIGHT);
-        ultrasonicSensors[5] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_RIGHT);
-        ultrasonicSensors[6] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_LEFT);
-        ultrasonicSensors[7] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_LEFT);
+        ultrasonicSensors = new HashMap<>();// a szenzorok az autó bal első szélétől nullától vannak sorszámozva az óra mutató járásával megegyező irányban
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_OUTER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_LEFT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_INNER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_LEFT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_INNER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_OUTER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_OUTER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_INNER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_INNER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_LEFT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_OUTER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_LEFT));
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public boolean isMove() {
@@ -148,7 +149,7 @@ public class Car {
         this.rotation = rotation;
     }
 
-    public void accelerateAuto(int howmuch){
+    public void accelerateAuto(int howmuch) {
         setSpeed(getSpeed() + howmuch);
         this.setMove(true);
     }
@@ -158,24 +159,26 @@ public class Car {
         setYCoord(getYCoord() + verticalMovement);
         this.setMove(true);
     }
-    public void CalcNextPosition(int elore, int hatra, int balra, int jobbra){
+
+    public void CalcNextPosition(int elore, int hatra, int balra, int jobbra) {
         // Ez még nincs kidolgozva.
     }
+
     public void RotateCar(int rotationDegree) {
         setDirection(getDirection() + rotationDegree);
     }
 
-    public void startAuto(int initialSpeed){
+    public void startAuto(int initialSpeed) {
         this.setSpeed(initialSpeed);
         this.setMove(true);
     }
 
-    public void stopAuto(){
+    public void stopAuto() {
         this.setSpeed(0);
         this.setMove(false);
     }
 
-    public void crash(){
+    public void crash() {
         this.setCrashed(true);
     }
 
