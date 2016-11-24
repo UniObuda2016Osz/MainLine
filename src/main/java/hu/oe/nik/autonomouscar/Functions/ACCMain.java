@@ -5,7 +5,6 @@ package hu.oe.nik.autonomouscar.Functions;
  */
 public class ACCMain {
 
-    private double actualSpeed;
     private double targetSpeed;
     private double timegap;
     private double acceleration;
@@ -13,18 +12,9 @@ public class ACCMain {
 
     public ACCMain(double actualSpeed){
         this.timegap = 1.0;
-        this.actualSpeed = actualSpeed;
         setTargetSpeed(actualSpeed);
         this.acceleration = 0.0;
         this.isAccOn = false;
-    }
-
-    public double getActualSpeed() {
-        return actualSpeed;
-    }
-
-    public void setActualSpeed(long actualSpeed) {
-        this.actualSpeed = actualSpeed;
     }
 
     public double getTargetSpeed(){
@@ -47,8 +37,8 @@ public class ACCMain {
     }
 
     /**
-     * If the passed parameter is above 0, this method will increase the timegap up to 2.0,
-     * if the passed parameter is below 0, this method will decrease the timegap down to 1.0.
+     * If the passed parameter is above 0, this method will increase the timegap up to 2.0 with 0.2 steps,
+     * if the passed parameter is below 0, this method will decrease the timegap down to 1.0 with 0.2 steps.
      * @param timegap
      */
     public void setTimegap(double timegap) {
@@ -64,8 +54,8 @@ public class ACCMain {
     }
 
     /**
-     * If the passed parameter is above 0, this method will increase the acceleration up to 3.5 m/s2,
-     * if the passed parameter is below 0, this method will decrease the acceleration down to -3.5 m/s2.
+     * If the passed parameter is above 0, this method will increase the acceleration up to 3.5 m/s2 with 1.0 steps,
+     * if the passed parameter is below 0, this method will decrease the acceleration down to -3.5 m/s2 with 1.0 steps.
      * @param acceleration
      */
     public void setAcceleration(double acceleration) {
@@ -91,7 +81,6 @@ public class ACCMain {
     @Override
     public String toString() {
         return "ACCMain{" +
-                "actualSpeed=" + actualSpeed +
                 ", targetSpeed=" + targetSpeed +
                 ", timegap=" + timegap +
                 ", acceleration=" + acceleration +
