@@ -1,5 +1,8 @@
 package hu.oe.nik.autonomouscar.Visuals;
 
+import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltraSonicSensorPosition;
+import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltrasonicSensor;
+
 /**
  * Created by preil on 2016. 10. 05..
  */
@@ -17,6 +20,7 @@ public class Car {
     private double velocityX = 0;
     private double velocityY = 0;
     private double rotation=0;
+    private UltrasonicSensor [] ultrasonicSensors;
 
     public String getImagePath() {
         return imagePath;
@@ -37,6 +41,15 @@ public class Car {
         this.setMove(false);
         this.setCrashed(false);
         this.setDirection(45);
+        ultrasonicSensors=new UltrasonicSensor[8];// a szenzorok az autó bal első szélétől nullától vannak sorszámozva az óra mutató járásával megegyező irányban
+        ultrasonicSensors[0] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_LEFT);
+        ultrasonicSensors[1] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_LEFT);
+        ultrasonicSensors[2] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_RIGHT);
+        ultrasonicSensors[3] = new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_RIGHT);
+        ultrasonicSensors[4] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_RIGHT);
+        ultrasonicSensors[5] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_RIGHT);
+        ultrasonicSensors[6] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_LEFT);
+        ultrasonicSensors[7] = new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_LEFT);
     }
 
     public boolean isMove() {
