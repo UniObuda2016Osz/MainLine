@@ -1,5 +1,11 @@
 package hu.oe.nik.autonomouscar.Functions;
 
+import hu.oe.nik.autonomouscar.Bus.Bus;
+import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ral2bp on 2016.09.29. and by Mitró Tamás on 2016.11.24.
  */
@@ -16,12 +22,16 @@ public class ACCMain {
     private double timegap;
     private double acceleration;
     private boolean isAccOn;
+    private Bus bus;
+    private List<DetectedObject> nearestFourObjects;
 
     private ACCMain(){
         this.targetSpeed = 0;
         this.timegap = 1.4;
         this.acceleration = 0.0;
         this.isAccOn = false;
+        this.bus = Bus.getInstance();
+        nearestFourObjects = new ArrayList<DetectedObject>();
     }
 
     public double getTargetSpeed(){
@@ -50,10 +60,12 @@ public class ACCMain {
      * @param givenTimegap
      */
     public void setTimegap(int givenTimegap) {
-        if(givenTimegap > 0 && this.timegap < 2.0){
-            this.timegap += 0.2;
-        } else if(givenTimegap < 0 && givenTimegap > 1.0){
-            this.timegap -= 0.2;
+        if(isAccOn) {
+            if (givenTimegap > 0 && this.timegap < 2.0) {
+                this.timegap += 0.2;
+            } else if (givenTimegap < 0 && givenTimegap > 1.0) {
+                this.timegap -= 0.2;
+            }
         }
     }
 
@@ -67,12 +79,14 @@ public class ACCMain {
      * @param actualAcceleration
      */
     public void setAcceleration(int actualAcceleration) {
-        if(actualAcceleration > 0 && this.acceleration < 3.5){
-            // when the car is accelerating
-            this.acceleration += 1.0;
-        } else if (actualAcceleration < 0 && this.acceleration > -3.5){
-            // when the car is slowing down
-            this.acceleration -= 1.0;
+        if(isAccOn) {
+            if (actualAcceleration > 0 && this.acceleration < 3.5) {
+                // when the car is accelerating
+                this.acceleration += 1.0;
+            } else if (actualAcceleration < 0 && this.acceleration > -3.5) {
+                // when the car is slowing down
+                this.acceleration -= 1.0;
+            }
         }
     }
 
@@ -89,11 +103,27 @@ public class ACCMain {
         if(!isAccOn){
             this.isAccOn = true;
             this.targetSpeed = actualSpeedOfCar;
+            getDetectedObjectsFromRadar();
         }
     }
 
     public void setAccOff() {
-        this.isAccOn = false;
+        if(isAccOn){
+            this.isAccOn = false;
+        }
+    }
+
+    private void getDetectedObjectsFromRadar(){
+        this.nearestFourObjects = bus.getFourNearestFromRadar();
+    }
+
+    // MUST TO IMPLEMENT!
+    private void definitionOfClosestObject(){
+        // A nearestFourObjects listából ki kell venni a legközelebbi objektumot a saját sávunkban
+        // és meg kell határozni a távolságát a saját autótól (d)
+        // A sebesség és a timegap (tau időállandó) szorzata adja meg a d-t
+        // d = targetSpeed * timegap
+        // A távolságnak megfelelően lehet állítani a timegap-et 1.0 és 2.0 között mp-ben.
     }
 
     @Override
