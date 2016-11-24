@@ -32,6 +32,11 @@
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
         </dependency>
+        <dependency>
+            <groupId>groupId</groupId>
+            <artifactId>MainLine</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

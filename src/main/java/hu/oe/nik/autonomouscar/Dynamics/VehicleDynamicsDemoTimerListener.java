@@ -13,8 +13,6 @@ public class VehicleDynamicsDemoTimerListener implements TimerListener {
     }
 
     private VehicleDynamics vehicledynamics = VehicleDynamics.GetInstance();
-    private Bus bus = Bus.getInstance();
-
     @Override
     public void OnTimerTick() {
         vehicledynamics.update();
@@ -24,5 +22,7 @@ public class VehicleDynamicsDemoTimerListener implements TimerListener {
         System.out.print("Acceleration: " + bus.getAcceleration());
         System.out.print("Speed: " + bus.getCurrentSISpeed());
         System.out.print("\n");
-    }
+    }  private Bus bus = Bus.getInstance();
+
+
 }

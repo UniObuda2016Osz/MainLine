@@ -1,6 +1,10 @@
 package hu.oe.nik.autonomouscar.Bus;
 
+import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -119,6 +123,15 @@ public class BusTest {
         assertEquals(Bus.GearPosition.NEUTRAL, bus.getGearPosition());
         bus.setGearPosition(Bus.GearPosition.DRIVE);
         assertEquals(Bus.GearPosition.DRIVE, bus.getGearPosition());
+    }
+
+    @Test
+    public void NearestFromRadarGetterReturnsSetterGivenValue(){
+        DetectedObject DO = new DetectedObject();
+        ArrayList<DetectedObject> list= new ArrayList<>();
+        list.add(DO);
+        bus.setFourNearestFromRadar(list);
+        assertEquals(bus.getFourNearestFromRadar(), list);
     }
 
     @org.junit.After
