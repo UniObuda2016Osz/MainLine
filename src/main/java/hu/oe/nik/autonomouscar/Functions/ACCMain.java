@@ -1,12 +1,7 @@
 package hu.oe.nik.autonomouscar.Functions;
 
 import hu.oe.nik.autonomouscar.Bus.Bus;
-import hu.oe.nik.autonomouscar.Dynamics.VehicleDynamics;
-import hu.oe.nik.autonomouscar.Environment.UserCar;
 import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
-import hu.oe.nik.autonomouscar.Environment.UserCarControlling;
-import org.omg.CORBA.Environment;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +24,6 @@ public class ACCMain {
     private Bus bus;
     private List<DetectedObject> nearestFourObjects;
     private float ClosestTargetDistance;
-
-
-
 
     private ACCMain(){
         this.targetSpeed = 0;
