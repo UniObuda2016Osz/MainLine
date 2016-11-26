@@ -45,7 +45,7 @@ public class Camera {
                 rightUpperCoordinatesOfFieldView[0], rightUpperCoordinatesOfFieldView[1],
                 centerCoordinatesOfCar[0], centerCoordinatesOfCar[1]);
         //Leszűrés a releváns objektumokra
-        //getRelevantObjects();
+        getRelevantObjects();
         return this.relevantList;
     }
 
