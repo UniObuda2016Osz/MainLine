@@ -1,6 +1,7 @@
 package hu.oe.nik.autonomouscar.Sensors.ultrasonic;
 
 import hu.oe.nik.autonomouscar.Environment.Position;
+import hu.oe.nik.autonomouscar.Environment.UserCar;
 import hu.oe.nik.autonomouscar.Environment.WorldObject;
 import hu.oe.nik.autonomouscar.Visuals.Car;
 
@@ -28,7 +29,7 @@ public class UltrasonicSensorDemo {
 
         //CASE1
         Position case1_carCenterPosition = new Position(50,50);
-        Car case1_car = new Car(case1_carCenterPosition.getX(), case1_carCenterPosition.getY());
+        UserCar case1_car = new UserCar(case1_carCenterPosition.getX(), case1_carCenterPosition.getY());
 
         case1_car.setRotation(0);
         UltrasonicSensor[] us = new UltrasonicSensor[8];

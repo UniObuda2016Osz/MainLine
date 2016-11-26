@@ -1,6 +1,7 @@
 package hu.oe.nik.autonomouscar.Sensors.ultrasonic;
 
 import hu.oe.nik.autonomouscar.Environment.Position;
+import hu.oe.nik.autonomouscar.Environment.UserCar;
 import hu.oe.nik.autonomouscar.Environment.WorldObject;
 import hu.oe.nik.autonomouscar.Environment.XMLParserMain;
 import hu.oe.nik.autonomouscar.Visuals.Car;
@@ -21,11 +22,11 @@ public class UltrasonicSensor {
     public static final double LEFT_SIDE_ANGLE_OF_VIEW = 180 - RIGHT_SIDE_ANGLE_OF_VIEW;
 
 
-    private Car ownerCar;
+    private UserCar ownerCar;
     private UltraSonicSensorPosition positionOnCar;
     private double DistanceFromCenter;
 
-    public UltrasonicSensor(Car ownerCar, UltraSonicSensorPosition positionOnCar) {
+    public UltrasonicSensor(UserCar ownerCar, UltraSonicSensorPosition positionOnCar) {
         this.ownerCar = ownerCar;
         this.setPositionOnCar(positionOnCar);
 
@@ -35,19 +36,19 @@ public class UltrasonicSensor {
             case REAR_INNER_LEFT:
             case FRONT_INNER_RIGHT:
             case REAR_INNER_RIGHT:
-                DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getLength()/2, 2)); //ownerCar.getWidth()/4 volt
+                DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth()/2, 2)+ Math.pow(ownerCar.getHeight()/2, 2)); //ownerCar.getWidth()/4 volt
                 return;
             case REAR_OUTER_LEFT:
             case FRONT_OUTER_LEFT:
             case REAR_OUTER_RIGHT:
             case FRONT_OUTER_RIGHT:
-                if (ownerCar.getLength() == ownerCar.getWidth()) //Akkor érvényes ha az autó szélessége és hosszúsága megegyezik
+                if (ownerCar.getHeight() == ownerCar.getWidth()) //Akkor érvényes ha az autó szélessége és hosszúsága megegyezik
                 {
                     DistanceFromCenter = Math.sqrt(2) * (ownerCar.getWidth() / 2);
                     return;
                 }
                 else {
-                    DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth() / 2, 2) + Math.pow(ownerCar.getLength() / 2, 2));
+                    DistanceFromCenter = Math.sqrt(Math.pow(ownerCar.getWidth() / 2, 2) + Math.pow(ownerCar.getHeight() / 2, 2));
                     return;
                 }
             default:
@@ -153,13 +154,13 @@ public class UltrasonicSensor {
     public Position getCurrentBasepoint() {
 
         int x = ownerCar.getWidth();
-        int y = ownerCar.getLength();
+        int y = ownerCar.getHeight();
 
         double innerMultiplier = (x / 2)/3; // a szakaszt fel kell osztani 2/3 : 1/3 arányban, így 2/3 távolság lesz a senzorok kozt
         double outerMultiplier = x / 2;
 
-        int XcarPos = ownerCar.getXCoord();
-        int YcarPos = ownerCar.getYCoord();
+        int XcarPos = ownerCar.getX();
+        int YcarPos = ownerCar.getY();
 
         double carRotation = ownerCar.getRotation();
         double environmentX;

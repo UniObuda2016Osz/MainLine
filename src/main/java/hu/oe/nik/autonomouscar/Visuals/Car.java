@@ -22,7 +22,6 @@ public class Car {
     private double velocityX = 0;
     private double velocityY = 0;
     private double rotation = 0;
-    private HashMap<UltraSonicSensorPosition, UltrasonicSensor> ultrasonicSensors;
 
     public Car(int xCord, int yCord) {
         setLength(50);
@@ -34,15 +33,6 @@ public class Car {
         this.setMove(false);
         this.setCrashed(false);
         this.setDirection(45);
-        ultrasonicSensors = new HashMap<>();// a szenzorok az autó bal első szélétől nullától vannak sorszámozva az óra mutató járásával megegyező irányban
-        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_OUTER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_LEFT));
-        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_INNER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_LEFT));
-        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_INNER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_RIGHT));
-        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_OUTER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_RIGHT));
-        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_OUTER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_RIGHT));
-        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_INNER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_RIGHT));
-        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_INNER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_LEFT));
-        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_OUTER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_LEFT));
     }
 
     public String getImagePath() {
