@@ -110,7 +110,7 @@ public class HMIPanel extends JPanel {
         if (steeringWheelImage == null)
         {
             try {
-                steeringWheelImage = ImageIO.read(getClass().getResourceAsStream("../resources/steeringwheel-transparent-small.png"));
+                steeringWheelImage = ImageIO.read(getClass().getClassLoader().getResource("steeringwheel-transparent-small.png"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
