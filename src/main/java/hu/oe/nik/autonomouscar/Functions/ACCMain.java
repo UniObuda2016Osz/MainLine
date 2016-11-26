@@ -24,11 +24,13 @@ public class ACCMain {
     private boolean isAccOn;
     private Bus bus;
     private List<DetectedObject> nearestFourObjects;
+    private float ClosestTargetDistance;
 
     private ACCMain(){
         this.targetSpeed = 0;
         this.timegap = 1.4;
         this.acceleration = 0.0;
+        this.ClosestTargetDistance=0;
         this.isAccOn = false;
         this.bus = Bus.getInstance();
         nearestFourObjects = new ArrayList<DetectedObject>();
@@ -117,13 +119,30 @@ public class ACCMain {
         this.nearestFourObjects = bus.getFourNearestFromRadar();
     }
 
-    // MUST TO IMPLEMENT!
+
     private void definitionOfClosestObject(){
-        // A nearestFourObjects listából ki kell venni a legközelebbi objektumot a saját sávunkban
-        // és meg kell határozni a távolságát a saját autótól (d)
-        // A sebesség és a timegap (tau időállandó) szorzata adja meg a d-t
-        // d = targetSpeed * timegap
-        // A távolságnak megfelelően lehet állítani a timegap-et 1.0 és 2.0 között mp-ben.
+        // kikeresem a legközelebbi objectet ami a sávomban van és megnézem milyen messze van. Ha közeledett akkor akkor növelem a Timegap-et így lassul az autó és fordítva meg gyorsulok ha
+        // előttem is gyorsult az autó és távolodik. Remélem erre gondoltunk mind. 
+
+        float Temp_actualdistancefromnearest=nearestFourObjects.get(0).getActualDistance(); //closest object distance
+        for (int i=1; i<nearestFourObjects.size();i++)
+        {
+            if (Temp_actualdistancefromnearest<nearestFourObjects.get(i).getActualDistance());
+            {
+                Temp_actualdistancefromnearest=nearestFourObjects.get(i).getActualDistance();
+            }
+        }
+
+        if ( ClosestTargetDistance < Temp_actualdistancefromnearest )
+        {
+            setTimegap(-1);
+        }
+        else
+        {
+            setTimegap(1);
+        }
+
+        ClosestTargetDistance=Temp_actualdistancefromnearest;
     }
 
     @Override
