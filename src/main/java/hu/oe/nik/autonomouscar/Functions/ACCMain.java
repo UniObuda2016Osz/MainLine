@@ -1,7 +1,11 @@
 package hu.oe.nik.autonomouscar.Functions;
 
 import hu.oe.nik.autonomouscar.Bus.Bus;
+import hu.oe.nik.autonomouscar.Dynamics.VehicleDynamics;
+import hu.oe.nik.autonomouscar.Environment.UserCar;
 import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
+import hu.oe.nik.autonomouscar.Environment.UserCarControlling;
+import org.omg.CORBA.Environment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +30,9 @@ public class ACCMain {
     private List<DetectedObject> nearestFourObjects;
     private float ClosestTargetDistance;
 
+
+
+
     private ACCMain(){
         this.targetSpeed = 0;
         this.timegap = 1.4;
@@ -39,15 +46,20 @@ public class ACCMain {
     public double getTargetSpeed(){
         return this.targetSpeed;
     }
-
+// a legnagyobb baj, hogy nem az environment car object dolgait állítja itt a fügvény hanem az osztályon belül létrezohozz változókat és semmi kapcsolat nincs itt az igazi objectel. Sehol.
     public void setTargetSpeed(double targetSpeed) {
         if(isAccOn){
+            bus.setGearPosition(Bus.GearPosition.DRIVE); // pl ez kell
             if(targetSpeed >= 30.0 && targetSpeed <= 180.0){
-                this.targetSpeed = targetSpeed;
+                //this.targetSpeed = targetSpeed;  // itt is inkább ez kéne bus.setGasPedal(100);
+                bus.setGasPedal(100);
+
             } else if (targetSpeed < 30.0) {
-                this.targetSpeed = 30.0;
+//                this.targetSpeed = 30.0;
+                bus.setGasPedal(0);
             } else {
-                this.targetSpeed = 180.0;
+                //this.targetSpeed = 180.0; ez itt mit csinál ?
+
             }
         }
     }
@@ -73,7 +85,7 @@ public class ACCMain {
 
     public double getAcceleration() {
         return acceleration;
-    }
+    } // itt is simán bus.getacceleration(); ez is már létezik
 
     /**
      * If the passed parameter is above 0, this method will increase the acceleration up to 3.5 m/s2 with 1.0 steps,
@@ -84,16 +96,19 @@ public class ACCMain {
         if(isAccOn) {
             if (actualAcceleration > 0 && this.acceleration < 3.5) {
                 // when the car is accelerating
-                this.acceleration += 1.0;
+                //this.acceleration += 1.0;
+                bus.setAcceleration(1);
             } else if (actualAcceleration < 0 && this.acceleration > -3.5) {
                 // when the car is slowing down
-                this.acceleration -= 1.0;
+                //this.acceleration -= 1.0;
+                bus.setAcceleration(-1);
             }
         }
     }
 
     public boolean isAccOn() {
         return isAccOn;
+
     }
 
     /**
@@ -101,10 +116,12 @@ public class ACCMain {
      * @param actualSpeedOfCar
      */
     // At this invoke the ACCMain exists already
+    // a Usercar osztályban már ez is és a többi acc, speed dolgok léteznek és a dynamicsban is. azokat kellene csak hívogatni semmi mást.
     public void setAccOn(double actualSpeedOfCar) {
         if(!isAccOn){
             this.isAccOn = true;
-            this.targetSpeed = actualSpeedOfCar;
+            this.targetSpeed = bus.getCurrentSISpeed();
+            bus.setGearPosition(Bus.GearPosition.DRIVE);
             getDetectedObjectsFromRadar();
         }
     }
@@ -112,6 +129,7 @@ public class ACCMain {
     public void setAccOff() {
         if(isAccOn){
             this.isAccOn = false;
+            bus.setGearPosition(Bus.GearPosition.NEUTRAL);
         }
     }
 
@@ -122,7 +140,7 @@ public class ACCMain {
 
     private void definitionOfClosestObject(){
         // kikeresem a legközelebbi objectet ami a sávomban van és megnézem milyen messze van. Ha közeledett akkor akkor növelem a Timegap-et így lassul az autó és fordítva meg gyorsulok ha
-        // előttem is gyorsult az autó és távolodik. Remélem erre gondoltunk mind. 
+        // előttem is gyorsult az autó és távolodik. Remélem erre gondoltunk mind.
 
         float Temp_actualdistancefromnearest=nearestFourObjects.get(0).getActualDistance(); //closest object distance
         for (int i=1; i<nearestFourObjects.size();i++)

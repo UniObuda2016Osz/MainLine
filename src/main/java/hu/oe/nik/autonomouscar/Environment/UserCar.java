@@ -150,6 +150,9 @@ public class UserCar {
         controlling = new UserCarControlling(this);
     }
 
+    // itt és a többi fizikai implementációnál a Dynamics/ VehicleDynamics-et kéne használni!
+    // pl   bus.setGearPosition(Bus.GearPosition.DRIVE);
+    //      bus.setGasPedal(100);
     public void AccelerateAuto(int howmuch){
         setSpeed(getSpeed() + howmuch);
         this.setMove(true);
