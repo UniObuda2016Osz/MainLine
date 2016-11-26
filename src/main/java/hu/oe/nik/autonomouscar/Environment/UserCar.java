@@ -147,6 +147,7 @@ public class UserCar {
         this.x = x;
         this.y = y;
         this.direction = direction;
+        setImagePath("car.png");
         controlling = new UserCarControlling(this);
     }
 

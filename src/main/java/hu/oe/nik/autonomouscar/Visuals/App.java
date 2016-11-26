@@ -1,5 +1,7 @@
 package hu.oe.nik.autonomouscar.Visuals;
 
+import hu.oe.nik.autonomouscar.Environment.UserCar;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -19,8 +21,8 @@ public class App extends JFrame implements KeyListener {
 
     private Image backgroundImage;
     private ImageObserver levelobs;
-    private boolean jobb, bal, lent, fent;
-    private Car car = new Car(130, 400);
+    private boolean jobb, bal, lent, fent = false;
+    private UserCar mycar = new UserCar(130,400);
     private Pedestrian pedestrian_1 = new Pedestrian(150, 200, 255, 200);
     private Image carimage ;
     private Image pedestrianImage;
@@ -33,7 +35,8 @@ public class App extends JFrame implements KeyListener {
 
         // it might return with null if no file exists with the provided name, add some checks
         backgroundImage = new ImageIcon(classLoader.getResource("level2.png")).getImage();
-        carimage = new ImageIcon(classLoader.getResource(car.getImagePath())).getImage();
+        carimage = new ImageIcon(classLoader.getResource(mycar.getImagePath())).getImage();
+        mycar.setImagePath(mycar.getImagePath());
         pedestrianImage = new ImageIcon(classLoader.getResource(pedestrian_1.getImagePath())).getImage();
 
         mainframe = new JFrame();
@@ -91,42 +94,45 @@ public class App extends JFrame implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
+
+
     }
 
     //gomb egyszeri lenyomását nem lehet vizsgálni, így flag-ekkel van megoldva
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e.getKeyCode() == java.awt.event.KeyEvent.VK_UP) {
             fent = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        } else if (e.getKeyCode() == java.awt.event.KeyEvent.VK_DOWN) {
             lent = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (e.getKeyCode() == java.awt.event.KeyEvent.VK_LEFT) {
             bal = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+        } else if (e.getKeyCode() == java.awt.event.KeyEvent.VK_RIGHT)
             jobb = true;
         if(!fent && !lent) {
-            car.setSpeed(0);
-        }else {
+            mycar.DecreaseSpeed();
+        }
+        else {
             if (fent) {
-                car.setSpeed(5);
+                mycar.AccelerateAuto(1);
                 if (jobb)
-                    car.setRotation(car.getRotation() + 2);
+                    mycar.setRotation(mycar.getRotation() + 2);
                 else if (bal)
-                    car.setRotation(car.getRotation() - 2);
+                    mycar.setRotation(mycar.getRotation() - 2);
             }
             if (lent) {
-                car.setSpeed(-5);
+                mycar.DecreaseAuto(1);
                 if (jobb)
-                    car.setRotation(car.getRotation() + 2);
+                    mycar.setRotation(mycar.getRotation() + 2);
                 else if (bal)
-                    car.setRotation(car.getRotation() - 2);
+                    mycar.setRotation(mycar.getRotation() - 2);
             }
 
-            car.setVelocityX(Math.sin(car.getRotation() * Math.PI / 180) * car.getSpeed());
-            car.setVelocityY(Math.cos(car.getRotation() * Math.PI / 180) * -car.getSpeed());
+            mycar.setVelocityX(Math.sin(mycar.getRotation() * Math.PI / 180) * mycar.getSpeed());
+            mycar.setVelocityY(Math.cos(mycar.getRotation() * Math.PI / 180) * - mycar.getSpeed());
 
-            car.setXCoord(car.getXCoord() + (int) car.getVelocityX());
-            car.setYCoord(car.getYCoord() + (int) car.getVelocityY());
+            mycar.setXCoord(mycar.getX() + (int) mycar.getVelocityX());
+            mycar.setYCoord(mycar.getY() + (int) mycar.getVelocityY());
         }
     }
 
@@ -158,8 +164,12 @@ public class App extends JFrame implements KeyListener {
                     RenderingHints.VALUE_ANTIALIAS_ON);
             AffineTransform old = g2d.getTransform();
             g2d.scale(0.75,0.75);
-            g2d.rotate(car.getRotation()*Math.PI / 180,car.getXCoord(), car.getYCoord());
-            g2d.drawImage(carimage, car.getXCoord(), car.getYCoord(), null);
+
+
+        g2d.rotate(mycar.getRotation()*Math.PI / 180,mycar.getX(), mycar.getY());
+        g2d.drawImage(carimage, mycar.getX(), mycar.getY(), null);
+
+
             g2d.setTransform(old);
 
             g2d.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
