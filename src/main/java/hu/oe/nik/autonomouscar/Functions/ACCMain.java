@@ -27,7 +27,7 @@ public class ACCMain {
 
     private ACCMain(){
         this.targetSpeed = 0;
-        this.timegap = 1.4;
+        this.timegap = 1.5;
         this.acceleration = 0.0;
         this.ClosestTargetDistance=0;
         this.isAccOn = false;
@@ -68,9 +68,9 @@ public class ACCMain {
     public void setTimegap(int givenTimegap) {
         if(isAccOn) {
             if (givenTimegap > 0 && this.timegap < 2.0) {
-                this.timegap += 0.2;
-            } else if (givenTimegap < 0 && givenTimegap > 1.0) {
-                this.timegap -= 0.2;
+                this.timegap += 0.25;
+            } else if (givenTimegap < 0 && this.timegap > 1.0) {
+                this.timegap -= 0.25;
             }
         }
     }

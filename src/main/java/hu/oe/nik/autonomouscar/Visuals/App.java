@@ -1,8 +1,11 @@
 package hu.oe.nik.autonomouscar.Visuals;
 
+import hu.oe.nik.autonomouscar.Bus.Bus;
 import hu.oe.nik.autonomouscar.Environment.UserCar;
+import hu.oe.nik.autonomouscar.Functions.ACCMain;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -27,7 +30,8 @@ public class App extends JFrame implements KeyListener {
     private Image carimage ;
     private Image pedestrianImage;
 
-
+    Bus bus = Bus.getInstance();
+    ACCMain acc = ACCMain.getInstance();
 
     private JFrame mainframe;
 
@@ -48,8 +52,8 @@ public class App extends JFrame implements KeyListener {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
         JButton startButton = new JButton("Start Simulation");
         startButton.addActionListener(new ActionListener() {
@@ -77,12 +81,66 @@ public class App extends JFrame implements KeyListener {
             }
         });
 
-        buttonPanel.add(startButton);
-        buttonPanel.add(stopButton);
-        buttonPanel.add(exitButton);
-        add(buttonPanel, BorderLayout.NORTH);
+        controlPanel.add(startButton);
+        controlPanel.add(stopButton);
+        controlPanel.add(exitButton);
+        add(controlPanel, BorderLayout.NORTH);
+        
+        //GUI elements to change the target speed of the car
+        JButton targetSpeedMinusButton = new JButton("Target sp -");
+        targetSpeedMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acc.getTargetSpeed() > 30)
+                    acc.setTargetSpeed(acc.getTargetSpeed()-30);
+            }
+        });
+        JButton targetSpeedPlusButton = new JButton("Target sp +");
+        targetSpeedPlusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acc.getTargetSpeed() < 180)
+                    acc.setTargetSpeed(acc.getTargetSpeed() + 30);
+            }
+        });
+        
+        JButton targetSpeedLabel = new JButton();
+        targetSpeedLabel.setText(String.valueOf(acc.getTargetSpeed()));
 
+        controlPanel.add(targetSpeedMinusButton);
+        controlPanel.add(targetSpeedPlusButton);
+        controlPanel.add(targetSpeedLabel);
 
+        //GUI elements to change the timegap
+        JButton timegapMinusButton = new JButton("Timegap -");
+        timegapMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTimegap(-1);
+            }
+        });
+        JButton timegapPlusButton = new JButton("Timegap +");
+        timegapMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTimegap(1);
+            }
+        });
+
+        JButton timegapLabel = new JButton();
+        timegapLabel.setText(String.valueOf(acc.getTimegap()));
+
+        controlPanel.add(timegapMinusButton);
+        controlPanel.add(timegapPlusButton);
+        controlPanel.add(timegapLabel);
+
+        //GUI elements to turn on/turn off tempomat
+        JButton tempomatSwitchButton = new JButton("Switch");
+        tempomatSwitchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acc.isAccOn())
+                    acc.setAccOff();
+                else
+                    acc.setAccOn(bus.getCurrentSISpeed());
+            }
+        });
+        controlPanel.add(tempomatSwitchButton);
 
         setVisible(true);
         //Timer
