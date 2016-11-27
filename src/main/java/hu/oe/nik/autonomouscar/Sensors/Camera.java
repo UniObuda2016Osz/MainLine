@@ -2,6 +2,8 @@ package hu.oe.nik.autonomouscar.Sensors;
 
 import hu.oe.nik.autonomouscar.Environment.WorldObject;
 import hu.oe.nik.autonomouscar.Environment.XMLParserMain;
+import hu.oe.nik.autonomouscar.Environment.road_signs.RoadSign;
+import hu.oe.nik.autonomouscar.Environment.road_tiles.RoadTile;
 import hu.oe.nik.autonomouscar.Visuals.Car;
 
 import javax.xml.stream.XMLStreamException;
@@ -43,7 +45,7 @@ public class Camera {
                 rightUpperCoordinatesOfFieldView[0], rightUpperCoordinatesOfFieldView[1],
                 centerCoordinatesOfCar[0], centerCoordinatesOfCar[1]);
         //Leszűrés a releváns objektumokra
-        //getRelevantObjects();
+        getRelevantObjects();
         return this.relevantList;
     }
 
@@ -75,9 +77,9 @@ public class Camera {
         for(WorldObject wo : fullList){
             // A full lista leszűrése utakra és táblákra.
             // a relevantList-hez hozzá kell adni a wo-t, ha a típusa tábla, vagy út.
-            //if (wo.equals(valamilyen út) || wo.equals(valamilyen tábla)){
-            //    relevantList.add(wo);
-            //}
+            if (wo instanceof RoadTile || wo instanceof RoadSign){
+                relevantList.add(wo);
+            }
         }
     }
 

@@ -1,6 +1,11 @@
 package hu.oe.nik.autonomouscar.Visuals;
 
+import hu.oe.nik.autonomouscar.Bus.Bus;
+import hu.oe.nik.autonomouscar.Environment.UserCar;
+import hu.oe.nik.autonomouscar.Functions.ACCMain;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -19,13 +24,14 @@ public class App extends JFrame implements KeyListener {
 
     private Image backgroundImage;
     private ImageObserver levelobs;
-    private boolean jobb, bal, lent, fent;
-    private Car car = new Car(130, 400);
+    private boolean jobb, bal, lent, fent = false;
+    private UserCar mycar = new UserCar(130,400);
     private Pedestrian pedestrian_1 = new Pedestrian(150, 200, 255, 200);
     private Image carimage ;
     private Image pedestrianImage;
 
-
+    Bus bus = Bus.getInstance();
+    ACCMain acc = ACCMain.getInstance();
 
     private JFrame mainframe;
 
@@ -33,7 +39,8 @@ public class App extends JFrame implements KeyListener {
 
         // it might return with null if no file exists with the provided name, add some checks
         backgroundImage = new ImageIcon(classLoader.getResource("level2.png")).getImage();
-        carimage = new ImageIcon(classLoader.getResource(car.getImagePath())).getImage();
+        carimage = new ImageIcon(classLoader.getResource(mycar.getImagePath())).getImage();
+        mycar.setImagePath(mycar.getImagePath());
         pedestrianImage = new ImageIcon(classLoader.getResource(pedestrian_1.getImagePath())).getImage();
 
         mainframe = new JFrame();
@@ -45,8 +52,8 @@ public class App extends JFrame implements KeyListener {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        JPanel controlPanel = new JPanel();
+        controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
         JButton startButton = new JButton("Start Simulation");
         startButton.addActionListener(new ActionListener() {
@@ -74,12 +81,66 @@ public class App extends JFrame implements KeyListener {
             }
         });
 
-        buttonPanel.add(startButton);
-        buttonPanel.add(stopButton);
-        buttonPanel.add(exitButton);
-        add(buttonPanel, BorderLayout.NORTH);
+        controlPanel.add(startButton);
+        controlPanel.add(stopButton);
+        controlPanel.add(exitButton);
+        add(controlPanel, BorderLayout.NORTH);
+        
+        //GUI elements to change the target speed of the car
+        JButton targetSpeedMinusButton = new JButton("Target sp -");
+        targetSpeedMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acc.getTargetSpeed() > 30)
+                    acc.setTargetSpeed(acc.getTargetSpeed()-30);
+            }
+        });
+        JButton targetSpeedPlusButton = new JButton("Target sp +");
+        targetSpeedPlusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acc.getTargetSpeed() < 180)
+                    acc.setTargetSpeed(acc.getTargetSpeed() + 30);
+            }
+        });
+        
+        JButton targetSpeedLabel = new JButton();
+        targetSpeedLabel.setText(String.valueOf(acc.getTargetSpeed()));
 
+        controlPanel.add(targetSpeedMinusButton);
+        controlPanel.add(targetSpeedPlusButton);
+        controlPanel.add(targetSpeedLabel);
 
+        //GUI elements to change the timegap
+        JButton timegapMinusButton = new JButton("Timegap -");
+        timegapMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTimegap(-1);
+            }
+        });
+        JButton timegapPlusButton = new JButton("Timegap +");
+        timegapMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTimegap(1);
+            }
+        });
+
+        JButton timegapLabel = new JButton();
+        timegapLabel.setText(String.valueOf(acc.getTimegap()));
+
+        controlPanel.add(timegapMinusButton);
+        controlPanel.add(timegapPlusButton);
+        controlPanel.add(timegapLabel);
+
+        //GUI elements to turn on/turn off tempomat
+        JButton tempomatSwitchButton = new JButton("Switch");
+        tempomatSwitchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acc.isAccOn())
+                    acc.setAccOff();
+                else
+                    acc.setAccOn(bus.getCurrentSISpeed());
+            }
+        });
+        controlPanel.add(tempomatSwitchButton);
 
         setVisible(true);
         //Timer
@@ -91,42 +152,45 @@ public class App extends JFrame implements KeyListener {
     @Override
     public void keyTyped(KeyEvent e) {
 
+
+
     }
 
     //gomb egyszeri lenyomását nem lehet vizsgálni, így flag-ekkel van megoldva
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
+        if (e.getKeyCode() == java.awt.event.KeyEvent.VK_UP) {
             fent = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+        } else if (e.getKeyCode() == java.awt.event.KeyEvent.VK_DOWN) {
             lent = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+        } else if (e.getKeyCode() == java.awt.event.KeyEvent.VK_LEFT) {
             bal = true;
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+        } else if (e.getKeyCode() == java.awt.event.KeyEvent.VK_RIGHT)
             jobb = true;
         if(!fent && !lent) {
-            car.setSpeed(0);
-        }else {
+            mycar.DecreaseSpeed();
+        }
+        else {
             if (fent) {
-                car.setSpeed(5);
+                mycar.AccelerateAuto(1);
                 if (jobb)
-                    car.setRotation(car.getRotation() + 2);
+                    mycar.setRotation(mycar.getRotation() + 2);
                 else if (bal)
-                    car.setRotation(car.getRotation() - 2);
+                    mycar.setRotation(mycar.getRotation() - 2);
             }
             if (lent) {
-                car.setSpeed(-5);
+                mycar.DecreaseAuto(1);
                 if (jobb)
-                    car.setRotation(car.getRotation() + 2);
+                    mycar.setRotation(mycar.getRotation() + 2);
                 else if (bal)
-                    car.setRotation(car.getRotation() - 2);
+                    mycar.setRotation(mycar.getRotation() - 2);
             }
 
-            car.setVelocityX(Math.sin(car.getRotation() * Math.PI / 180) * car.getSpeed());
-            car.setVelocityY(Math.cos(car.getRotation() * Math.PI / 180) * -car.getSpeed());
+            mycar.setVelocityX(Math.sin(mycar.getRotation() * Math.PI / 180) * mycar.getSpeed());
+            mycar.setVelocityY(Math.cos(mycar.getRotation() * Math.PI / 180) * - mycar.getSpeed());
 
-            car.setXCoord(car.getXCoord() + (int) car.getVelocityX());
-            car.setYCoord(car.getYCoord() + (int) car.getVelocityY());
+            mycar.setXCoord(mycar.getX() + (int) mycar.getVelocityX());
+            mycar.setYCoord(mycar.getY() + (int) mycar.getVelocityY());
         }
     }
 
@@ -158,8 +222,12 @@ public class App extends JFrame implements KeyListener {
                     RenderingHints.VALUE_ANTIALIAS_ON);
             AffineTransform old = g2d.getTransform();
             g2d.scale(0.75,0.75);
-            g2d.rotate(car.getRotation()*Math.PI / 180,car.getXCoord(), car.getYCoord());
-            g2d.drawImage(carimage, car.getXCoord(), car.getYCoord(), null);
+
+
+        g2d.rotate(mycar.getRotation()*Math.PI / 180,mycar.getX(), mycar.getY());
+        g2d.drawImage(carimage, mycar.getX(), mycar.getY(), null);
+
+
             g2d.setTransform(old);
 
             g2d.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
