@@ -1,5 +1,10 @@
 package hu.oe.nik.autonomouscar.Visuals;
 
+import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltraSonicSensorPosition;
+import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltrasonicSensor;
+
+import java.util.HashMap;
+
 /**
  * Created by preil on 2016. 10. 05..
  */
@@ -16,16 +21,7 @@ public class Car {
     private double steering = 0;
     private double velocityX = 0;
     private double velocityY = 0;
-    private double rotation=0;
-
-    public String getImagePath() {
-        return imagePath;
-    }
-
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
-
+    private double rotation = 0;
 
     public Car(int xCord, int yCord) {
         setLength(50);
@@ -37,6 +33,14 @@ public class Car {
         this.setMove(false);
         this.setCrashed(false);
         this.setDirection(45);
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public boolean isMove() {
@@ -135,7 +139,7 @@ public class Car {
         this.rotation = rotation;
     }
 
-    public void accelerateAuto(int howmuch){
+    public void accelerateAuto(int howmuch) {
         setSpeed(getSpeed() + howmuch);
         this.setMove(true);
     }
@@ -145,24 +149,26 @@ public class Car {
         setYCoord(getYCoord() + verticalMovement);
         this.setMove(true);
     }
-    public void CalcNextPosition(int elore, int hatra, int balra, int jobbra){
+
+    public void CalcNextPosition(int elore, int hatra, int balra, int jobbra) {
         // Ez még nincs kidolgozva.
     }
+
     public void RotateCar(int rotationDegree) {
         setDirection(getDirection() + rotationDegree);
     }
 
-    public void startAuto(int initialSpeed){
+    public void startAuto(int initialSpeed) {
         this.setSpeed(initialSpeed);
         this.setMove(true);
     }
 
-    public void stopAuto(){
+    public void stopAuto() {
         this.setSpeed(0);
         this.setMove(false);
     }
 
-    public void crash(){
+    public void crash() {
         this.setCrashed(true);
     }
 

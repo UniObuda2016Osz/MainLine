@@ -1,9 +1,10 @@
 package hu.oe.nik.autonomouscar.Environment;
 
-import hu.oe.nik.autonomouscar.Sensors.Radar.Radar;
+import hu.oe.nik.autonomouscar.Sensors.Radar;
+import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltraSonicSensorPosition;
+import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltrasonicSensor;
 
-
-
+import java.util.HashMap;
 
 
 /**
@@ -121,6 +122,10 @@ public class UserCar {
         y=newYposition;
     }
 
+    public HashMap<UltraSonicSensorPosition, UltrasonicSensor> getUltrasonicSensors() {
+        return this.ultrasonicSensors;
+    }
+
     private int direction;
     private String imagePath;
     private Radar radar;
@@ -135,6 +140,7 @@ public class UserCar {
     private int y;
     private int width;
     private int height;
+    private HashMap<UltraSonicSensorPosition, UltrasonicSensor> ultrasonicSensors;
     UserCarControlling controlling;
 
     public void setImagePath(String imagePath) {
@@ -148,6 +154,18 @@ public class UserCar {
         this.y = y;
         this.direction = direction;
         controlling = new UserCarControlling(this);
+    }
+
+    private void initUltrasonicSensors() {
+        ultrasonicSensors = new HashMap<>();// a szenzorok az autó bal első szélétől nullától vannak sorszámozva az óra mutató járásával megegyező irányban
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_OUTER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_LEFT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_INNER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_LEFT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_INNER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_INNER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.FRONT_OUTER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.FRONT_OUTER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_OUTER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_INNER_RIGHT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_RIGHT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_INNER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_INNER_LEFT));
+        ultrasonicSensors.put(UltraSonicSensorPosition.REAR_OUTER_LEFT, new UltrasonicSensor(this, UltraSonicSensorPosition.REAR_OUTER_LEFT));
     }
 
     public void AccelerateAuto(int howmuch){

@@ -1,8 +1,0 @@
-.idea
-target
-*.class
-*.iml
-*.iws
-*.swp
-*.jar
-/out/
