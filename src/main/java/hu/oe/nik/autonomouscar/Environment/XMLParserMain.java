@@ -8,6 +8,7 @@ import hu.oe.nik.autonomouscar.Environment.road_signs.*;
 import hu.oe.nik.autonomouscar.Environment.road_tiles.LaneAdvanced;
 import hu.oe.nik.autonomouscar.Environment.road_tiles.LaneSimple;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.stream.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -24,6 +25,16 @@ public class XMLParserMain implements ISensor {
     }
 
     private JFileChooser fileChooser;
+
+    public File getSelectedFile() {
+        return selectedFile;
+    }
+
+    public void setSelectedFile(File selectedFile) {
+        this.selectedFile = selectedFile;
+    }
+
+    File selectedFile;
     public void setFileChooser(JFileChooser fileChooser) { this.fileChooser = fileChooser; }
 
     public XMLStreamReader getStreamReader() { return StreamReader; }
@@ -162,13 +173,17 @@ public class XMLParserMain implements ISensor {
 
     private boolean XmlFileOpener() {
         this.setFileChooser(new JFileChooser(new File(System.getProperty("user.dir") + "/src/main/resources")));
+        //fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        FileNameExtensionFilter xmlFilter = new FileNameExtensionFilter("xml files (*.xml)", "xml");
+        fileChooser.addChoosableFileFilter(xmlFilter);
+        fileChooser.setFileFilter(xmlFilter);
         int returnValue = fileChooser.showOpenDialog(fileChooser.getParent());
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            System.out.println("A feldolgozandó XMLs: " + selectedFile.getName());
+            setSelectedFile(fileChooser.getSelectedFile());
+            System.out.println("A feldolgozandó XMLs: " + getSelectedFile().getName());
             try {
                 factory = XMLInputFactory.newInstance();
-                setStreamReader(factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(selectedFile.getName())));
+                setStreamReader(factory.createXMLStreamReader(ClassLoader.getSystemResourceAsStream(getSelectedFile().getName())));
                 return true;
 
             } catch (XMLStreamException e) {
