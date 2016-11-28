@@ -121,7 +121,7 @@ public class UserCar {
         y=newYposition;
     }
 
-    private int direction;
+    private int direction = 0;
     private String imagePath;
     private Radar radar;
     private double speed;
@@ -146,8 +146,9 @@ public class UserCar {
         this.height = 240;
         this.x = x;
         this.y = y;
-        this.direction = direction;
         controlling = new UserCarControlling(this);
+        setImagePath("car.png");
+
     }
 
     public void AccelerateAuto(int howmuch){
