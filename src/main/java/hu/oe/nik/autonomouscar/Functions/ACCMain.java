@@ -67,10 +67,10 @@ public class ACCMain {
      */
     public void setTimegap(int givenTimegap) {
         if(isAccOn) {
-            if (givenTimegap > 0 && this.timegap < 2.0) {
-                this.timegap += 0.25;
+            if (givenTimegap > 1 && this.timegap < 2.0) {
+                this.timegap += 0.2;
             } else if (givenTimegap < 0 && this.timegap > 1.0) {
-                this.timegap -= 0.25;
+                this.timegap -= 0.2;
             }
         }
     }
@@ -86,14 +86,14 @@ public class ACCMain {
      */
     public void setAcceleration(int actualAcceleration) {
         if(isAccOn) {
-            if (actualAcceleration > 0 && this.acceleration < 3.5) {
+            if (actualAcceleration > 0 && bus.getAcceleration() < 3.5) {
                 // when the car is accelerating
                 //this.acceleration += 1.0;
-                bus.setAcceleration(1);
-            } else if (actualAcceleration < 0 && this.acceleration > -3.5) {
+                bus.setAcceleration(bus.getAcceleration()+1);
+            } else if (actualAcceleration < 0 && bus.getAcceleration() > -3.5) {
                 // when the car is slowing down
                 //this.acceleration -= 1.0;
-                bus.setAcceleration(-1);
+                bus.setAcceleration(bus.getAcceleration()-1);
             }
         }
     }
@@ -122,6 +122,7 @@ public class ACCMain {
         if(isAccOn){
             this.isAccOn = false;
             bus.setGearPosition(Bus.GearPosition.NEUTRAL);
+            bus.setAcceleration(0);
         }
     }
 

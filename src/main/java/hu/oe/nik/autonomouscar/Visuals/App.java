@@ -19,7 +19,7 @@ import java.io.IOException;
 // ...
 
 public class App extends JFrame implements KeyListener {
-    private static Timer time;
+    private static javax.swing.Timer time;
     ClassLoader classLoader = getClass().getClassLoader();
 
     private Image backgroundImage;
@@ -34,6 +34,7 @@ public class App extends JFrame implements KeyListener {
     ACCMain acc = ACCMain.getInstance();
 
     private JFrame mainframe;
+    JPanel controlPanel;
 
     private App() throws IOException {
 
@@ -41,6 +42,9 @@ public class App extends JFrame implements KeyListener {
         backgroundImage = new ImageIcon(classLoader.getResource("level2.png")).getImage();
         carimage = new ImageIcon(classLoader.getResource(mycar.getImagePath())).getImage();
         mycar.setImagePath(mycar.getImagePath());
+        mycar.setX(285);
+        mycar.setY(800);
+
         pedestrianImage = new ImageIcon(classLoader.getResource(pedestrian_1.getImagePath())).getImage();
 
         mainframe = new JFrame();
@@ -52,7 +56,7 @@ public class App extends JFrame implements KeyListener {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-        JPanel controlPanel = new JPanel();
+        controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
 
         JButton startButton = new JButton("Start Simulation");
@@ -141,11 +145,19 @@ public class App extends JFrame implements KeyListener {
             }
         });
         controlPanel.add(tempomatSwitchButton);
-
         setVisible(true);
+
+        //controlPanel.setLocation(60,60);
+        controlPanel.setVisible(true);
+        controlPanel.setDoubleBuffered(true);
+        controlPanel.setLocation(10,10);
+        controlPanel.setVisible(true);
+        controlPanel.isForegroundSet();
+
         //Timer
         time = new Timer(40, e -> {
             repaint();
+
         });
     }
 
@@ -180,6 +192,7 @@ public class App extends JFrame implements KeyListener {
             }
             if (lent) {
                 mycar.DecreaseAuto(1);
+                mycar.setY(mycar.getY()-1);
                 if (jobb)
                     mycar.setRotation(mycar.getRotation() + 2);
                 else if (bal)
@@ -209,26 +222,28 @@ public class App extends JFrame implements KeyListener {
 
     @Override
     public void paint(Graphics g) {
-            Image buffer;
-            Graphics2D g2d;
+        Image buffer;
+        Graphics2D g2d;
 
-            buffer = createImage(backgroundImage.getWidth(levelobs),backgroundImage.getHeight(levelobs));
-            g2d = (Graphics2D)buffer.getGraphics();
+        buffer = createImage(backgroundImage.getWidth(levelobs),backgroundImage.getHeight(levelobs));
+        g2d = (Graphics2D)buffer.getGraphics();
 
-            g2d.drawImage(backgroundImage, 0, 0, null);
-            //Graphics2D g2d = (Graphics2D) g;
 
-            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                    RenderingHints.VALUE_ANTIALIAS_ON);
-            AffineTransform old = g2d.getTransform();
-            g2d.scale(0.75,0.75);
+        g2d.drawImage(backgroundImage, 0, 50,null);
+
+        //Graphics2D g2d = (Graphics2D) g;
+
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        AffineTransform old = g2d.getTransform();
+        g2d.scale(0.75,0.75);
 
 
         g2d.rotate(mycar.getRotation()*Math.PI / 180,mycar.getX(), mycar.getY());
         g2d.drawImage(carimage, mycar.getX(), mycar.getY(), null);
+        g2d.setTransform(old);
 
 
-            g2d.setTransform(old);
 
             g2d.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
             pedestrian_1.Move();
@@ -237,6 +252,11 @@ public class App extends JFrame implements KeyListener {
 
             mainframe.setVisible(true);
             mainframe.paint(g);
+controlPanel.repaint();
+
+
+
+
 
     }
 
