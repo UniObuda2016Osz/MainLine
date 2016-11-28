@@ -121,7 +121,7 @@ public class UserCar {
         y=newYposition;
     }
 
-    private int direction;
+    private int direction = 0;
     private String imagePath;
     private Radar radar;
     private double speed;
@@ -146,14 +146,11 @@ public class UserCar {
         this.height = 240;
         this.x = x;
         this.y = y;
-        this.direction = direction;
-        setImagePath("car.png");
         controlling = new UserCarControlling(this);
+        setImagePath("car.png");
+
     }
 
-    // itt és a többi fizikai implementációnál a Dynamics/ VehicleDynamics-et kéne használni!
-    // pl   bus.setGearPosition(Bus.GearPosition.DRIVE);
-    //      bus.setGasPedal(100);
     public void AccelerateAuto(int howmuch){
         setSpeed(getSpeed() + howmuch);
         this.setMove(true);

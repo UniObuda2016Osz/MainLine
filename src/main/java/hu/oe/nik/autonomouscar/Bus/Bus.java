@@ -5,8 +5,23 @@ import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
 import java.util.ArrayList;
 
 public class Bus {
+
     /*data members, getters, setters*/
     private boolean ACCMainSwitchState;
+
+    /*Singleton parts*/
+    private static Bus instance = null;
+
+    public static Bus getInstance(){
+        if(instance == null)
+            instance = new Bus();
+
+        return instance;
+    }
+
+    private Bus(){
+        ACCMainSwitchState = false; //default main switch state value: off
+    }
 
     public boolean getACCMainSwitchState() {
         return ACCMainSwitchState;
@@ -15,6 +30,7 @@ public class Bus {
     public void setACCMainSwitchState(boolean ACCMainSwitchState) {
         this.ACCMainSwitchState = ACCMainSwitchState;
     }
+
 
     private int Velocity;
 
@@ -87,7 +103,6 @@ public class Bus {
 
     private boolean directionIndicatorLeftActive;
 
-
     public boolean isDirectionIndicatorRightActive() {
         return DirectionIndicatorRightActive;
     }
@@ -97,7 +112,6 @@ public class Bus {
     }
 
     private boolean DirectionIndicatorRightActive;
-
 
     public enum GearPosition{
         PARK,REVERSE,NEUTRAL,DRIVE
@@ -123,15 +137,6 @@ public class Bus {
 
     private float currentSISpeed;
 
-    /*Singleton parts*/
-
-    public static Bus getInstance(){
-        if(instance == null)
-            instance = new Bus();
-
-        return instance;
-    }
-
     private ArrayList<DetectedObject> fourNearestFromRadar;
 
     public ArrayList<DetectedObject> getFourNearestFromRadar() {
@@ -140,13 +145,6 @@ public class Bus {
 
     public void setFourNearestFromRadar(ArrayList<DetectedObject> fourNearestFromRadar) {
         this.fourNearestFromRadar = fourNearestFromRadar;
-    }
-
-
-    private static Bus instance = null;
-
-    private Bus(){
-        ACCMainSwitchState = false; //default main switch state value: off
     }
 
     private boolean laneKeeping;
@@ -168,9 +166,5 @@ public class Bus {
     public void setSpeedLimitValue(String speedLimitValue) {
         this.speedLimitValue = speedLimitValue;
     }
-
-
-
-
 
 }
