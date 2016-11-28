@@ -27,7 +27,7 @@ public class ACCMain {
 
     private ACCMain(){
         this.targetSpeed = 0;
-        this.timegap = 1.5;
+        this.timegap = 1.4;
         this.acceleration = 0.0;
         this.ClosestTargetDistance=0;
         this.isAccOn = false;
@@ -43,15 +43,13 @@ public class ACCMain {
         if(isAccOn){
             bus.setGearPosition(Bus.GearPosition.DRIVE); // pl ez kell
             if(targetSpeed >= 30.0 && targetSpeed <= 180.0){
-                //this.targetSpeed = targetSpeed;  // itt is inkább ez kéne bus.setGasPedal(100);
-                bus.setGasPedal(100);
-
+                bus.setGasPedal((int) targetSpeed);
             } else if (targetSpeed < 30.0) {
-//                this.targetSpeed = 30.0;
-                bus.setGasPedal(0);
+                // Minimum speed
+                bus.setGasPedal(30);
             } else {
-                //this.targetSpeed = 180.0; ez itt mit csinál ?
-
+                // Maximum speed
+                bus.setGasPedal(180);
             }
         }
     }
@@ -67,7 +65,7 @@ public class ACCMain {
      */
     public void setTimegap(int givenTimegap) {
         if(isAccOn) {
-            if (givenTimegap > 1 && this.timegap < 2.0) {
+            if (givenTimegap > 0 && this.timegap < 2.0) {
                 this.timegap += 0.2;
             } else if (givenTimegap < 0 && this.timegap > 1.0) {
                 this.timegap -= 0.2;
@@ -76,7 +74,7 @@ public class ACCMain {
     }
 
     public double getAcceleration() {
-        return acceleration;
+        return bus.getAcceleration();
     } // itt is simán bus.getacceleration(); ez is már létezik
 
     /**
@@ -89,27 +87,25 @@ public class ACCMain {
             if (actualAcceleration > 0 && bus.getAcceleration() < 3.5) {
                 // when the car is accelerating
                 //this.acceleration += 1.0;
-                bus.setAcceleration(bus.getAcceleration()+1);
+                bus.setAcceleration(bus.getAcceleration() + 1);
             } else if (actualAcceleration < 0 && bus.getAcceleration() > -3.5) {
                 // when the car is slowing down
                 //this.acceleration -= 1.0;
-                bus.setAcceleration(bus.getAcceleration()-1);
+                bus.setAcceleration(bus.getAcceleration() - 1);
             }
         }
     }
 
     public boolean isAccOn() {
         return isAccOn;
-
     }
 
     /**
      * This method can be started the ACC function
-     * @param actualSpeedOfCar
      */
     // At this invoke the ACCMain exists already
     // a Usercar osztályban már ez is és a többi acc, speed dolgok léteznek és a dynamicsban is. azokat kellene csak hívogatni semmi mást.
-    public void setAccOn(double actualSpeedOfCar) {
+    public void setAccOn() {
         if(!isAccOn){
             this.isAccOn = true;
             this.targetSpeed = bus.getCurrentSISpeed();
@@ -134,16 +130,14 @@ public class ACCMain {
     private void definitionOfClosestObject(){
         // kikeresem a legközelebbi objectet ami a sávomban van és megnézem milyen messze van. Ha közeledett akkor akkor növelem a Timegap-et így lassul az autó és fordítva meg gyorsulok ha
         // előttem is gyorsult az autó és távolodik. Remélem erre gondoltunk mind.
-
-        float Temp_actualdistancefromnearest=nearestFourObjects.get(0).getActualDistance(); //closest object distance
-        for (int i=1; i<nearestFourObjects.size();i++)
+        float Temp_actualdistancefromnearest = nearestFourObjects.get(0).getActualDistance(); //closest object distance
+        for (int i=1; i < nearestFourObjects.size(); i++)
         {
-            if (Temp_actualdistancefromnearest<nearestFourObjects.get(i).getActualDistance());
+            if (Temp_actualdistancefromnearest < nearestFourObjects.get(i).getActualDistance());
             {
-                Temp_actualdistancefromnearest=nearestFourObjects.get(i).getActualDistance();
+                Temp_actualdistancefromnearest = nearestFourObjects.get(i).getActualDistance();
             }
         }
-
         if ( ClosestTargetDistance < Temp_actualdistancefromnearest )
         {
             setTimegap(-1);
@@ -152,8 +146,7 @@ public class ACCMain {
         {
             setTimegap(1);
         }
-
-        ClosestTargetDistance=Temp_actualdistancefromnearest;
+        ClosestTargetDistance = Temp_actualdistancefromnearest;
     }
 
     @Override
