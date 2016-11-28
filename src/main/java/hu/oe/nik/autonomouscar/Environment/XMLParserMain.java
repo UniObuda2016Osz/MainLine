@@ -23,12 +23,7 @@ public class XMLParserMain implements ISensor {
     private XMLParserMain() {
     }
 
-    public XMLInputFactory getXMLInputFactory() {
-        return factory;
-    }
-
     private JFileChooser fileChooser;
-    public JFileChooser getFileChooser() { return fileChooser; }
     public void setFileChooser(JFileChooser fileChooser) { this.fileChooser = fileChooser; }
 
     public XMLStreamReader getStreamReader() { return StreamReader; }
@@ -36,10 +31,7 @@ public class XMLParserMain implements ISensor {
 
     private XMLStreamReader StreamReader = null;
 
-    private void setScene(Scene scene) { this.scene = scene; }
-    private Scene scene = null;
-    public Scene getScene() { return this.scene; }
-
+    private Scene scene = Scene.getInstance();
 
     private int Id;
     private int getId() { return Id; }
@@ -118,7 +110,6 @@ public class XMLParserMain implements ISensor {
 
 
     private static XMLParserMain instance = null;
-    private JFileChooser jFileChooser = null;
 
     /*public JFileChooser setjFileChooser(JFileChooser jFileChooser) {
         this.jFileChooser = jFileChooser; }
@@ -136,7 +127,7 @@ public class XMLParserMain implements ISensor {
                 int event = getStreamReader().next();
                 switch (event) {
                     case XMLStreamConstants.START_ELEMENT:
-                        if(getScene() == null)
+                        if(scene.getColor() == null)
                             sceneCase();
                         if(getDynamicObjects()==null)
                             objectsTag();
@@ -192,11 +183,10 @@ public class XMLParserMain implements ISensor {
 
     private void sceneCase() {
         if ("Scene".equals(getStreamReader().getLocalName())) {
-            int sceneWidth = Integer.parseInt(getStreamReader().getAttributeValue("", "width"));
-            int sceneHeihgt = Integer.parseInt(getStreamReader().getAttributeValue("", "height"));
-            int sceneMeasureType = Integer.parseInt(getStreamReader().getAttributeValue("", "measureType"));
-            String sceneColor = getStreamReader().getAttributeValue("", "color");
-            setScene(new Scene(sceneWidth,sceneHeihgt,sceneMeasureType,sceneColor));
+            scene.setWidth(Integer.parseInt(getStreamReader().getAttributeValue("", "width")));
+           scene.setHeight(Integer.parseInt(getStreamReader().getAttributeValue("", "height")));
+            scene.setMeasureType(Integer.parseInt(getStreamReader().getAttributeValue("", "measureType")));
+            scene.setColor(getStreamReader().getAttributeValue("", "color"));
         }
     }
 
