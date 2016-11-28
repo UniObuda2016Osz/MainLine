@@ -3,6 +3,7 @@ package hu.oe.nik.autonomouscar.Visuals;
 import hu.oe.nik.autonomouscar.Bus.Bus;
 import hu.oe.nik.autonomouscar.Environment.UserCar;
 import hu.oe.nik.autonomouscar.Functions.ACCMain;
+import hu.oe.nik.autonomouscar.Visuals.HMI.component.HMIPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -50,7 +51,6 @@ public class App extends JFrame implements KeyListener {
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
 
         JPanel controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));

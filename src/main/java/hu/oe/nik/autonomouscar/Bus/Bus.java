@@ -77,6 +77,27 @@ public class Bus {
             this.steeringWheelAngle = 0;
     }
 
+    private int emergencyBrake;
+
+    public int getEmergencyBrake(){
+        return emergencyBrake;
+    }
+
+    public void setEmergencyBrake(int emergencyBrake){
+        if(emergencyBrake< 100 && emergencyBrake > 0)
+            this.emergencyBrake = emergencyBrake;
+        else if(emergencyBrake > 0)
+            this.emergencyBrake = 100;
+        else
+            this.emergencyBrake = 0;
+    }
+
+    private boolean emergencyBrakeSwitchedOn;
+
+    public boolean isEmergencyBrakeSwitchedOn() { return emergencyBrakeSwitchedOn; }
+
+    public void setEmergencyBrakeSwitchedOn(boolean emergencyBrakeSwitchedOn ) { this.emergencyBrakeSwitchedOn = emergencyBrakeSwitchedOn; }
+
     public boolean isDirectionIndicatorLeftActive() {
         return directionIndicatorLeftActive;
     }
