@@ -141,7 +141,7 @@ public class App extends JFrame implements KeyListener {
                 if (acc.isAccOn())
                     acc.setAccOff();
                 else
-                    acc.setAccOn(bus.getCurrentSISpeed());
+                    acc.setAccOn();
             }
         });
         controlPanel.add(tempomatSwitchButton);
