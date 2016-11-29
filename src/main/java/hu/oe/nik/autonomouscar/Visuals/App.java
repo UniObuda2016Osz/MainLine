@@ -89,62 +89,9 @@ public class App extends JFrame implements KeyListener {
         controlPanel.add(stopButton);
         controlPanel.add(exitButton);
         add(controlPanel, BorderLayout.NORTH);
-        
-        //GUI elements to change the target speed of the car
-        JButton targetSpeedMinusButton = new JButton("Target sp -");
-        targetSpeedMinusButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (acc.getTargetSpeed() > 30)
-                    acc.setTargetSpeed(acc.getTargetSpeed()-30);
-            }
-        });
-        JButton targetSpeedPlusButton = new JButton("Target sp +");
-        targetSpeedPlusButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (acc.getTargetSpeed() < 180)
-                    acc.setTargetSpeed(acc.getTargetSpeed() + 30);
-            }
-        });
-        
-        JButton targetSpeedLabel = new JButton();
-        targetSpeedLabel.setText(String.valueOf(acc.getTargetSpeed()));
 
-        controlPanel.add(targetSpeedMinusButton);
-        controlPanel.add(targetSpeedPlusButton);
-        controlPanel.add(targetSpeedLabel);
+        AddControlPanel(controlPanel);
 
-        //GUI elements to change the timegap
-        JButton timegapMinusButton = new JButton("Timegap -");
-        timegapMinusButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                acc.setTimegap(-1);
-            }
-        });
-        JButton timegapPlusButton = new JButton("Timegap +");
-        timegapMinusButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                acc.setTimegap(1);
-            }
-        });
-
-        JButton timegapLabel = new JButton();
-        timegapLabel.setText(String.valueOf(acc.getTimegap()));
-
-        controlPanel.add(timegapMinusButton);
-        controlPanel.add(timegapPlusButton);
-        controlPanel.add(timegapLabel);
-
-        //GUI elements to turn on/turn off tempomat
-        JButton tempomatSwitchButton = new JButton("Switch");
-        tempomatSwitchButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (acc.isAccOn())
-                    acc.setAccOff();
-                else
-                    acc.setAccOn();
-            }
-        });
-        controlPanel.add(tempomatSwitchButton);
         setVisible(true);
 
         //controlPanel.setLocation(60,60);
@@ -253,11 +200,80 @@ public class App extends JFrame implements KeyListener {
             mainframe.setVisible(true);
             mainframe.paint(g);
 controlPanel.repaint();
+    }
 
+    private void AddControlPanel(JPanel controlPanel) {
 
+        //GUI elements to change the target speed of the car
+        JLabel targetSpeedLabel = new JLabel();
+        targetSpeedLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        targetSpeedLabel.setPreferredSize(new Dimension(40,25));
+        targetSpeedLabel.setText("Off");
 
+        JButton targetSpeedMinusButton = new JButton("Target sp -");
+        targetSpeedMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTargetSpeed(false);
+                targetSpeedLabel.setText(String.valueOf(acc.getTargetSpeed()));
+            }
+        });
+        JButton targetSpeedPlusButton = new JButton("Target sp +");
+        targetSpeedPlusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTargetSpeed(true);
+                targetSpeedLabel.setText(String.valueOf(acc.getTargetSpeed()));
+            }
+        });
 
+        //GUI elements to change the timegap
+        JLabel timegapLabel = new JLabel();
+        timegapLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        timegapLabel.setPreferredSize(new Dimension(30,25));
+        timegapLabel.setText("Off");
 
+        JButton timegapMinusButton = new JButton("Timegap -");
+        timegapMinusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTimegap(false);
+                timegapLabel.setText(String.valueOf(acc.getTimegap()));
+            }
+        });
+        JButton timegapPlusButton = new JButton("Timegap +");
+        timegapPlusButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                acc.setTimegap(true);
+                timegapLabel.setText(String.valueOf(acc.getTimegap()));
+            }
+        });
+
+        //GUI elements to turn on/turn off tempomat
+        JButton tempomatSwitchButton = new JButton("Switch");
+        tempomatSwitchButton.setBackground(Color.red);
+        tempomatSwitchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (acc.isAccOn()) {
+                    acc.setAccOff();
+                    tempomatSwitchButton.setBackground(Color.red);
+                    timegapLabel.setText("Off");
+                    targetSpeedLabel.setText("Off");
+                } else {
+                    acc.setAccOn();
+                    tempomatSwitchButton.setBackground(Color.green);
+                    timegapLabel.setText(String.valueOf(acc.getTimegap()));
+                    targetSpeedLabel.setText(String.valueOf(acc.getTargetSpeed()));
+                }
+            }
+        });
+
+        controlPanel.add(targetSpeedMinusButton);
+        controlPanel.add(targetSpeedPlusButton);
+        controlPanel.add(targetSpeedLabel);
+
+        controlPanel.add(timegapMinusButton);
+        controlPanel.add(timegapPlusButton);
+        controlPanel.add(timegapLabel);
+
+        controlPanel.add(tempomatSwitchButton);
     }
 
     public static void main(String[] args) throws IOException {
