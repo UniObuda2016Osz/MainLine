@@ -14,8 +14,6 @@ public class AutomaticEmergencyBrake {
     public AutomaticEmergencyBrake(UserCar ownerCar) {
         this.ownerCar = ownerCar;
         turnedOn = false;
-
-        listen();
     }
 
     public void turnOn() {
@@ -26,19 +24,18 @@ public class AutomaticEmergencyBrake {
         this.turnedOn = false;
     }
 
-    private void listen() {
-        while (true) {
+    /**
+     * This is the MAIN function in AEB module.
+     * This function should be called as many times as possible
+     * (eg. in an infinite loop)
+     */
+    public void run() {
+        if (turnedOn) {
 
-            if (turnedOn == true) {
-                watchObjects();
-            } else {
-                //do nothing
-            }
+            //TODO: implement AEB
 
+        } else {
+            //do nothing, because AEB is turned off
         }
-    }
-
-    private void watchObjects() {
-        //TODO: get the camera and do action if needed
     }
 }
