@@ -122,6 +122,7 @@ public class UserCar {
         y=newYposition;
     }
 
+    private int direction = 0;
     public HashMap<UltraSonicSensorPosition, UltrasonicSensor> getUltrasonicSensors() {
         return this.ultrasonicSensors;
     }
@@ -152,8 +153,9 @@ public class UserCar {
         this.height = 240;
         this.x = x;
         this.y = y;
-        this.direction = direction;
         controlling = new UserCarControlling(this);
+        setImagePath("car.png");
+
     }
 
     private void initUltrasonicSensors() {
