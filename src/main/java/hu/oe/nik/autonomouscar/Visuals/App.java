@@ -3,7 +3,6 @@ package hu.oe.nik.autonomouscar.Visuals;
 import hu.oe.nik.autonomouscar.Bus.Bus;
 import hu.oe.nik.autonomouscar.Environment.UserCar;
 import hu.oe.nik.autonomouscar.Functions.ACCMain;
-import hu.oe.nik.autonomouscar.Visuals.HMI.component.HMIPanel;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -56,7 +55,6 @@ public class App extends JFrame implements KeyListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        JPanel controlPanel = new JPanel();
 
         controlPanel = new JPanel();
         controlPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
@@ -91,7 +89,7 @@ public class App extends JFrame implements KeyListener {
         controlPanel.add(stopButton);
         controlPanel.add(exitButton);
         add(controlPanel, BorderLayout.NORTH);
-        
+
         //GUI elements to change the target speed of the car
         JButton targetSpeedMinusButton = new JButton("Target sp -");
         targetSpeedMinusButton.addActionListener(new ActionListener() {
@@ -107,7 +105,7 @@ public class App extends JFrame implements KeyListener {
                     acc.setTargetSpeed(acc.getTargetSpeed() + 30);
             }
         });
-        
+
         JButton targetSpeedLabel = new JButton();
         targetSpeedLabel.setText(String.valueOf(acc.getTargetSpeed()));
 
@@ -247,14 +245,14 @@ public class App extends JFrame implements KeyListener {
 
 
 
-            g2d.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
-            pedestrian_1.Move();
+        g2d.drawImage(pedestrianImage, (int) pedestrian_1.getXPos(), (int) pedestrian_1.getYPos(), 30, 45, null);
+        pedestrian_1.Move();
 
-            g.drawImage(buffer, 0, 0, null);
+        g.drawImage(buffer, 0, 0, null);
 
-            mainframe.setVisible(true);
-            mainframe.paint(g);
-controlPanel.repaint();
+        mainframe.setVisible(true);
+        mainframe.paint(g);
+        controlPanel.repaint();
 
 
 
@@ -272,5 +270,3 @@ controlPanel.repaint();
         System.out.println(relevantObjects.get(0));*/
     }
 }
-
-
