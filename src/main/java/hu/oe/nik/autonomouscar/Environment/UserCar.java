@@ -1,5 +1,6 @@
 package hu.oe.nik.autonomouscar.Environment;
 
+import hu.oe.nik.autonomouscar.Sensors.Camera;
 import hu.oe.nik.autonomouscar.Sensors.Radar.Radar;
 import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltraSonicSensorPosition;
 import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltrasonicSensor;
@@ -129,6 +130,7 @@ public class UserCar {
     private int direction = 0;
     private String imagePath;
     private Radar radar;
+    private Camera camera;
     private double speed;
     private boolean isMove;
     private boolean isCrashed;
@@ -154,7 +156,10 @@ public class UserCar {
         this.y = y;
         controlling = new UserCarControlling(this);
         setImagePath("car.png");
+
         initUltrasonicSensors();
+        radar = new Radar(this);
+        //camera = new Camera(this);
     }
 
     private void initUltrasonicSensors() {
