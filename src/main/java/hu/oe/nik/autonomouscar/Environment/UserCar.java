@@ -122,12 +122,11 @@ public class UserCar {
         y=newYposition;
     }
 
-    private int direction = 0;
     public HashMap<UltraSonicSensorPosition, UltrasonicSensor> getUltrasonicSensors() {
         return this.ultrasonicSensors;
     }
 
-    private int direction;
+    private int direction = 0;
     private String imagePath;
     private Radar radar;
     private double speed;
@@ -155,7 +154,7 @@ public class UserCar {
         this.y = y;
         controlling = new UserCarControlling(this);
         setImagePath("car.png");
-
+        initUltrasonicSensors();
     }
 
     private void initUltrasonicSensors() {
