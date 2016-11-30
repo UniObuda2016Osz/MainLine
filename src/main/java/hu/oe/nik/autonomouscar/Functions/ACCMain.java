@@ -136,7 +136,7 @@ public class ACCMain {
     }
 
 
-    private void definitionOfClosestObject(){
+    public void definitionOfClosestObject(){
         // kikeresem a legközelebbi objectet ami a sávomban van és megnézem milyen messze van. Ha közeledett akkor akkor növelem a Timegap-et így lassul az autó és fordítva meg gyorsulok ha
         // előttem is gyorsult az autó és távolodik. Remélem erre gondoltunk mind.
         float Temp_actualdistancefromnearest = nearestFourObjects.get(0).getActualDistance(); //closest object distance
