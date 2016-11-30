@@ -4,6 +4,7 @@ import hu.oe.nik.autonomouscar.Dynamics.VehicleDynamics;
 import hu.oe.nik.autonomouscar.Environment.WorldObject;
 import hu.oe.nik.autonomouscar.Environment.XMLParserMain;
 import hu.oe.nik.autonomouscar.Sensors.Camera;
+import hu.oe.nik.autonomouscar.Sensors.Radar.Radar;
 import hu.oe.nik.autonomouscar.Visuals.Car;
 
 import javax.xml.stream.XMLStreamException;
@@ -33,6 +34,7 @@ public class Main {
         xmlParser.writeOutDetectedObjects();
         Car car = new Car(3200,4190);
         Camera cam = new Camera(car);
+
         System.out.println(cam.getEnvironmentRelevantObjects());
         System.out.println(cam.getEnvironmentRelevantObjects().size());
 
