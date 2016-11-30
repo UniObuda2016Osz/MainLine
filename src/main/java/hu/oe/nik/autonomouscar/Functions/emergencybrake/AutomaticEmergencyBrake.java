@@ -94,7 +94,7 @@ public class AutomaticEmergencyBrake {
         double realSpeed = convertToMeterPerSec(ownerCar.getSpeed() - object.getActualSpeed());//sebességkülönbség
         double timeUntilImpact = object.getActualDistance() / realSpeed; // sec = meter / (m/s) -ütközésig az idő
 
-        double timeToZeroSpeed = realSpeed / 8; // sec = (m/s) / (m/s^2)
+        double timeToZeroSpeed = realSpeed / 4.5; // sec = (m/s) / (m/s^2)
         // sebességkülönbség nullára csökkenéséhez az idő vészfékezés mellett
         // Deceleration must be > 4.5 m/s2, but below 10 m/s2
 
@@ -102,6 +102,22 @@ public class AutomaticEmergencyBrake {
             return true;
         else
             return false;
+    }
+
+    private boolean visualWarning(DetectedObject object) {
+        //reaction time >2.0s
+
+        double realSpeed = convertToMeterPerSec(ownerCar.getSpeed() - object.getActualSpeed());
+        double timeUntilImpact = object.getActualDistance() / realSpeed;
+
+        double timeToZeroSpeed = realSpeed / 4.5;
+
+        if (timeToZeroSpeed < timeUntilImpact + 2){
+            return true;
+        }
+        else
+            return false;
+
     }
 
     private double convertToMeterPerSec(double kmPerHour) {
