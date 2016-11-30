@@ -26,8 +26,8 @@ public class ACCMain {
     private float ClosestTargetDistance;
 
     private ACCMain(){
-        this.targetSpeed = 0;
-        this.timegap = 1.4;
+        this.targetSpeed = 30;
+        this.timegap = 1.5;
         this.acceleration = 0.0;
         this.ClosestTargetDistance=0;
         this.isAccOn = false;
@@ -36,22 +36,29 @@ public class ACCMain {
     }
 
     public double getTargetSpeed(){
-        return this.targetSpeed;
+        return targetSpeed;
     }
 // a legnagyobb baj, hogy nem az environment car object dolgait állítja itt a fügvény hanem az osztályon belül létrezohozz változókat és semmi kapcsolat nincs itt az igazi objectel. Sehol.
-    public void setTargetSpeed(double targetSpeed) {
-        if(isAccOn){
+    public void setTargetSpeed(boolean increase) {
+        if (isAccOn) {
             bus.setGearPosition(Bus.GearPosition.DRIVE); // pl ez kell
-            if(targetSpeed >= 30.0 && targetSpeed <= 180.0){
-                bus.setGasPedal((int) targetSpeed);
-            } else if (targetSpeed < 30.0) {
-                // Minimum speed
-                bus.setGasPedal(30);
-            } else {
-                // Maximum speed
-                bus.setGasPedal(180);
-            }
+            if (targetSpeed > 30 && !increase)
+                targetSpeed-=30;
+            else if (targetSpeed < 180 && increase)
+                targetSpeed+=30;
+            bus.setGasPedal((int)targetSpeed);
         }
+        /*
+        if(targetSpeed >= 30.0 && targetSpeed <= 180.0){
+            bus.setGasPedal((int) targetSpeed);
+        } else if (targetSpeed < 30.0) {
+            // Minimum speed
+            bus.setGasPedal(30);
+        } else {
+            // Maximum speed
+            bus.setGasPedal(180);
+        }
+        */
     }
 
     public double getTimegap() {
@@ -59,16 +66,16 @@ public class ACCMain {
     }
 
     /**
-     * If the passed parameter is above 0, this method will increase the timegap up to 2.0 with 0.2 steps,
-     * if the passed parameter is below 0, this method will decrease the timegap down to 1.0 with 0.2 steps.
-     * @param givenTimegap
+     * If the passed parameter is true, this method will increase the timegap up to 2.0 with 0.25 steps,
+     * if the passed parameter is false, this method will decrease the timegap down to 1.0 with 0.25 steps.
+     * @param increase
      */
-    public void setTimegap(int givenTimegap) {
+    public void setTimegap(boolean increase) { //int givenTimegap) {
         if(isAccOn) {
-            if (givenTimegap > 0 && this.timegap < 2.0) {
-                this.timegap += 0.2;
-            } else if (givenTimegap < 0 && this.timegap > 1.0) {
-                this.timegap -= 0.2;
+            if (increase && timegap < 2.0) {
+                timegap += 0.25;
+            } else if (!increase && timegap > 1.0) {
+                timegap -= 0.25;
             }
         }
     }
@@ -108,7 +115,9 @@ public class ACCMain {
     public void setAccOn() {
         if(!isAccOn){
             this.isAccOn = true;
-            this.targetSpeed = bus.getCurrentSISpeed();
+            //this.targetSpeed = bus.getCurrentSISpeed();
+            targetSpeed=30;
+            timegap=1.5;
             bus.setGearPosition(Bus.GearPosition.DRIVE);
             getDetectedObjectsFromRadar();
         }
@@ -127,7 +136,7 @@ public class ACCMain {
     }
 
 
-    private void definitionOfClosestObject(){
+    public void definitionOfClosestObject(){
         // kikeresem a legközelebbi objectet ami a sávomban van és megnézem milyen messze van. Ha közeledett akkor akkor növelem a Timegap-et így lassul az autó és fordítva meg gyorsulok ha
         // előttem is gyorsult az autó és távolodik. Remélem erre gondoltunk mind.
         float Temp_actualdistancefromnearest = nearestFourObjects.get(0).getActualDistance(); //closest object distance
@@ -140,11 +149,11 @@ public class ACCMain {
         }
         if ( ClosestTargetDistance < Temp_actualdistancefromnearest )
         {
-            setTimegap(-1);
+            setTimegap(false);
         }
         else
         {
-            setTimegap(1);
+            setTimegap(true);
         }
         ClosestTargetDistance = Temp_actualdistancefromnearest;
     }
