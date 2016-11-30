@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1239e05d-1af1-4469-adc4-1cd7b16c847f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrakeDemo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MainLine.iws" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="UserCar.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="151" column="11" selection-start-line="151" selection-start-column="11" selection-end-line="151" selection-end-column="11" />
+            <state relative-caret-position="311">
+              <caret line="162" column="5" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -111,8 +110,8 @@
       <file leaf-file-name="ACCMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/ACCMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1925">
-              <caret line="84" column="19" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="19" />
+            <state relative-caret-position="2250">
+              <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -1065,7 +1064,21 @@
       <option name="project" value="LOCAL" />
       <updated>1480512601645</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="preparing AEB demo">
+      <created>1480536121554</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1480536121554</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Merge remote-tracking branch 'remotes/origin/MitroTeamSp3' into FJKKL&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/hu/oe/nik/autonomouscar/Visuals/App.java&#10;">
+      <created>1480536233150</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1480536233150</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1124,7 +1137,9 @@
     <MESSAGE value="Emergency brake basic" />
     <MESSAGE value="Visual warning" />
     <MESSAGE value="Visual warning + 4.5" />
-    <option name="LAST_COMMIT_MESSAGE" value="Visual warning + 4.5" />
+    <MESSAGE value="preparing AEB demo" />
+    <MESSAGE value="Merge remote-tracking branch 'remotes/origin/MitroTeamSp3' into FJKKL&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/hu/oe/nik/autonomouscar/Visuals/App.java&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'remotes/origin/MitroTeamSp3' into FJKKL&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/hu/oe/nik/autonomouscar/Visuals/App.java&#10;" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1532,8 +1547,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/ACCMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1925">
-          <caret line="84" column="19" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="19" />
+        <state relative-caret-position="2250">
+          <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1599,8 +1614,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="151" column="11" selection-start-line="151" selection-start-column="11" selection-end-line="151" selection-end-column="11" />
+        <state relative-caret-position="311">
+          <caret line="162" column="5" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
           <folding />
         </state>
       </provider>
