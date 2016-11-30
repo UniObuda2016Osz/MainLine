@@ -8,11 +8,10 @@ import sun.security.jca.GetInstance;
  * Created by csegenyr on 2016.11.30..
  */
 public class ParkingPilot {
-    private final float ParkingSpeed = 5;
-
     Bus bus;
-    Timer timer;
-    private boolean SwitchState = false;
+    private final float ParkingSpeed = 5;
+    private boolean SwitchState;
+
 
     public void GetSwitchState(){
         SwitchState = bus.getParkingPilotSwitchState();
@@ -33,8 +32,8 @@ public class ParkingPilot {
     public ParkingPilot(){
         bus = Bus.getInstance();
         GetSwitchState();
-        if (bus.getCurrentSISpeed() < 30 /*& CheckFreeSpace()*/){
-           //Parking();
+        if (bus.getCurrentSISpeed() < 30){
+          //valami terület = CheckFreeSpace();
 
         }
 
