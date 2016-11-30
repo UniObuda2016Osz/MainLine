@@ -46,7 +46,7 @@ public class AutomaticEmergencyBrake {
         }
     }
 
-    private boolean mustBreake(){
+    private boolean mustBrake(){
 
         double realSpeed = convertToMeterPerSec(ownerCar.getSpeed() - detectedObject.getActualSpeed());
         double timeUntilImpact = detectedObject.getActualDistance() / realSpeed; // sec = meter / (m/s)
