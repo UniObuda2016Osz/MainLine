@@ -101,8 +101,8 @@ public class ParkingPilot {
     }
     public float GetDistanceToPark(UserCar car) throws XMLStreamException{
         HashMap<UltraSonicSensorPosition, UltrasonicSensor> sensors = car.getUltrasonicSensors();
-        if(sensors.get(UltraSonicSensorPosition.FRONT_OUTER_RIGHT).getClosestWorldObjects().getClosestObject()!=null){
-            firstsenzorfound = sensors.get(UltraSonicSensorPosition.FRONT_OUTER_RIGHT).getClosestWorldObjects().getClosestObject();
+        if(sensors.get(UltraSonicSensorPosition.FRONT_INNER_RIGHT).getClosestWorldObjects().getClosestObject()!=null){
+            firstsenzorfound = sensors.get(UltraSonicSensorPosition.FRONT_INNER_RIGHT).getClosestWorldObjects().getClosestObject();
         }
         int[] coord =  {firstsenzorfound.getCenterPoint()[0]-car.getX(), firstsenzorfound.getCenterPoint()[1]-car.getY()};
         return (float) Math.sqrt(coord[0] * coord[0] + coord[1] * coord[1]);
