@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1239e05d-1af1-4469-adc4-1cd7b16c847f" name="Default" comment="Visual warning">
+    <list default="true" id="1239e05d-1af1-4469-adc4-1cd7b16c847f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java" />
     </list>
@@ -28,8 +28,8 @@
       <file leaf-file-name="AutomaticEmergencyBrake.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="96" column="48" selection-start-line="96" selection-start-column="48" selection-end-line="96" selection-end-column="48" />
+            <state relative-caret-position="214">
+              <caret line="109" column="47" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -1020,7 +1020,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480511703551</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Visual warning + 4.5">
+      <created>1480512451959</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1480512451959</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1078,7 +1085,8 @@
     <MESSAGE value="Merge: Team Mitro fixed an error" />
     <MESSAGE value="Emergency brake basic" />
     <MESSAGE value="Visual warning" />
-    <option name="LAST_COMMIT_MESSAGE" value="Visual warning" />
+    <MESSAGE value="Visual warning + 4.5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Visual warning + 4.5" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1613,8 +1621,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="96" column="48" selection-start-line="96" selection-start-column="48" selection-end-line="96" selection-end-column="48" />
+        <state relative-caret-position="214">
+          <caret line="109" column="47" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
           <folding />
         </state>
       </provider>

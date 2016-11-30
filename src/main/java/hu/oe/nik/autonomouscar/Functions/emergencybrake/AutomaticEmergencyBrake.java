@@ -112,7 +112,7 @@ public class AutomaticEmergencyBrake {
 
         double timeToZeroSpeed = realSpeed / 4.5;
 
-        if (timeToZeroSpeed < timeUntilImpact + 2){
+        if (timeUntilImpact - timeToZeroSpeed > 2){
             return true;
         }
         else
