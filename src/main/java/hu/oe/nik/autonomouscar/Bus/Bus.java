@@ -16,6 +16,17 @@ public class Bus {
         this.ACCMainSwitchState = ACCMainSwitchState;
     }
 
+    private boolean ParkingPilotSwitchState;
+
+    public boolean getParkingPilotSwitchState() {
+        return ParkingPilotSwitchState;
+    }
+
+    public void setParkingPilotSwitchState(boolean ParkingPilotSwitchState) {
+        this.ParkingPilotSwitchState = ParkingPilotSwitchState;
+    }
+
+
     private int Velocity;
 
     public int getVelocity() {
