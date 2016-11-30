@@ -1,26 +1,20 @@
 package hu.oe.nik.autonomouscar.Functions;
 
 import hu.oe.nik.autonomouscar.Bus.Bus;
-import hu.oe.nik.autonomouscar.Environment.WorldObject;
 import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
-import hu.oe.nik.autonomouscar.Visuals.App;
+import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import hu.oe.nik.autonomouscar.Functions.ACCMain;
-import junit.framework.Test;
-import org.junit.Assert;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 
 
 
 public class ACCMainTest extends TestCase {
     ACCMain acc = ACCMain.getInstance();
-    ArrayList<DetectedObject> list= new ArrayList<>();
+    ArrayList<DetectedObject> list= new ArrayList<DetectedObject>();
     Bus bus = Bus.getInstance();
+
     public void setUp() throws Exception {
         super.setUp();
         DetectedObject DO = new DetectedObject();
@@ -31,7 +25,6 @@ public class ACCMainTest extends TestCase {
         bus.setCurrentSISpeed(100);
         bus.setAcceleration(2);
         acc.setAccOn();
-
     }
     public void tearDown() throws Exception {
         super.tearDown();
