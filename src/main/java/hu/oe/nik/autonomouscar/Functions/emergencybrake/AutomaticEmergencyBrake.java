@@ -112,7 +112,8 @@ public class AutomaticEmergencyBrake {
 
         double timeToZeroSpeed = realSpeed / 4.5;
 
-        if (timeUntilImpact - timeToZeroSpeed > 2){
+        // ha a veszfekezesig 4-2 mp akkor Warning kivillan
+        if (timeUntilImpact - timeToZeroSpeed > 2 && timeUntilImpact - timeToZeroSpeed < 4){
             return true;
         }
         else
