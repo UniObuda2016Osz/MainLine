@@ -2,11 +2,9 @@ package hu.oe.nik.autonomouscar.Functions.emergencybrake;
 
 import hu.oe.nik.autonomouscar.Bus.Bus;
 import hu.oe.nik.autonomouscar.Environment.UserCar;
-import hu.oe.nik.autonomouscar.Environment.WorldObject;
 import hu.oe.nik.autonomouscar.Sensors.Radar.DetectedObject;
-import hu.oe.nik.autonomouscar.Sensors.Radar.Radar;
+import hu.oe.nik.autonomouscar.Sensors.Radar.RadarCalculator;
 
-import java.sql.Time;
 import java.util.ArrayList;
 
 /**
@@ -47,20 +45,19 @@ public class AutomaticEmergencyBrake {
     public void run() {
         if (turnedOn) {
             if (braking)
-                Brake();
+                brake();
             else
                 watchObjects();
         }
-
     }
 
     private void watchObjects() {
         ownerCar.getRadar().RadarMain();
-        ArrayList<DetectedObject> objectsbeforethecar = Bus.getInstance().getFourNearestFromRadar();
-        for (DetectedObject object : objectsbeforethecar) {
+        ArrayList<DetectedObject> objectsInFrontOfTheCar = Bus.getInstance().getFourNearestFromRadar();
+        for (DetectedObject object : objectsInFrontOfTheCar) {
 
 
-            if (object.getNpctype().name() == "NpcCar") {
+            if (object.getNpctype() == RadarCalculator.NPCType.Car) {
                 if (ownerCar.getSpeed() < 50 /*&& crossing Car*/) {
 
                 } else if (ownerCar.getSpeed() < 100 /*&& cutting Car*/) {
@@ -69,12 +66,12 @@ public class AutomaticEmergencyBrake {
                 //else if( /*&& Veszfekezo Car*/  ){
 
                 //}
-            } else if (ownerCar.getSpeed() < 50 && (object.getNpctype().name() == "People" || object.getNpctype().name() == "Cyclist"))//does not hit: pedestrian,cyclist, crossing car
+            } else if (ownerCar.getSpeed() < 50 && (object.getNpctype() == RadarCalculator.NPCType.Pedestrian || object.getNpctype() == RadarCalculator.NPCType.Cyclist))//does not hit: pedestrian,cyclist, crossing car
             {
                 if (visualWarning(object)) {
                     showWarning();
                     if (mustBrake(object))
-                        Brake();
+                        brake();
                 }
             }
 
@@ -83,7 +80,7 @@ public class AutomaticEmergencyBrake {
 
     }
 
-    private void Brake() {
+    private void brake() {
         //user gázadás elvétele
         Bus.getInstance().setAcceleration(0);
         braking = true;
