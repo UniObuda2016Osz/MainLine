@@ -54,7 +54,7 @@ public class AutomaticEmergencyBrake {
         double timeToZeroSpeed = realSpeed / 8; // sec = (m/s) / (m/s^2)
         // Deceleration must be > 4.5 m/s2, but below 10 m/s2
 
-        if(timeToZeroSpeed <= timeUntilImpact)
+        if(timeToZeroSpeed >= timeUntilImpact)
             return true;
         else
             return false;
