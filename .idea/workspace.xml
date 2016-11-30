@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1239e05d-1af1-4469-adc4-1cd7b16c847f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrakeDemo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java" />
     </list>
     <ignored path="MainLine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +25,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AutomaticEmergencyBrake.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserCar.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="151" column="11" selection-start-line="151" selection-start-column="11" selection-end-line="151" selection-end-column="11" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutomaticEmergencyBrake.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="265">
-              <caret line="112" column="49" selection-start-line="112" selection-start-column="49" selection-end-line="112" selection-end-column="49" />
+            <state relative-caret-position="2928">
+              <caret line="140" column="27" selection-start-line="140" selection-start-column="12" selection-end-line="140" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -38,7 +48,7 @@
       <file leaf-file-name="Bus.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Bus/Bus.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
+            <state relative-caret-position="1075">
               <caret line="57" column="35" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="35" />
               <folding />
             </state>
@@ -48,7 +58,7 @@
       <file leaf-file-name="DetectedObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Radar/DetectedObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="350">
               <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
               <folding>
                 <element signature="e#803#804#0" expanded="true" />
@@ -61,8 +71,28 @@
       <file leaf-file-name="Radar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Radar/Radar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="697">
+            <state relative-caret-position="1025">
               <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AutomaticEmergencyBrakeDemo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrakeDemo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,7 +101,7 @@
       <file leaf-file-name="RadarCalculator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Radar/RadarCalculator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="800">
               <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
               <folding />
             </state>
@@ -81,7 +111,7 @@
       <file leaf-file-name="ACCMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/ACCMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1309">
+            <state relative-caret-position="1925">
               <caret line="84" column="19" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="19" />
               <folding />
             </state>
@@ -117,6 +147,7 @@
         <option value="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java" />
         <option value="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Visuals/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java" />
+        <option value="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrakeDemo.java" />
       </list>
     </option>
   </component>
@@ -128,10 +159,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="754" />
+    <option name="x" value="-11" />
+    <option name="y" value="-11" />
+    <option name="width" value="1942" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -161,7 +192,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -549,6 +579,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -1038,21 +1069,21 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <frame x="-11" y="-11" width="1942" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1878882" sideWeight="0.5204978" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18764044" sideWeight="0.52239585" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19101124" sideWeight="0.4703125" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1878882" sideWeight="0.4795022" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18764044" sideWeight="0.47760418" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15080526" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1107,13 +1138,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/ultrasonic/UltrasonicSensorDemo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -1434,88 +1458,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1496">
-          <caret line="151" column="11" selection-start-line="151" selection-start-column="11" selection-end-line="151" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#413#414#0" expanded="false" />
-            <element signature="e#441#442#0" expanded="false" />
-            <element signature="e#471#472#0" expanded="false" />
-            <element signature="e#500#501#0" expanded="false" />
-            <element signature="e#525#526#0" expanded="false" />
-            <element signature="e#549#550#0" expanded="false" />
-            <element signature="e#580#581#0" expanded="false" />
-            <element signature="e#606#607#0" expanded="false" />
-            <element signature="e#631#632#0" expanded="false" />
-            <element signature="e#655#656#0" expanded="false" />
-            <element signature="e#686#687#0" expanded="false" />
-            <element signature="e#712#713#0" expanded="false" />
-            <element signature="e#745#746#0" expanded="false" />
-            <element signature="e#777#778#0" expanded="false" />
-            <element signature="e#824#825#0" expanded="false" />
-            <element signature="e#866#867#0" expanded="false" />
-            <element signature="e#902#903#0" expanded="false" />
-            <element signature="e#934#935#0" expanded="false" />
-            <element signature="e#965#966#0" expanded="false" />
-            <element signature="e#993#994#0" expanded="false" />
-            <element signature="e#1034#1035#0" expanded="false" />
-            <element signature="e#1068#1069#0" expanded="false" />
-            <element signature="e#1100#1101#0" expanded="false" />
-            <element signature="e#1128#1129#0" expanded="false" />
-            <element signature="e#1170#1171#0" expanded="false" />
-            <element signature="e#1204#1205#0" expanded="false" />
-            <element signature="e#1235#1236#0" expanded="false" />
-            <element signature="e#1264#1265#0" expanded="false" />
-            <element signature="e#1305#1306#0" expanded="false" />
-            <element signature="e#1334#1335#0" expanded="false" />
-            <element signature="e#1368#1369#0" expanded="false" />
-            <element signature="e#1400#1401#0" expanded="false" />
-            <element signature="e#1447#1448#0" expanded="false" />
-            <element signature="e#1482#1483#0" expanded="false" />
-            <element signature="e#1517#1518#0" expanded="false" />
-            <element signature="e#1548#1549#0" expanded="false" />
-            <element signature="e#1596#1597#0" expanded="false" />
-            <element signature="e#1636#1637#0" expanded="false" />
-            <element signature="e#1672#1673#0" expanded="false" />
-            <element signature="e#1704#1705#0" expanded="false" />
-            <element signature="e#1754#1755#0" expanded="false" />
-            <element signature="e#1796#1797#0" expanded="false" />
-            <element signature="e#1832#1833#0" expanded="false" />
-            <element signature="e#1864#1865#0" expanded="false" />
-            <element signature="e#1914#1915#0" expanded="false" />
-            <element signature="e#1956#1957#0" expanded="false" />
-            <element signature="e#1991#1992#0" expanded="false" />
-            <element signature="e#2022#2023#0" expanded="false" />
-            <element signature="e#2070#2071#0" expanded="false" />
-            <element signature="e#2110#2111#0" expanded="false" />
-            <element signature="e#2205#2206#0" expanded="false" />
-            <element signature="e#2235#2236#0" expanded="false" />
-            <element signature="e#2282#2283#0" expanded="false" />
-            <element signature="e#2312#2313#0" expanded="false" />
-            <element signature="e#2401#2402#0" expanded="false" />
-            <element signature="e#2446#2447#0" expanded="false" />
-            <element signature="e#3031#3032#0" expanded="false" />
-            <element signature="e#3073#3074#0" expanded="false" />
-            <element signature="e#5639#5640#0" expanded="false" />
-            <element signature="e#5676#5677#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1585,7 +1532,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/ACCMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1309">
+        <state relative-caret-position="1925">
           <caret line="84" column="19" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="19" />
           <folding />
         </state>
@@ -1593,7 +1540,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Bus/Bus.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
+        <state relative-caret-position="1075">
           <caret line="57" column="35" selection-start-line="57" selection-start-column="30" selection-end-line="57" selection-end-column="35" />
           <folding />
         </state>
@@ -1601,7 +1548,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Radar/Radar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="697">
+        <state relative-caret-position="1025">
           <caret line="50" column="0" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding />
         </state>
@@ -1609,7 +1556,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Radar/RadarCalculator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
+        <state relative-caret-position="800">
           <caret line="46" column="33" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
           <folding />
         </state>
@@ -1617,7 +1564,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Sensors/Radar/DetectedObject.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="350">
           <caret line="14" column="44" selection-start-line="14" selection-start-column="44" selection-end-line="14" selection-end-column="44" />
           <folding>
             <element signature="e#803#804#0" expanded="true" />
@@ -1628,8 +1575,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrake.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="112" column="49" selection-start-line="112" selection-start-column="49" selection-end-line="112" selection-end-column="49" />
+        <state relative-caret-position="2928">
+          <caret line="140" column="27" selection-start-line="140" selection-start-column="12" selection-end-line="140" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/emergencybrake/AutomaticEmergencyBrakeDemo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="151" column="11" selection-start-line="151" selection-start-column="11" selection-end-line="151" selection-end-column="11" />
           <folding />
         </state>
       </provider>
