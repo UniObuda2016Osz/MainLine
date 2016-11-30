@@ -58,17 +58,26 @@ public class AutomaticEmergencyBrake {
         ownerCar.getRadar().RadarMain();
         ArrayList<DetectedObject> objectsbeforethecar = Bus.getInstance().getFourNearestFromRadar();
         for (DetectedObject object: objectsbeforethecar) {
-            // not hit emergency braking car
-            //if(object is vészfékező autó)
+
+
+            if(object.getNpctype().name() == "NpcCar" )
             {
-                //mustBrake(object)
+                if(ownerCar.getSpeed() < 50 /*&& crossing Car*/ ){
+
+                }
+                else if(ownerCar.getSpeed() < 100 /*&& cutting Car*/ ){
+
+                }
+                else if( /*&& Veszfekezo Car*/  ){
+
+                }
             }
 
-            if (ownerCar.getSpeed() < 50)//does not hit: pedestrian,cyclist, crossing car
+            else if ( ownerCar.getSpeed() < 50 && ( object.getNpctype().name() == "People" ||   object.getNpctype().name() == "Cyclist"))//does not hit: pedestrian,cyclist, crossing car
             {
-            } else if (ownerCar.getSpeed() < 100)//does not hit: cutting in car
-            {
+
             }
+
         }
 
 
@@ -85,7 +94,8 @@ public class AutomaticEmergencyBrake {
         double realSpeed = convertToMeterPerSec(ownerCar.getSpeed() - object.getActualSpeed());//sebességkülönbség
         double timeUntilImpact = object.getActualDistance() / realSpeed; // sec = meter / (m/s) -ütközésig az idő
 
-        double timeToZeroSpeed = realSpeed / 8; // sec = (m/s) / (m/s^2) //sebességkülönbség nullára csökkenéséhez az idő vészfékezés mellett
+        double timeToZeroSpeed = realSpeed / 8; // sec = (m/s) / (m/s^2)
+        // sebességkülönbség nullára csökkenéséhez az idő vészfékezés mellett
         // Deceleration must be > 4.5 m/s2, but below 10 m/s2
 
         if (timeToZeroSpeed >= timeUntilImpact)//ha nagyobb a megálláshoz szükséges idő mint ahogy vészfékezés mellett meg tudnánk állni akkor vészfékezünk??? WTF?
