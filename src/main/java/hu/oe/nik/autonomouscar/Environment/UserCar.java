@@ -1,9 +1,13 @@
 package hu.oe.nik.autonomouscar.Environment;
 
+import hu.oe.nik.autonomouscar.Bus.Bus;
+import hu.oe.nik.autonomouscar.Dynamics.VehicleDynamics;
+import hu.oe.nik.autonomouscar.Environment.road_tiles.RoadTile;
 import hu.oe.nik.autonomouscar.Sensors.Radar.Radar;
 
-
-
+import javax.xml.stream.XMLStreamException;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -136,6 +140,8 @@ public class UserCar {
     private int width;
     private int height;
     UserCarControlling controlling;
+    Bus bus;
+    VehicleDynamics dynamics;
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
@@ -148,7 +154,16 @@ public class UserCar {
         this.y = y;
         controlling = new UserCarControlling(this);
         setImagePath("car.png");
+        bus = Bus.getInstance();
+        dynamics = VehicleDynamics.GetInstance();
+    }
 
+    public void AccelerateAuto2(int howmuch)
+    {
+        bus.setBrakePedal(0);
+        bus.setGearPosition(Bus.GearPosition.DRIVE);
+        bus.setGasPedal(5);
+        dynamics.update();
     }
 
     public void AccelerateAuto(int howmuch){
@@ -189,5 +204,97 @@ public class UserCar {
         this.setCrashed(true);
     }
 
+    public boolean isOnRoadObject()
+    {
+        XMLParserMain parser = XMLParserMain.getInstance();
+        List<WorldObject> objectsList = null;
+        try
+        {
+            objectsList = parser.getWorld();
+        }
+        catch(XMLStreamException e)
+        {
+            System.out.println("UserCar IsOnRoadObject() nem kap világot!");
+        }
+        boolean onRoad = false;
+        int halfOfCarWidth = this.getWidth()/2;
+        int[] carCenterPoint = this.getCenterPoint();
+        int[] roadSize;
+        double[] roadTransform;
+
+        for(WorldObject wo: objectsList)
+        {
+            if((wo instanceof RoadTile))
+            {
+                roadTransform = wo.getTransform();
+                int[] roadPosition = wo.getPosition();
+                int roadX = roadPosition[0];
+                int roadY = roadPosition[1];
+                int[] roadPos = {roadX, roadY};
+                int roadWidth = wo.getWidth();
+                int roadHeight = wo.getHeight();
+
+                //int[] leftUpper = {roadX + halfOfCarWidth, roadY};
+                //int[] leftBottom = {roadX + halfOfCarWidth,roadY + roadHeight};
+                //int[] rightUpper = {roadX + roadWidth - halfOfCarWidth, roadY};
+                //int[] rightBottom = {roadX + roadWidth - halfOfCarWidth, roadY + roadHeight}
+
+                int[] leftUpper = {roadX, roadY};
+                int[] leftBottom = {roadX,roadY + roadHeight};
+                int[] rightUpper = {roadX + roadWidth, roadY};
+                int[] rightBottom = {roadX + roadWidth, roadY + roadHeight};
+
+                leftUpper = transformCoordinate(leftUpper, roadTransform, roadPos);
+                leftBottom = transformCoordinate(leftBottom, roadTransform, roadPos);
+                rightUpper = transformCoordinate(rightUpper, roadTransform, roadPos);
+                rightBottom = transformCoordinate(rightBottom, roadTransform, roadPos);
+
+                if(
+                        ((carCenterPoint[0]>=leftUpper[0] && carCenterPoint[0]<=rightBottom[0])
+                                ||
+                                (carCenterPoint[0]>=leftBottom[0] && carCenterPoint[0]<=rightUpper[0]))
+                                &&
+                                ((carCenterPoint[1]>=leftUpper[1] && carCenterPoint[1]<=rightBottom[1])
+                                        ||
+                                        (carCenterPoint[1]<=leftBottom[1] && carCenterPoint[1]>=rightUpper[1]))
+                        )//end if
+                {
+                    onRoad=true;
+                    this.setCrashed(false);
+                }
+            }//if(wo instanceof ...) end
+        } //for ciklus vége
+        if(onRoad==false)
+        {
+            this.setCrashed(true);
+            System.out.println("Crashed whit carCenterPoint: " + Arrays.toString(carCenterPoint));
+        }
+        return onRoad;
+    }
+
+    private int[] transformCoordinate(int[] coordinate, double[] transform, int[] roadPos)
+    {
+        int[] coords = {coordinate[0]-roadPos[0], coordinate[1]-roadPos[1]};
+        int[] newCoordinate = new int[2];
+        newCoordinate[0] = (int)(((coords[0]*transform[0])-(coords[1]*transform[1]))+roadPos[0]);
+        newCoordinate[1] = (int)(((coords[0]*transform[2])+(coords[1]*transform[3]))+roadPos[1]);
+        return newCoordinate;
+    }
+
+    public int[] getCenterPoint() {
+        int[] position = new int[]{this.getX(), this.getY()};
+        int[] centerPoint = new int[2];
+        double[] transformation = new double[]{Math.cos(this.getRotation()), (Math.sin(this.getRotation())*-1), Math.sin(this.getRotation()), Math.cos(this.getRotation())};
+
+        int felSzelesseg = this.getWidth() / 2;
+        int felMagassag = this.getHeight() / 2;
+
+        centerPoint[0] = (int) (felSzelesseg * transformation[0] + felMagassag * transformation[1]);
+        centerPoint[1] = (int) (felSzelesseg * transformation[2] + felMagassag * transformation[3]);
+
+        centerPoint[0]+=position[0];
+        centerPoint[1]+=position[1];
+        return centerPoint;
+    }
 
 }
