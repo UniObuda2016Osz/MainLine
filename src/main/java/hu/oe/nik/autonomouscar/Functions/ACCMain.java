@@ -35,6 +35,10 @@ public class ACCMain {
         nearestFourObjects = new ArrayList<DetectedObject>();
     }
 
+    public float getClosestTargetDistance() {
+        return ClosestTargetDistance;
+    }
+
     public double getTargetSpeed(){
         return targetSpeed;
     }
@@ -116,10 +120,11 @@ public class ACCMain {
         if(!isAccOn){
             this.isAccOn = true;
             //this.targetSpeed = bus.getCurrentSISpeed();
-            targetSpeed=30;
-            timegap=1.5;
+            this.targetSpeed = 30.0;
+            timegap = 1.5;
             bus.setGearPosition(Bus.GearPosition.DRIVE);
             getDetectedObjectsFromRadar();
+            definitionOfClosestObject();
         }
     }
 
@@ -139,6 +144,7 @@ public class ACCMain {
     public void definitionOfClosestObject(){
         // kikeresem a legközelebbi objectet ami a sávomban van és megnézem milyen messze van. Ha közeledett akkor akkor növelem a Timegap-et így lassul az autó és fordítva meg gyorsulok ha
         // előttem is gyorsult az autó és távolodik. Remélem erre gondoltunk mind.
+        System.out.println(nearestFourObjects.get(0));
         float Temp_actualdistancefromnearest = nearestFourObjects.get(0).getActualDistance(); //closest object distance
         for (int i=1; i < nearestFourObjects.size(); i++)
         {
