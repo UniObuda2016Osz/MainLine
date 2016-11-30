@@ -19,12 +19,16 @@ public class AutomaticEmergencyBrake {
     //plussz a vezető gázadását le kéne tiltani vészfékezés esetén
     //for calculate the deceleration: must be > 4.5 m/s2, but below 10 m/s2
 
+    float last_time;
+    double last_speed;
+    boolean braking;
     private UserCar ownerCar;
     private boolean turnedOn;
 
     public AutomaticEmergencyBrake(UserCar ownerCar) {
         this.ownerCar = ownerCar;
         turnedOn = false;
+        braking = false;
     }
 
     public void turnOn() {
@@ -44,69 +48,67 @@ public class AutomaticEmergencyBrake {
         if (turnedOn) {
 
             if (turnedOn == true) {
-                //if(vészfékezünk) Brake()
-                //else
-                watchObjects();
-            } else {
-                //do nothing
+                if (braking)
+                    Brake();
+                else
+                    watchObjects();
             }
-
         }
     }
 
     private void watchObjects() {
         ownerCar.getRadar().RadarMain();
         ArrayList<DetectedObject> objectsbeforethecar = Bus.getInstance().getFourNearestFromRadar();
-        for (DetectedObject object: objectsbeforethecar) {
+        for (DetectedObject object : objectsbeforethecar) {
 
 
-            if(object.getNpctype().name() == "NpcCar" )
-            {
-                if(ownerCar.getSpeed() < 50 /*&& crossing Car*/ ){
+            if (object.getNpctype().name() == "NpcCar") {
+                if (ownerCar.getSpeed() < 50 /*&& crossing Car*/) {
 
-                }
-                else if(ownerCar.getSpeed() < 100 /*&& cutting Car*/ ){
+                } else if (ownerCar.getSpeed() < 100 /*&& cutting Car*/) {
 
                 }
                 //else if( /*&& Veszfekezo Car*/  ){
 
                 //}
-            }
-
-            else if ( ownerCar.getSpeed() < 50 && ( object.getNpctype().name() == "People" ||   object.getNpctype().name() == "Cyclist"))//does not hit: pedestrian,cyclist, crossing car
+            } else if (ownerCar.getSpeed() < 50 && (object.getNpctype().name() == "People" || object.getNpctype().name() == "Cyclist"))//does not hit: pedestrian,cyclist, crossing car
             {
-
+                if (visualWarning(object)) {
+                    showWarning();
+                    if (mustBrake(object))
+                        Brake();
+                }
             }
 
         }
 
 
     }
-    float last_time;
-    double last_speed;
+
     private void Brake() {
         //user gázadás elvétele
         Bus.getInstance().setAcceleration(0);
-
+        braking = true;
         //lassulást kiolvasása a korábbi adatokból=>fékerő állítás
-        if(last_speed==0) {
+        if (last_speed == 0) {
             last_speed = ownerCar.getSpeed();
             Bus.getInstance().setBrakePedal(60);//kezdetben 60%al fékezünk
         }
-        if(last_time!=0&&last_speed==0)
-
-            ;//nem vészfékezünk már mert megálltunk
-        if(last_time==0)
+        if (last_time != 0 && last_speed == 0) //nem vészfékezünk tovább, mert megálltunk
         {
+            braking = false;
+            return;
+        }
+        if (last_time == 0) {
             last_time = System.currentTimeMillis();
             return;
         }
-        double deceleration= (last_speed-ownerCar.getSpeed()/(System.currentTimeMillis()-last_time))*1000;
+        double deceleration = (last_speed - ownerCar.getSpeed() / (System.currentTimeMillis() - last_time)) * 1000;
         //the deceleration: must be > 4.5 m/s2, but below 10 m/s2
-        if(deceleration<4.5)
-            Bus.getInstance().setAcceleration((int)1.1*Bus.getInstance().getAcceleration());
-        else if(deceleration<9.5)
-        Bus.getInstance().setAcceleration((int)0.9*Bus.getInstance().getAcceleration());
+        if (deceleration < 4.5)
+            Bus.getInstance().setAcceleration((int) 1.1 * Bus.getInstance().getAcceleration());
+        else if (deceleration < 9.5)
+            Bus.getInstance().setAcceleration((int) 0.9 * Bus.getInstance().getAcceleration());
 
         last_speed = ownerCar.getSpeed();
         last_time = System.currentTimeMillis();
@@ -136,12 +138,14 @@ public class AutomaticEmergencyBrake {
         double timeToZeroSpeed = realSpeed / 4.5;
 
         // ha a veszfekezesig 4-2 mp akkor Warning kivillan
-        if (timeUntilImpact - timeToZeroSpeed > 2 && timeUntilImpact - timeToZeroSpeed < 4){
+        if (timeUntilImpact - timeToZeroSpeed > 2 && timeUntilImpact - timeToZeroSpeed < 4) {
             return true;
-        }
-        else
+        } else
             return false;
 
+    }
+
+    private void showWarning() {
     }
 
     private double convertToMeterPerSec(double kmPerHour) {
