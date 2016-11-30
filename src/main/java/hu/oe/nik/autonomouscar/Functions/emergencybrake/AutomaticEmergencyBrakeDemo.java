@@ -8,10 +8,18 @@ import hu.oe.nik.autonomouscar.Environment.UserCar;
  */
 public class AutomaticEmergencyBrakeDemo {
 
+    public static final int USERCAR_STARTING_POS_X = 50;
+    public static final int USERCAR_STARTING_POS_Y = 50;
+
     public static void main(String[] args) {
+        UserCar userCar = new UserCar(USERCAR_STARTING_POS_X, USERCAR_STARTING_POS_Y);
 
+        while(true) {
 
+            userCar.getAutomaticEmergencyBrake().turnOn();
+            userCar.getAutomaticEmergencyBrake().run();
 
+        }
     }
 
 

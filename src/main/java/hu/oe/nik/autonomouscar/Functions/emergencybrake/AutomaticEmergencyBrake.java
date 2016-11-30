@@ -46,14 +46,12 @@ public class AutomaticEmergencyBrake {
      */
     public void run() {
         if (turnedOn) {
-
-            if (turnedOn == true) {
-                if (braking)
-                    Brake();
-                else
-                    watchObjects();
-            }
+            if (braking)
+                Brake();
+            else
+                watchObjects();
         }
+
     }
 
     private void watchObjects() {

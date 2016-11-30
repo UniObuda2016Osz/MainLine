@@ -1,5 +1,6 @@
 package hu.oe.nik.autonomouscar.Environment;
 
+import hu.oe.nik.autonomouscar.Functions.emergencybrake.AutomaticEmergencyBrake;
 import hu.oe.nik.autonomouscar.Sensors.Camera;
 import hu.oe.nik.autonomouscar.Sensors.Radar.Radar;
 import hu.oe.nik.autonomouscar.Sensors.ultrasonic.UltraSonicSensorPosition;
@@ -127,9 +128,15 @@ public class UserCar {
         return this.ultrasonicSensors;
     }
 
+    public AutomaticEmergencyBrake getAutomaticEmergencyBrake() {
+        return automaticEmergencyBrake;
+    }
+
+
     private int direction = 0;
     private String imagePath;
     private Radar radar;
+    private AutomaticEmergencyBrake automaticEmergencyBrake;
     private Camera camera;
     private double speed;
     private boolean isMove;
@@ -159,6 +166,7 @@ public class UserCar {
 
         initUltrasonicSensors();
         radar = new Radar(this);
+        automaticEmergencyBrake = new AutomaticEmergencyBrake(this);
         //camera = new Camera(this);
     }
 
@@ -211,6 +219,5 @@ public class UserCar {
     {
         this.setCrashed(true);
     }
-
 
 }
