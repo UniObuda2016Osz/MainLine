@@ -68,9 +68,9 @@ public class AutomaticEmergencyBrake {
                 else if(ownerCar.getSpeed() < 100 /*&& cutting Car*/ ){
 
                 }
-                else if( /*&& Veszfekezo Car*/  ){
+                //else if( /*&& Veszfekezo Car*/  ){
 
-                }
+                //}
             }
 
             else if ( ownerCar.getSpeed() < 50 && ( object.getNpctype().name() == "People" ||   object.getNpctype().name() == "Cyclist"))//does not hit: pedestrian,cyclist, crossing car
@@ -82,11 +82,34 @@ public class AutomaticEmergencyBrake {
 
 
     }
-    Time last_time;
-    int last_speed;
+    float last_time;
+    double last_speed;
     private void Brake() {
         //user gázadás elvétele
+        Bus.getInstance().setAcceleration(0);
+
         //lassulást kiolvasása a korábbi adatokból=>fékerő állítás
+        if(last_speed==0) {
+            last_speed = ownerCar.getSpeed();
+            Bus.getInstance().setBrakePedal(60);//kezdetben 60%al fékezünk
+        }
+        if(last_time!=0&&last_speed==0)
+
+            ;//nem vészfékezünk már mert megálltunk
+        if(last_time==0)
+        {
+            last_time = System.currentTimeMillis();
+            return;
+        }
+        double deceleration= (last_speed-ownerCar.getSpeed()/(System.currentTimeMillis()-last_time))*1000;
+        //the deceleration: must be > 4.5 m/s2, but below 10 m/s2
+        if(deceleration<4.5)
+            Bus.getInstance().setAcceleration((int)1.1*Bus.getInstance().getAcceleration());
+        else if(deceleration<9.5)
+        Bus.getInstance().setAcceleration((int)0.9*Bus.getInstance().getAcceleration());
+
+        last_speed = ownerCar.getSpeed();
+        last_time = System.currentTimeMillis();
     }
 
     private boolean mustBrake(DetectedObject object) {
