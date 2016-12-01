@@ -2,35 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1239e05d-1af1-4469-adc4-1cd7b16c847f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/ParkingSign$ParkingSignType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/ParkingSign.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Sensors/Radar.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Visuals/DisplayMain.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Bus/BusTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Dynamics/EnergyLossTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Dynamics/EngineTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Dynamics/TimerTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Dynamics/VehicleDynamicsTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Environment/WorldObjectTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Environment/XMLParserMainTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/hu/oe/nik/autonomouscar/Sensors/CameraTest.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Bus/Bus$GearPosition.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Bus/Bus$GearPosition.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Bus/Bus.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Bus/Bus.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Dynamics/VehicleDynamicsDemoTimerListener.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Dynamics/VehicleDynamicsDemoTimerListener.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/NPC/People.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/NPC/People.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/UserCar.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/UserCar.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Crosswalk.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Crosswalk.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Parking.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Parking.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Tree.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/misc/Tree.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Direction.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Direction.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Priority.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Priority.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Speed.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_signs/Speed.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneAdvanced.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneAdvanced.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneSimple.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Environment/road_tiles/LaneSimple.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Main.class" afterPath="$PROJECT_DIR$/target/classes/hu/oe/nik/autonomouscar/Main.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/road_1.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Main.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/ParkingPilot/ParkingPilot.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/ParkingPilot/ParkingPilot.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/LaneKeeping.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/LaneKeeping.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/Scene.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/Scene.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/XMLParserMain.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/XMLParserMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/ACCMain.java" afterPath="$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Functions/ACCMain.java" />
     </list>
     <ignored path="MainLine.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,8 +52,8 @@
       <file leaf-file-name="UserCar.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-545">
-              <caret line="155" column="51" selection-start-line="155" selection-start-column="51" selection-end-line="155" selection-end-column="51" />
+            <state relative-caret-position="441">
+              <caret line="155" column="49" selection-start-line="155" selection-start-column="49" selection-end-line="155" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,8 +74,8 @@
       <file leaf-file-name="ParkingPilot.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/ParkingPilot/ParkingPilot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="86" column="41" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
+            <state relative-caret-position="122">
+              <caret line="102" column="60" selection-start-line="102" selection-start-column="60" selection-end-line="102" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -153,8 +130,8 @@
       <file leaf-file-name="XMLParserMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/XMLParserMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4012">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="-3910">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -197,10 +174,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1364" />
-    <option name="height" value="736" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="754" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -938,26 +915,40 @@
       <option name="project" value="LOCAL" />
       <updated>1480531658437</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="PP">
+      <created>1480543397623</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1480543397623</updated>
+    </task>
+    <task id="LOCAL-00006" summary="PP">
+      <created>1480543611505</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1480543611505</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="736" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283582" sideWeight="0.49703264" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3188406" sideWeight="0.49707174" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3283582" sideWeight="0.50296736" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3268921" sideWeight="0.5102489" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.4925816" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3268921" sideWeight="0.4897511" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19101124" sideWeight="0.48072916" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34792286" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34333822" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -986,7 +977,10 @@
     <MESSAGE value="sensors are in line" />
     <MESSAGE value="Ultrasonic sensor now based on Environemnt.UserCar instead of mocked Car class" />
     <MESSAGE value="PP init" />
-    <option name="LAST_COMMIT_MESSAGE" value="PP init" />
+    <MESSAGE value="PP" />
+    <MESSAGE value="Merge branch 'Environment' of https://github.com/UniObuda2016Osz/MainLine into HUB-Csapat-ParkingPilot&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java&#10;" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1311,8 +1305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/UserCar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-545">
-          <caret line="155" column="51" selection-start-line="155" selection-start-column="51" selection-end-line="155" selection-end-column="51" />
+        <state relative-caret-position="441">
+          <caret line="155" column="49" selection-start-line="155" selection-start-column="49" selection-end-line="155" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1331,8 +1325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/Environment/XMLParserMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4012">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+        <state relative-caret-position="-3910">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1397,8 +1391,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/hu/oe/nik/autonomouscar/ParkingPilot/ParkingPilot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="86" column="41" selection-start-line="86" selection-start-column="41" selection-end-line="86" selection-end-column="41" />
+        <state relative-caret-position="122">
+          <caret line="102" column="60" selection-start-line="102" selection-start-column="60" selection-end-line="102" selection-end-column="60" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
