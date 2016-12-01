@@ -17,16 +17,16 @@ public class AutomaticEmergencyBrake {
     //plussz a vezető gázadását le kéne tiltani vészfékezés esetén
     //for calculate the deceleration: must be > 4.5 m/s2, but below 10 m/s2
 
+    public static final int INITIAL_EMERGENCY_BRAKE_PRESSURE = 100;
+
     float last_time;
     double last_speed;
-    boolean braking;
     private UserCar ownerCar;
     private boolean turnedOn;
 
     public AutomaticEmergencyBrake(UserCar ownerCar) {
         this.ownerCar = ownerCar;
         turnedOn = false;
-        braking = false;
     }
 
     public void turnOn() {
@@ -44,8 +44,8 @@ public class AutomaticEmergencyBrake {
      */
     public void run() {
         if (turnedOn) {
-            if (braking)
-                brake();
+            if (Bus.getInstance().isEmergencyBrakeInProgress())
+                keepBraking();
             else
                 watchObjects();
         }
@@ -71,7 +71,7 @@ public class AutomaticEmergencyBrake {
                 if (visualWarning(object)) {
                     showWarning();
                     if (mustBrake(object))
-                        brake();
+                        keepBraking();
                 }
             }
 
@@ -80,38 +80,41 @@ public class AutomaticEmergencyBrake {
 
     }
 
-    private void brake() {
+    private void keepBraking() {
         //user gázadás elvétele
+        //FIXME: levair: ez valoban az AEB feladata? szerintem ez dynamics hataskor
         Bus.getInstance().setAcceleration(0);
-        braking = true;
+
+        Bus.getInstance().setEmergencyBrakeInProgress(true);
+
         //lassulást kiolvasása a korábbi adatokból=>fékerő állítás
         if (last_speed == 0) {
-            last_speed = ownerCar.getSpeed();
-            Bus.getInstance().setBrakePedal(60);//kezdetben 60%al fékezünk
+            last_speed = Bus.getInstance().getCurrentSISpeed();
+            Bus.getInstance().setEmergencyBrake(INITIAL_EMERGENCY_BRAKE_PRESSURE);
         }
         if (last_time != 0 && last_speed == 0) //nem vészfékezünk tovább, mert megálltunk
         {
-            braking = false;
+            Bus.getInstance().setEmergencyBrakeInProgress(false);
             return;
         }
         if (last_time == 0) {
             last_time = System.currentTimeMillis();
             return;
         }
-        double deceleration = (last_speed - ownerCar.getSpeed() / (System.currentTimeMillis() - last_time)) * 1000;
+        double deceleration = (last_speed - Bus.getInstance().getCurrentSISpeed() / (System.currentTimeMillis() - last_time)) * 1000;
         //the deceleration: must be > 4.5 m/s2, but below 10 m/s2
         if (deceleration < 4.5)
-            Bus.getInstance().setAcceleration((int) 1.1 * Bus.getInstance().getAcceleration());
+            Bus.getInstance().setEmergencyBrake((int) 1.1 * Bus.getInstance().getEmergencyBrake());
         else if (deceleration < 9.5)
-            Bus.getInstance().setAcceleration((int) 0.9 * Bus.getInstance().getAcceleration());
+            Bus.getInstance().setEmergencyBrake((int) 0.9 * Bus.getInstance().getEmergencyBrake());
 
-        last_speed = ownerCar.getSpeed();
+        last_speed = Bus.getInstance().getCurrentSISpeed();
         last_time = System.currentTimeMillis();
     }
 
     private boolean mustBrake(DetectedObject object) {
 
-        double realSpeed = convertToMeterPerSec(ownerCar.getSpeed() - object.getActualSpeed());//sebességkülönbség
+        double realSpeed = convertToMeterPerSec(Bus.getInstance().getCurrentSISpeed() - object.getActualSpeed());//sebességkülönbség
         double timeUntilImpact = object.getActualDistance() / realSpeed; // sec = meter / (m/s) -ütközésig az idő
 
         double timeToZeroSpeed = realSpeed / 4.5; // sec = (m/s) / (m/s^2)
@@ -127,7 +130,7 @@ public class AutomaticEmergencyBrake {
     private boolean visualWarning(DetectedObject object) {
         //reaction time >2.0s
 
-        double realSpeed = convertToMeterPerSec(ownerCar.getSpeed() - object.getActualSpeed());
+        double realSpeed = convertToMeterPerSec(Bus.getInstance().getCurrentSISpeed() - object.getActualSpeed());
         double timeUntilImpact = object.getActualDistance() / realSpeed;
 
         double timeToZeroSpeed = realSpeed / 4.5;

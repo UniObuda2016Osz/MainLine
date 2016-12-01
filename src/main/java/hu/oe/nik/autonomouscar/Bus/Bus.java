@@ -103,11 +103,11 @@ public class Bus {
             this.emergencyBrake = 0;
     }
 
-    private boolean emergencyBrakeSwitchedOn;
+    private boolean emergencyBrakeInProgress;
 
-    public boolean isEmergencyBrakeSwitchedOn() { return emergencyBrakeSwitchedOn; }
+    public boolean isEmergencyBrakeInProgress() { return emergencyBrakeInProgress; }
 
-    public void setEmergencyBrakeSwitchedOn(boolean emergencyBrakeSwitchedOn ) { this.emergencyBrakeSwitchedOn = emergencyBrakeSwitchedOn; }
+    public void setEmergencyBrakeInProgress(boolean emergencyBrakeInProgress) { this.emergencyBrakeInProgress = emergencyBrakeInProgress; }
 
     public boolean isDirectionIndicatorLeftActive() {
         return directionIndicatorLeftActive;
